@@ -2,7 +2,7 @@ const gulp = require('gulp')
 const sass = require('node-sass')
 const fs = require('fs')
 const { template } = require('lodash')
-const {buildName, buildConfig, themeConfig, destinationFolder} = require('../utils/utils')
+const {buildConfig, themeConfig, destinationFolder} = require('../utils/utils')
 
 gulp.task('compile-sass', (done) => {
   var config = buildConfig()
@@ -25,7 +25,7 @@ gulp.task('compile-sass', (done) => {
       fs.mkdirSync(`${destinationFolder()}/${config.theme.src.replace('core/', '')}`)
     }
 
-    fs.writeFileSync(`${destinationFolder()}/${config.theme.src.replace('core/', '')}/${theme.name}-theme.html`, template(themeTemplate)({ themeName: theme.name, style: result.css.toString('utf8') }), 'utf8')
+    fs.writeFileSync(`${destinationFolder()}/${config.theme.src.replace('core/', '')}/${theme.name}-theme.html`, template(themeTemplate)({ themeName: theme.name, style: result.css.toString('utf8'), dependencies: theme.dependencies }), 'utf8')
     // console.log(result.css.toString('utf8'))
     done()
   })

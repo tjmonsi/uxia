@@ -1,0 +1,150 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../../bower_components/shadycss/apply-shim.html">
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="uxia-home-page">
+  <template>
+    <style>
+    </style>
+
+    <header class="header">
+      <div class="image">
+        <img src="">
+      </div>
+      <div class="header-text">
+        <h1>The State of UX in Asia: 2017 Survey Report</h1>
+        <p>
+          The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
+        </p>
+        <p>
+          Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
+        </p>
+        <a href="#">
+          Email me the free report
+        </a>
+      </div>
+    </header>
+
+    <!-- stories -->
+    <section class="stories">
+      <h1>Stories from UX Practitioners in these following countries:</h1>
+
+      <div class="stories-grid">
+        <template is="dom-repeat" items="[[stories]]">
+          <div class="story-country">
+            <img src="[[item.image]]" />
+            <p>[[item.country]]</p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- something -->
+    <section class="main-testimony">
+      <div class="testimony-container">
+        <p class="testimony-text">
+          “There's still a lot of work to help companies in my country to understand what a UX Designer does and the values we can offer to the company.”
+        </p>
+        <p class="testimony-name">
+          Patrick James Lim
+        </p>
+        <p class="testimony-work">
+          UX DESIGNER, PHILIPPINES
+        </p>
+      </div>
+      <div class="testimony-image">
+        <img src="">
+      </div>
+    </section>
+
+    <!-- Learn about organizations in asia -->
+    <section>
+
+    </section>
+
+    <!-- suzen and fu -->
+    <section>
+
+    </section>
+
+    <!-- include in the report -->
+    <section>
+
+    </section>
+
+    <!-- get the latest insights -->
+    <footer>
+
+    </footer>
+
+
+  </template>
+  <script>
+    (() => {
+      class UxiaHomePage extends Polymer.Element {
+        static get is () { return 'uxia-home-page' }
+
+        static get properties () {
+          return {
+            stories: {
+              type: Array,
+              value: [
+                {
+                  country: 'Japan',
+                  image: ''
+                },
+                {
+                  country: 'Korea',
+                  image: ''
+                },
+                {
+                  country: 'India',
+                  image: ''
+                },
+                {
+                  country: 'Taiwan',
+                  image: ''
+                },
+                {
+                  country: 'Hongkong',
+                  image: ''
+                },
+                {
+                  country: 'China',
+                  image: ''
+                },
+                {
+                  country: 'Philippines',
+                  image: ''
+                },
+                {
+                  country: 'Thailand',
+                  image: ''
+                },
+                {
+                  country: 'Malaysia',
+                  image: ''
+                },
+                {
+                  country: 'Singapore',
+                  image: ''
+                },
+                {
+                  country: 'Vietnam',
+                  image: ''
+                },
+                {
+                  country: 'Indonesia',
+                  image: ''
+                }
+              ]
+            }
+          }
+        }
+      }
+
+      window.customElements.define(UxiaHomePage.is, UxiaHomePage)
+    })()
+  </script>
+</dom-module>
