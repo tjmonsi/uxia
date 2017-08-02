@@ -13,7 +13,8 @@ const tasks = [
   'generate-sw',
   'polymer-build',
   'browserify',
-  'compile-sass'
+  'compile-sass',
+  'copy-images'
 ]
 
 const compilerTasks = []
