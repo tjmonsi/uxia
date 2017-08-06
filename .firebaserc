@@ -1,5 +1,5 @@
 {
   "projects": {
-    "staging": "ux-in-asia"
+    "default": "ux-in-asia"
   }
 }

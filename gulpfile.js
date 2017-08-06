@@ -1,11 +1,13 @@
 const gulp = require('gulp')
 const fs = require('fs')
+const { spawn } = require('child_process')
 const {sources, buildConfigFile, destinationFolder} = require('./core/gulp/utils/utils')
 const setupWatchers = require('./core/gulp/utils/setup-watchers')
 const tasks = [
   'clean-build',
   'copy-bower',
   'compile-index',
+  'compile-404',
   'compile-manifest',
   'compile-shell',
   'compile-opts',
@@ -14,7 +16,9 @@ const tasks = [
   'polymer-build',
   'browserify',
   'compile-sass',
-  'copy-images'
+  'copy-images',
+  'compile-firebase',
+  'compile-firebase-json'
 ]
 
 const compilerTasks = []
@@ -24,6 +28,11 @@ const watchers = [
     name: 'watch-bower',
     files: sources.bower,
     tasks: 'copy-bower'
+  },
+  {
+    name: 'watch-images',
+    files: sources.images,
+    tasks: 'copy-images'
   },
   {
     name: 'watch-browserify',
@@ -37,7 +46,7 @@ const watchers = [
   },
   {
     name: 'watch-index',
-    files: [sources.index, `core/${buildConfigFile()}`],
+    files: [sources.index, `src/${buildConfigFile()}`],
     tasks: 'compile-index'
   },
   {
@@ -47,7 +56,7 @@ const watchers = [
   },
   {
     name: 'watch-shell',
-    files: [sources.appShell, `core/${buildConfigFile()}`],
+    files: [sources.appShell, `src/${buildConfigFile()}`],
     tasks: 'compile-shell'
   },
   {
@@ -57,14 +66,19 @@ const watchers = [
   },
   {
     name: 'watch-modules-html',
-    files: [sources.modulesHtml, `core/${buildConfigFile()}`],
+    files: [sources.modulesHtml, `src/${buildConfigFile()}`],
     tasks: 'compile-modules-html'
+  },
+  {
+    name: 'watch-firebase',
+    files: `core/${buildConfigFile()}`,
+    tasks: 'compile-firebase'
   }
 ]
 
 for (var i in tasks) {
   require(`./core/gulp/tasks/${tasks[i]}`)
-  if (tasks[i] !== 'clean-build' && tasks[i] !== 'generate-sw' && tasks[i] !== 'polymer-build') {
+  if (tasks[i] !== 'clean-build' && tasks[i] !== 'generate-sw' && tasks[i] !== 'polymer-build' && tasks[i] !== 'bower-install' && tasks[i] !== 'compile-firebase-json') {
     compilerTasks.push(tasks[i])
   }
 }
@@ -88,9 +102,53 @@ const generateSW = (done) => {
   done()
 }
 
+const checkDevJson = (done) => {
+  if (!fs.existsSync(`src/${buildConfigFile()}`)) {
+    console.log('copying from dev.sample.json in src/config')
+    fs.writeFileSync(`src/${buildConfigFile()}`, JSON.stringify(JSON.parse(fs.readFileSync('src/config/dev.sample.json', 'utf8')), null, 2), 'utf8')
+  }
+  done()
+}
+
+const autoCopyProd = (done) => {
+  fs.writeFileSync(`src/config/prod.json`, JSON.stringify(JSON.parse(fs.readFileSync('src/config/dev.json', 'utf8'), null, 2)), 'utf8')
+  done()
+}
+
+const runServer = (done) => {
+  const args = ['serve']
+  if (process.argv.indexOf('-p') > 0 && process.argv.indexOf('-p') + 1 < process.argv.length) {
+    args.push('-p')
+    args.push(process.argv.indexOf('-p') + 1)
+  } else if (process.argv.indexOf('--port') > 0 && process.argv.indexOf('--port') + 1 < process.argv.length) {
+    args.push('-p')
+    args.push(process.argv.indexOf('--port') + 1)
+  } else if (process.argv.indexOf('-h') > 0 && process.argv.indexOf('-h') + 1 < process.argv.length) {
+    args.push('-o')
+    args.push(process.argv.indexOf('-h') + 1)
+  } else if (process.argv.indexOf('--host') > 0 && process.argv.indexOf('-h') + 1 < process.argv.length) {
+    args.push('-o')
+    args.push(process.argv.indexOf('--host') + 1)
+  }
+  const fb = spawn('firebase', args)
+
+  fb.stdout.on('data', (data) => {
+    console.log(data.toString('utf8'))
+  })
+
+  fb.stderr.on('data', (data) => {
+    console.log(`stderr: ${data.toString('utf8')}`)
+  })
+
+  fb.on('close', (code) => {
+    console.log(`child process exited with code ${code}`)
+    done()
+  })
+}
+
 const series = gulp.series('clean-build', createFolder, gulp.parallel(compilerTasks))
 const watch = gulp.series('clean-build', createFolder, generateSW, gulp.parallel(watchers.map((w) => (w.name))))
 
-gulp.task('default', gulp.series(series, generateSW))
-gulp.task('watch', watch)
-gulp.task('build', gulp.series(series, 'polymer-build', 'generate-sw'))
+gulp.task('default', gulp.series(checkDevJson, 'compile-firebase-json', series, generateSW))
+gulp.task('watch', gulp.series(checkDevJson, 'compile-firebase-json', watch, runServer))
+gulp.task('build', gulp.series(autoCopyProd, 'compile-firebase-json', series, 'polymer-build', 'generate-sw'))

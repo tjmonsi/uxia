@@ -29,6 +29,8 @@ gulp.task('create-component', (done) => {
     //   answers.componentName
     // }
 
+    answers.moduleName = answers.moduleName.toLowerCase()
+    answers.componentName = answers.componentName.toLowerCase()
     answers.moduleNameSlug = slugify(answers.moduleName)
     answers.componentNameSlug = slugify(answers.componentName)
 
@@ -38,7 +40,7 @@ gulp.task('create-component', (done) => {
 
     answers.componentNamePascalCase = uppercamelcase(answers.componentNameSlug)
 
-    var folder = `core/modules/${answers.moduleNameSlug}`
+    var folder = `src/modules/${answers.moduleNameSlug}`
 
     if (!fs.existsSync(folder)) {
       console.log('Module doesn\'t exist. Creating Module')
@@ -62,9 +64,9 @@ gulp.task('create-component', (done) => {
     }
     fs.writeFileSync(`${folder}/components/${answers.componentNameSlug}.html`, template(component)(answers), 'utf8')
 
-    var config = JSON.parse(fs.readFileSync('core/config/dev.json', 'utf8'))
+    var config = JSON.parse(fs.readFileSync('src/config/dev.json', 'utf8'))
     config.modules[answers.moduleNameSlug] = true
-    fs.writeFileSync('core/config/dev.json', JSON.stringify(config, null, 2), 'utf8')
+    fs.writeFileSync('src/config/dev.json', JSON.stringify(config, null, 2), 'utf8')
     return done()
   })
 })
