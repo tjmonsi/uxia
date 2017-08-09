@@ -3,7 +3,6 @@ for (var i in app.firebaseConfig) {
     path: 'https://' + app.firebaseConfig[i].projectId + '.firebaseio.com/:json+',
     handler: function (obj) {
       var event = obj.event
-      var params = obj.params
       var url = obj.url
 
       return fetch(url.href)

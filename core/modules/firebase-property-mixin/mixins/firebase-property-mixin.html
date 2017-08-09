@@ -3,7 +3,7 @@
 <script>
   (() => {
     const pathMatch = /\[\[[^$#\[\]\/]*\]\]/g
-    const staleTime = (window.Project.__dataRestStaleTime * 1000) || 60000
+    const staleTime = (window.App.__dataRestStaleTime * 1000) || 60000
     const __firebaseRefs = {}
     const __elementProps = {}
     const __firebaseRest = {}
@@ -12,7 +12,7 @@
     const __debugOffline = false
 
     if (!window.firebase) {
-      const src = `https://www.gstatic.com/firebasejs/${Project.__firebaseVersion || '4.1.4'}/firebase.js`
+      const src = `https://www.gstatic.com/firebasejs/${App.__firebaseVersion || '4.1.4'}/firebase.js`
       var script = document.createElement('script')
       var t = document.getElementsByTagName('script')[0]
       script.type = 'text/javascript'
@@ -20,8 +20,8 @@
       script.src = src
       script.onload = script.onreadstatechange = () => {
         var defaultFlag = null
-        for (var c in Project.__firebaseConfig) {
-          var config = Project.__firebaseConfig[c]
+        for (var c in App.__firebaseConfig) {
+          var config = App.__firebaseConfig[c]
           var appName = config.appName
           // delete config.appName
           if (appName) {
@@ -136,7 +136,7 @@
             element.__setValue(name, snapshot, readOnly)
           }
 
-          if (window.performance && Project.__build !== 'prod') {
+          if (window.performance && App.__build !== 'prod') {
             console.log('fetch local', element, name, performance.now() - window.globalStart)
           }
         }
@@ -233,13 +233,13 @@
           element.notifySplices(name)
           element.notifyPath(name)
           element.__properties[name].initialLoaded = true
-          if (window.performance && Project.__build !== 'prod') {
+          if (window.performance && App.__build !== 'prod') {
             console.log('fetch firebase', performance.now() - window.globalStart)
           }
         }
       } else {
         element.__setValue(name, snapshot.val(), readOnly)
-        if (window.performance && Project.__build !== 'prod') {
+        if (window.performance && App.__build !== 'prod') {
           console.log('fetch firebase', performance.now() - window.globalStart)
         }
       }
@@ -283,7 +283,7 @@
       } else {
         element.__setValue(name, json, readOnly)
       }
-      if (window.performance && Project.__build !== 'prod') {
+      if (window.performance && App.__build !== 'prod') {
         console.log('fetch rest', element, name, useMemory ? 'uses memory' : 'uses fetch', performance.now() - window.globalStart)
       }
     }
@@ -488,9 +488,9 @@
       } = property
       var computedProjectId
       if (!projectId) {
-        for (var ci in Project.__firebaseConfig) {
-          if ((appName && Project.__firebaseConfig[ci].appName === appName) || !Project.__firebaseConfig[ci].appName) {
-            computedProjectId = Project.__firebaseConfig[ci].projectId
+        for (var ci in App.__firebaseConfig) {
+          if ((appName && App.__firebaseConfig[ci].appName === appName) || !App.__firebaseConfig[ci].appName) {
+            computedProjectId = App.__firebaseConfig[ci].projectId
             break
           }
         }
@@ -615,8 +615,8 @@
       var { keys } = getKeyValuesInPath(element.__properties[name].firebasePath, element)
       for (var i in keys) {
         // console.log(this.__observeEffects)
-        if (element.__observeEffects) {
-          var effects = element.__observeEffects[keys[i].split(/\./g)[0]]
+        if (this.__observeEffects) {
+          var effects = this.__observeEffects[keys[i].split(/\./g)[0]]
           var index = null
           for (var j in effects) {
             if (effects[j].info.args[0].value === name) {
@@ -654,7 +654,7 @@
       const computedOrderByChild = computeChild(properties[name].orderByChild, element)
 
       // set copy of properties to element.__properties[name]
-      element.__properties[name] = Project.utils.extends({}, properties[name], {computedPath, name, computedOrderByChild})
+      element.__properties[name] = App.utils.extends({}, properties[name], {computedPath, name, computedOrderByChild})
 
       if (type === Array) {
         element.__properties[name].initialLoaded = false
@@ -767,7 +767,7 @@
       bindings.forEach(name => { unbindProperty(name, element, properties) })
     }
 
-    window.Project.Mixins.FirebasePropertyMixin = (superClass) => {
+    window.App.Mixins.FirebasePropertyMixin = (superClass) => {
       /**
       * @polymer
       * @extends HTMLElement
@@ -780,7 +780,7 @@
 
         connectedCallback () {
           super.connectedCallback()
-          const properties = Project.utils.collect(this.constructor, 'properties')
+          const properties = App.utils.collect(this.constructor, 'properties')
           bind(this, properties)
         }
 

@@ -1,14 +1,14 @@
 <script>
   (() => {
-    window.Project.Mixins.AuthFunctions = (superClass) => {
+    window.App.Mixins.AuthFunctions = (superClass) => {
       /**
       * @polymer
       * @extends HTMLElement
       */
       return class extends superClass {
         // add methods of permissions here
-        permissionsOne () {
-          return false
+        checkUser () {
+          return this.user
         }
       }
     }

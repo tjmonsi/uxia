@@ -1,19 +1,19 @@
 <link rel="import" href="../../bower_components/polymer-redux/polymer-redux.html">
 <script>
   (() => {
-    Object.defineProperty(Project, '__stateStore', { value: window.Redux.createStore((state = {}, action) => (state)) })
-    Object.defineProperty(Project, 'updateReducers', { value: () => {
-      window.Project.__stateStore.replaceReducer(window.Redux.combineReducers(Project.Reducers))
+    Object.defineProperty(App, '__stateStore', { value: window.Redux.createStore((state = {}, action) => (state)) })
+    Object.defineProperty(App, 'updateReducers', { value: () => {
+      window.App.__stateStore.replaceReducer(window.Redux.combineReducers(App.Reducers))
     }})
-    Object.defineProperty(Project, 'getState', { value: () => {
-      return window.Project.__stateStore.getState()
+    Object.defineProperty(App, 'getState', { value: () => {
+      return window.App.__stateStore.getState()
     }})
-    Object.defineProperty(Project, 'dispatch', { value: (action) => {
-      return window.Project.__stateStore.dispatch(action)
+    Object.defineProperty(App, 'dispatch', { value: (action) => {
+      return window.App.__stateStore.dispatch(action)
     }})
-    Object.defineProperty(Project, 'subscribe', { value: (listener) => {
-      return window.Project.__stateStore.subscribe(listener)
+    Object.defineProperty(App, 'subscribe', { value: (listener) => {
+      return window.App.__stateStore.subscribe(listener)
     }})
-    window.Project.Mixins.ReduxMixin = window.PolymerRedux(Project.__stateStore)
+    window.App.Mixins.ReduxMixin = window.PolymerRedux(App.__stateStore)
   })()
 </script>
