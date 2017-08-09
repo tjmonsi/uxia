@@ -181,8 +181,8 @@
     {{/if}}
 
     <!-- Load your application shell -->
-    <link rel="import" href="/script.html">
-    <link rel="import" href="/shell/app-shell.html">
+    <link rel="import" href="script.html">
+    <link rel="import" href="shell/app-shell.html">
 
     <!-- Add any global styles for body, document, etc. -->
     <style>
@@ -191,8 +191,8 @@
 
     <!-- Add all lazy-imports here -->
     {{#each fragments}}
-    <link rel="lazy-import" href="/{{this}}" node="{{@key}}">
-    <link rel="prefetch" href="/{{this}}">
+    <link rel="lazy-import" href="{{this}}" node="{{@key}}">
+    <link rel="prefetch" href="{{this}}">
     {{/each}}
   </head>
   <body>

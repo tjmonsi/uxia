@@ -9,6 +9,6 @@
         "destination": "/index.html"
       }
     ],
-    "public": "dist/prod_temp/build"
+    "public": "./dist/public"
   }
 }
