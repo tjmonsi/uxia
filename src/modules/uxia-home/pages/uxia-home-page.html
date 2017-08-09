@@ -3,6 +3,12 @@
 <link rel="import" href="../../../../bower_components/shadycss/apply-shim.html">
 <link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../../bower_components/paper-listbox/paper-listbox.html">
+
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../fonts/uxia-fonts.html">
 
 <dom-module id="uxia-home-page">
@@ -53,10 +59,14 @@
 
     <!-- something -->
     <section class="main-testimony">
+      <div class="main-testimony-white-background">
+      </div>
       <div class="testimony-container">
         <p class="testimony-text">
           “There's still a lot of work to help companies in my country to understand what a UX Designer does and the values we can offer to the company.”
         </p>
+        <div class="testimony-small-rectangle">
+        </div>
         <p class="testimony-name">
           Patrick James Lim
         </p>
@@ -65,7 +75,7 @@
         </p>
       </div>
       <div class="testimony-image-container">
-        <img class="testimony-image" src="">
+        <img class="testimony-image" src="/images/img_PatrickLim.png">
       </div>
     </section>
 
@@ -87,7 +97,7 @@
     <section class="secondary-testimony">
       <div class="secondary-testimony-list">
         <template is="dom-repeat" items="[[testimonies]]">
-          <div class="secondary-testimony">
+          <div class$="secondary-testimony secondary-testimony-[[index]]">
             <p class="secondary-testimony-text">[[item.testimony]]</p>
             <img class="secondary-testimony-image" src="[[item.image]]" />
             <p class="secondary-testimony-name">[[item.name]]</p>
@@ -111,8 +121,44 @@
     </section>
 
     <!-- get the latest insights -->
-    <footer>
+    <footer class="footer">
+      <h1>Get the latest insights. Download the full report.</h1>
 
+      <div class="insight-grid">
+        <div class="insight-image-container">
+          <img class="insight-image" src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+        </div>
+        <div class="insight-form-container">
+          <form class="insight-form" id="full-report-form">
+            <div class="insight-input-container">
+              <label class="insight-label">Full Name</label>
+              <paper-input class="insight-input" name="fullName" no-label-float label="Full Name"></paper-input>
+            </div>
+
+            <div class="insight-input-container">
+              <label class="insight-label">Email</label>
+              <paper-input class="insight-input" name="email" no-label-float label="Email"></paper-input>
+            </div>
+
+            <div class="insight-input-container">
+              <label class="insight-label">Company</label>
+              <paper-input class="insight-input" name="company" no-label-float label="Company"></paper-input>
+            </div>
+
+            <div class="insight-input-container">
+              <label class="insight-label">Role/Position</label>
+              <paper-dropdown-menu class="insight-input" label="Role/Position" no-label-float>
+                <paper-listbox slot="dropdown-content" class="dropdown-content">
+                  <paper-item>allosaurus</paper-item>
+                  <paper-item>brontosaurus</paper-item>
+                  <paper-item>carcharodontosaurus</paper-item>
+                  <paper-item>diplodocus</paper-item>
+                </paper-listbox>
+              </paper-dropdown-menu>
+            </div>
+          </form>
+        </div>
+      </div>
     </footer>
 
 
@@ -183,27 +229,27 @@
               value: [
                 {
                   location: 'Kuala Lumpur, Malaysia',
-                  image: ''
+                  image: '/images/img_logo-AirAsia.png'
                 },
                 {
                   location: 'Bangkok, Thailand',
-                  image: ''
+                  image: '/images/img_logo-Agoda.png'
                 },
                 {
                   location: 'Bangkok, Thailand',
-                  image: ''
+                  image: '/images/img_Taskworld.png'
                 },
                 {
                   location: 'Singapore, Singapore',
-                  image: ''
+                  image: '/images/img_logo-Lazada.png'
                 },
                 {
                   location: 'Manila, Philippines',
-                  image: ''
+                  image: '/images/img_logo-Globe.png'
                 },
                 {
                   location: 'Ho Chi Minh, Vietnam',
-                  image: ''
+                  image: '/images/img_logo-VietnamWorks.png'
                 }
               ]
             },
@@ -215,13 +261,13 @@
                   testimony: '“I’m optimistic about the future of UX here in my company and Malaysia. Slowly but surely we are heading towards the flourishing of the UX industry”',
                   name: 'Suzen Lim',
                   country: 'MALAYSIA',
-                  image: ''
+                  image: '/images/img_SuzenLim.png'
                 },
                 {
                   testimony: '“The way we approach UX Design in Japan is nothing compared to the US. The cultural differences are the main reason why there is such a discrepancy.”',
                   name: 'Janet Fu',
                   country: 'JAPAN',
-                  image: ''
+                  image: '/images/img_JanetFu.png'
                 }
               ]
             },
@@ -231,27 +277,27 @@
               value: [
                 {
                   text: 'Salary Infromation',
-                  image: ''
+                  image: '/images/icons/icon_SalaryInfo.svg'
                 },
                 {
                   text: 'Career Satisfaction',
-                  image: ''
+                  image: '/images/icons/icon_SalaryInfo.svg'
                 },
                 {
                   text: 'UX Education',
-                  image: ''
+                  image: '/images/icons/icon_UXEducation.svg'
                 },
                 {
-                  text: 'UX events and Ccommunities in Asia',
-                  image: ''
+                  text: 'UX events and Communities in Asia',
+                  image: '/images/icons/icon_UXEvents.svg'
                 },
                 {
                   text: 'The Future of the Asian UX Industry',
-                  image: ''
+                  image: '/images/icons/icon_UXFuture.svg'
                 },
                 {
                   text: 'Problems facing the UX field',
-                  image: ''
+                  image: '/images/icons/icon_UXProblems.svg'
                 }
               ]
             }

@@ -2,6 +2,7 @@
   text-align: center;
   padding-left: 150px;
   padding-right: 150px;
+  padding-bottom: 120px;
 
   @media only screen and (max-width: 810px) {
     padding-left: 50px;
@@ -11,6 +12,18 @@
   @media only screen and (max-width: 600px) {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  > h1 {
+    font-family: 'Playfair Display';
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.25;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0px;
+    margin-bottom: 44px;
+    color: #b32c50;
   }
 
   > .report-grid {
@@ -40,6 +53,15 @@
       > .includes-image {
         height: 180px;
         width: 180px;
+      }
+
+      > .includes-text {
+        font-family: 'Montserrat';
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #000000;
       }
     }
   }
