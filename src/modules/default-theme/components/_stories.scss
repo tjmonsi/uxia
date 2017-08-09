@@ -13,6 +13,16 @@
     padding-right: 20px;
   }
 
+  > h1 {
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.25;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #b32c50;
+  }
+
   > .stories-grid {
     @apply --layout-horizontal;
     @apply --layout-wrap;
@@ -44,12 +54,12 @@
       grid-template-rows: 120px 120px 120px 120px 120px 120px;
     }
 
-    > .story-country {
+    > .story-country-container {
       @apply --layout-flex;
       max-width: 150px;
       align-self: center;
 
-      > img {
+      > .story-image {
         height: 150px;
         width: 150px;
 

@@ -1,0 +1,41 @@
+.secondary-testimony {
+  text-align: center;
+  // padding-left: 150px;
+  // padding-right: 150px;
+
+  // @media only screen and (max-width: 810px) {
+  //   padding-left: 50px;
+  //   padding-right: 50px;
+  // }
+
+  // @media only screen and (max-width: 600px) {
+  //   padding-left: 20px;
+  //   padding-right: 20px;
+  // }
+
+  > .secondary-testimony-list {
+    @apply --layout-horizontal;
+    @apply --layout-wrap;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 250px;
+    grid-gap: 10px 15px;
+    justify-content: center;
+    justify-items: center;
+
+    @media only screen and (max-width: 450px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 250px 250px;
+    }
+
+    > .secondary-testimony {
+      > .secondary-testimony-image {
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+      }
+    }
+  }
+}

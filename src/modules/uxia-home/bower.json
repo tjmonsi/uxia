@@ -10,6 +10,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.1"
+    "polymer": "Polymer/polymer#^2.0.1",
+    "paper-ripple": "PolymerElements/paper-ripple#1 - 2"
   }
 }

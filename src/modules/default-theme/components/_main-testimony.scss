@@ -1,0 +1,30 @@
+.main-testimony {
+  padding-left: 150px;
+  padding-right: 150px;
+  @apply --layout-horizontal;
+  @apply --layout-wrap;
+
+  @media only screen and (max-width: 810px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  > .testimony-container {
+    @apply --layout-flex;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  > .testimony-image-container {
+    @apply --layout-flex;
+
+    > .testimony-image {
+      width: 80%
+    }
+  }
+}
