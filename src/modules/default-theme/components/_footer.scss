@@ -31,6 +31,7 @@
     @apply --layout-wrap;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 226px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px 15px;
@@ -90,5 +91,38 @@
         }
       }
     }
+  }
+
+  > .footer-proper {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 600px;
+    justify-content: center;
+    justify-items: center;
+
+    .footer-brought {
+      font-family: 'Montserrat';
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .footer-text {
+      font-family: 'Playfair Display';
+      font-size: 26px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+
+  }
+
+  > .footer-center-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
   }
 }

@@ -149,15 +149,37 @@
               <label class="insight-label">Role/Position</label>
               <paper-dropdown-menu class="insight-input" label="Role/Position" no-label-float>
                 <paper-listbox slot="dropdown-content" class="dropdown-content">
-                  <paper-item>allosaurus</paper-item>
-                  <paper-item>brontosaurus</paper-item>
-                  <paper-item>carcharodontosaurus</paper-item>
-                  <paper-item>diplodocus</paper-item>
+                  <template is="dom-repeat" items="[[positions]]">
+                    <paper-item>[[item.role]]</paper-item>
+                  </template>
                 </paper-listbox>
               </paper-dropdown-menu>
             </div>
           </form>
         </div>
+      </div>
+
+      <div class="footer-proper">
+        <div class="footer-proper-container">
+          <p class="footer-brought">The State of UX in Asia is brought to you by</p>
+
+          <img src="" class="footer-logo">
+
+          <p class="footer-text">
+            We are a UX and Product Design Studio delivering user-focused, user-tested experiences.
+          </p>
+
+          <p class="footer-text">
+            Looking for design help on your next project?
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-center-grid">
+        <a class="uxia-button uxia-button-bare" href="#">
+          <paper-ripple></paper-ripple>
+          Learn More
+        </a>
       </div>
     </footer>
 
@@ -300,8 +322,16 @@
                   image: '/images/icons/icon_UXProblems.svg'
                 }
               ]
-            }
+            },
 
+            positions: {
+              type: Array,
+              value: [
+                {
+                  role: 'UX Position'
+                }
+              ]
+            }
           }
         }
       }
