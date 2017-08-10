@@ -55,15 +55,15 @@
         }
 
         showMessage (message, optTapHandler, optAction, optActionHandler, optDuration) {
-          this.shadowRoot.querySelector('polyapp-toast').showMessage(message, optTapHandler, optAction, optActionHandler, optDuration)
+          if (this.shadowRoot.querySelector('polyapp-toast').showMessage) {
+            this.shadowRoot.querySelector('polyapp-toast').showMessage(message, optTapHandler, optAction, optActionHandler, optDuration)
+          } else {
+            messages.push({message, optTapHandler, optAction, optActionHandler, optDuration})
+          }
         }
 
         closeToast () {
           this.shadowRoot.querySelector('polyapp-toast').close()
-        }
-
-        showToast () {
-          this.shadowRoot.querySelector('polyapp-toast').show()
         }
 
         __setRoutes (router, routes, parentRoute, auth) {
@@ -110,7 +110,18 @@
         }
 
         __setToaster () {
-          this.__lazyLoadComponent(this.shadowRoot.querySelector('polyapp-toast'))
+          this.__lazyLoadComponent(this.shadowRoot.querySelector('polyapp-toast')).then(() => {
+            messages.forEach((item) => {
+              const {message, optTapHandler, optAction, optActionHandler, optDuration} = item
+              if (this.shadowRoot.querySelector('polyapp-toast').showMessage) {
+                setTimeout(() => {
+                  this.shadowRoot.querySelector('polyapp-toast').showMessage(message, optTapHandler, optAction, optActionHandler, optDuration)
+                }, optDuration || 5000)
+              } else {
+                console.log(message)
+              }
+            })
+          })
         }
 
         __lazyLoadComponent (node) {

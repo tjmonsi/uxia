@@ -130,7 +130,7 @@
         _handleTap () {
           if (typeof this._tapHandler === 'function' && !this._handledAction) {
             this._tapHandler()
-            this.shadowRoot.querySelector('#internalToast').close();
+            this.shadowRoot.querySelector('#internalToast').close()
           }
           this._handledAction = false
         }
@@ -142,7 +142,7 @@
             this._handledAction = true
             // Need because handleTap will also be called from a tap.
             // This handle is a click.
-            this.shadowRoot.querySelector('#internalToast').close();
+            this.shadowRoot.querySelector('#internalToast').close()
           }
         }
 
