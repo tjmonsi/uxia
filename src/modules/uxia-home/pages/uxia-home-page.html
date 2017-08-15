@@ -19,41 +19,46 @@
     <header class="header">
       <div class="header-white-background">
       </div>
-      <div class="header-image">
-        <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
-      </div>
-      <div class="header-text">
-        <h1 class="header-text-title">The State of UX in Asia: 2017 Survey Report</h1>
-        <p class="header-paragraph header-paragraph-big ">
-          The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
-        </p>
-        <p class="header-paragraph header-paragraph-big ">
-          Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
-        </p>
-        <p class="header-paragraph header-paragraph-small ">
-          Featuring real stories from UX Practitioners all over the Asian region. Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
-        </p>
-        <div class="header-grid">
-          <a class="uxia-button" href="#">
-            <paper-ripple></paper-ripple>
-            Email me the free report
-          </a>
+      <div class="header-container">
+        <div class="header-image">
+          <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+        </div>
+        <div class="header-text">
+          <h1 class="header-text-title">The State of UX in Asia: 2017 Survey Report</h1>
+          <p class="header-paragraph header-paragraph-big ">
+            The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
+          </p>
+          <p class="header-paragraph header-paragraph-big ">
+            Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
+          </p>
+          <p class="header-paragraph header-paragraph-small ">
+            Featuring real stories from UX Practitioners all over the Asian region. Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
+          </p>
+          <div class="header-grid">
+            <a class="uxia-button" href="#">
+              <paper-ripple></paper-ripple>
+              Email me the free report
+            </a>
+          </div>
         </div>
       </div>
+
 
     </header>
 
     <!-- stories -->
     <section class="stories">
-      <h1>Stories from UX Practitioners in these following countries:</h1>
+      <div class="stories-container">
+        <h1>Stories from UX Practitioners in these following countries:</h1>
 
-      <div class="stories-grid">
-        <template is="dom-repeat" items="[[stories]]">
-          <div class="story-country-container">
-            <img class="story-image" src="[[item.image]]" />
-            <p class="story-country"> [[item.country]]</p>
-          </div>
-        </template>
+        <div class="stories-grid">
+          <template is="dom-repeat" items="[[stories]]">
+            <div class="story-country-container">
+              <img class="story-image" src="[[item.image]]" />
+              <p class="story-country"> [[item.country]]</p>
+            </div>
+          </template>
+        </div>
       </div>
     </section>
 
@@ -61,21 +66,23 @@
     <section class="main-testimony">
       <div class="main-testimony-white-background">
       </div>
-      <div class="testimony-container">
-        <p class="testimony-text">
-          “There's still a lot of work to help companies in my country to understand what a UX Designer does and the values we can offer to the company.”
-        </p>
-        <div class="testimony-small-rectangle">
+      <div class="main-testimony-container">
+        <div class="testimony-container">
+          <p class="testimony-text">
+            “There's still a lot of work to help companies in my country to understand what a UX Designer does and the values we can offer to the company.”
+          </p>
+          <div class="testimony-small-rectangle">
+          </div>
+          <p class="testimony-name">
+            Patrick James Lim
+          </p>
+          <p class="testimony-work">
+            UX DESIGNER, PHILIPPINES
+          </p>
         </div>
-        <p class="testimony-name">
-          Patrick James Lim
-        </p>
-        <p class="testimony-work">
-          UX DESIGNER, PHILIPPINES
-        </p>
-      </div>
-      <div class="testimony-image-container">
-        <img class="testimony-image" src="/images/img_PatrickLim.png">
+        <div class="testimony-image-container">
+          <img class="testimony-image" src="/images/img_PatrickLim.png">
+        </div>
       </div>
     </section>
 
@@ -124,64 +131,66 @@
 
     <!-- get the latest insights -->
     <footer class="footer">
-      <h1>Get the latest insights. Download the full report.</h1>
+      <div class="footer-container">
+        <h1>Get the latest insights. Download the full report.</h1>
 
-      <div class="insight-grid">
-        <div class="insight-image-container">
-          <img class="insight-image" src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+        <div class="insight-grid">
+          <div class="insight-image-container">
+            <img class="insight-image" src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+          </div>
+          <div class="insight-form-container">
+            <form class="insight-form" id="full-report-form">
+              <div class="insight-input-container">
+                <label class="insight-label">Full Name</label>
+                <paper-input class="insight-input" name="fullName" no-label-float label="Full Name"></paper-input>
+              </div>
+
+              <div class="insight-input-container">
+                <label class="insight-label">Email</label>
+                <paper-input class="insight-input" name="email" no-label-float label="Email"></paper-input>
+              </div>
+
+              <div class="insight-input-container">
+                <label class="insight-label">Company</label>
+                <paper-input class="insight-input" name="company" no-label-float label="Company"></paper-input>
+              </div>
+
+              <div class="insight-input-container">
+                <label class="insight-label">Role/Position</label>
+                <paper-dropdown-menu class="insight-input" label="Role/Position" no-label-float>
+                  <paper-listbox slot="dropdown-content" class="dropdown-content">
+                    <template is="dom-repeat" items="[[positions]]">
+                      <paper-item>[[item.role]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="insight-form-container">
-          <form class="insight-form" id="full-report-form">
-            <div class="insight-input-container">
-              <label class="insight-label">Full Name</label>
-              <paper-input class="insight-input" name="fullName" no-label-float label="Full Name"></paper-input>
-            </div>
 
-            <div class="insight-input-container">
-              <label class="insight-label">Email</label>
-              <paper-input class="insight-input" name="email" no-label-float label="Email"></paper-input>
-            </div>
+        <div class="footer-proper">
+          <div class="footer-proper-container">
+            <p class="footer-brought">The State of UX in Asia is brought to you by</p>
 
-            <div class="insight-input-container">
-              <label class="insight-label">Company</label>
-              <paper-input class="insight-input" name="company" no-label-float label="Company"></paper-input>
-            </div>
+            <img src="" class="footer-logo">
 
-            <div class="insight-input-container">
-              <label class="insight-label">Role/Position</label>
-              <ju class="insight-input" label="Role/Position" no-label-float>
-                <paper-listbox slot="dropdown-content" class="dropdown-content">
-                  <template is="dom-repeat" items="[[positions]]">
-                    <paper-item>[[item.role]]</paper-item>
-                  </template>
-                </paper-listbox>
-              </paper-dropdown-menu>
-            </div>
-          </form>
+            <p class="footer-text">
+              We are a UX and Product Design Studio delivering user-focused, user-tested experiences.
+            </p>
+
+            <p class="footer-text">
+              Looking for design help on your next project?
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="footer-proper">
-        <div class="footer-proper-container">
-          <p class="footer-brought">The State of UX in Asia is brought to you by</p>
-
-          <img src="" class="footer-logo">
-
-          <p class="footer-text">
-            We are a UX and Product Design Studio delivering user-focused, user-tested experiences.
-          </p>
-
-          <p class="footer-text">
-            Looking for design help on your next project?
-          </p>
+        <div class="footer-center-grid">
+          <a class="uxia-button uxia-button-bare" href="#">
+            <paper-ripple></paper-ripple>
+            Learn More
+          </a>
         </div>
-      </div>
-
-      <div class="footer-center-grid">
-        <a class="uxia-button uxia-button-bare" href="#">
-          <paper-ripple></paper-ripple>
-          Learn More
-        </a>
       </div>
     </footer>
 
