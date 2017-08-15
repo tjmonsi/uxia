@@ -99,9 +99,11 @@
         <template is="dom-repeat" items="[[testimonies]]">
           <div class$="secondary-testimony secondary-testimony-[[index]]">
             <p class="secondary-testimony-text">[[item.testimony]]</p>
-            <img class="secondary-testimony-image" src="[[item.image]]" />
-            <p class="secondary-testimony-name">[[item.name]]</p>
-            <p class="secondary-testimony-country">[[item.country]]</p>
+            <div class="secondary-testimony-person">
+              <img class="secondary-testimony-image" src="[[item.image]]" />
+              <p class="secondary-testimony-name">[[item.name]]</p>
+              <p class="secondary-testimony-country">[[item.country]]</p>
+            </div>
           </div>
         </template>
       </div>

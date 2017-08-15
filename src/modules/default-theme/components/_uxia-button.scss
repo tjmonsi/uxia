@@ -4,13 +4,17 @@
   background-color: #b32c50;
   font-family: 'Open Sans';
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 400;
   text-align: center;
   color: #ffffff;
   padding-top: 15px;
   padding-bottom: 15px;
   text-decoration: none;
   position: relative;
+
+  @media only screen and (max-width: 1060px) {
+    font-size: 14px;
+  }
 
   @media only screen and (max-width: 550px) {
     width: 270px;

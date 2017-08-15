@@ -21,7 +21,7 @@
   }
 
   > .header-white-background {
-    height: 50px;
+    height: 150px;
     background-color: #fff;
     position: absolute;
     bottom: -1px;
@@ -29,7 +29,15 @@
     margin-left: -150px;
 
     @media only screen and (max-width: 1280px) {
-      display: none;
+      margin-left: -50px;
+    }
+
+    @media only screen and (max-width: 930px) {
+      height: 100px;
+    }
+
+    @media only screen and (max-width: 840px) {
+      display: none
     }
 
   }
@@ -46,23 +54,21 @@
 
     > img {
       margin-top: 100px;
-      width: 427px;
-      height: 553px;
-
+      margin-bottom: 30px;
+      width: 100%;
 
       @media only screen and (max-width: 1280px) {
-        width: 300px;
-        height: 400px;
+        width: 80%;
+        margin-bottom: 0px;
+        // height: 400px;
       }
 
-      // @media only screen and (max-width: 1000px) {
-      //   width: 200px;
-      //   height: 258px;
-      // }
+      @media only screen and (max-width: 840px) {
+        width: 300px;
+      }
 
       @media only screen and (max-width: 550px) {
         width: 200px;
-        height: 258px;
       }
     }
   }
@@ -76,7 +82,7 @@
       margin-left: 0px;
     }
 
-    @media only screen and (max-width: 1000px) {
+    @media only screen and (max-width: 840px) {
       width: 100%;
       text-align: center;
       margin-top: 10px;
@@ -86,11 +92,23 @@
     > .header-text-title {
       font-family: 'Playfair Display', 'Times New Roman', serif;
       font-size: 50px;
+      font-weight: 400;
       text-align: left;
       color: #ffffff;
 
-      @media only screen and (max-width: 550px) {
+      @media only screen and (max-width: 1360px) {
+        font-size: 40px;
+      }
+
+      @media only screen and (max-width: 1060px) {
+        font-size: 30px;
+      }
+
+      @media only screen and (max-width: 840px) {
         text-align: center;
+      }
+
+      @media only screen and (max-width: 550px) {
         font-size: 24px;
       }
     }
@@ -98,14 +116,26 @@
     > .header-paragraph {
       font-family: 'Open Sans';
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 400;
       line-height: 1.67;
       letter-spacing: 0.6px;
       text-align: left;
       color: #ffffff;
+
+      @media only screen and (max-width: 1360px) {
+        font-size: 16px;
+      }
+
+      @media only screen and (max-width: 1060px) {
+        font-size: 14px;
+      }
     }
 
     > .header-paragraph-big {
+      @media only screen and (max-width: 840px) {
+        text-align: center;
+      }
+
       @media only screen and (max-width: 550px) {
         display: none;
       }
@@ -122,7 +152,7 @@
 
     > .header-grid {
       display: block;
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: 840px) {
         display: grid;
         grid-template-columns: 1fr;
         justify-content: center;

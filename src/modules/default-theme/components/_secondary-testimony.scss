@@ -22,17 +22,17 @@
     justify-content: center;
     justify-items: center;
 
-    @media only screen and (max-width: 450px) {
+    @media only screen and (max-width: 900px) {
       grid-template-columns: 1fr;
     }
 
     > .secondary-testimony {
       color: #fff;
+      position: relative;
+      padding-bottom: 300px;
 
-      > .secondary-testimony-image {
-        height: 80px;
-        width: 80px;
-        border-radius: 50%;
+      @media only screen and (max-width: 600px) {
+        padding-bottom: 250px;
       }
 
       > .secondary-testimony-text {
@@ -43,23 +43,46 @@
         padding-bottom: 0px;
         text-align: center;
         color: #ffffff;
+
+        @media only screen and (max-width: 600px) {
+          padding: 30px;
+          font-size: 16px;
+        }
       }
 
-      > .secondary-testimony-name {
-        font-family: 'Playfair Display';
-        font-size: 40px;
-        margin: 0px;
-        color: #ffffff;
+      > .secondary-testimony-person {
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        margin-bottom: 100px;
+
+        > .secondary-testimony-image {
+          height: 80px;
+          width: 80px;
+          border-radius: 50%;
+        }
+
+        > .secondary-testimony-name {
+          font-family: 'Playfair Display';
+          font-size: 40px;
+          margin: 0px;
+          color: #ffffff;
+
+          @media only screen and (max-width: 600px) {
+            font-size: 24px;
+          }
+        }
+
+        > .secondary-testimony-country {
+          font-family: 'Montserrat';
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 5px;
+          margin: 0px;
+          color: #ffffff;
+        }
       }
 
-      > .secondary-testimony-country {
-        font-family: 'Montserrat';
-        font-size: 16px;
-        font-weight: bold;
-        letter-spacing: 5px;
-        margin: 0px;
-        color: #ffffff;
-      }
     }
 
     > .secondary-testimony-0 {
