@@ -1,0 +1,56 @@
+{
+  "app": {
+    "title": "UXIA",
+    "shortTitle": "Uxia",
+    "description": "This is the site of the State of UX in Asia",
+    "baseHref": "/",
+    "analytics": "UA-93879988-2",
+    "firebaseVersion": "4.2.0",
+    "database": "dev",
+    "waitBeforeFetchingSameURLInRest": 60,
+    "sentryUrl": "https://707acc0ecd9a40208a78f5bf88b45a6c@sentry.io/201451",
+    "appVersion": "0.0.1",
+    "firebaseConfig": []
+  },
+  "theme": {
+    "src": "modules/default-theme",
+    "ignoreComponents": []
+  },
+  "fragments": {
+    "example-home-page": "modules/example-module/pages/example-home-page.html",
+    "example-not-found-page": "modules/example-module/pages/example-not-found-page.html",
+    "example-not-authorized-page": "modules/example-module/pages/example-not-authorized-page.html",
+    "example-app-header": "modules/example-module/components/example-app-header.html",
+    "example-app-drawer": "modules/example-module/components/example-app-drawer.html",
+    "uxia-home-page": "modules/uxia-home/pages/uxia-home-page.html"
+  },
+  "routing": {
+    "/": "uxia-home-page"
+  },
+  "httpCodes": {
+    "not-found": "example-not-found-page",
+    "not-authorized": "example-not-authorized-page"
+  },
+  "shellComponents": [
+    {
+      "node": "example-app-header",
+      "header": true,
+      "activate": true,
+      "attrs": []
+    },
+    {
+      "node": "example-app-drawer",
+      "drawer": true,
+      "activate": true,
+      "attrs": []
+    }
+  ],
+  "serviceWorker": {
+    "globIgnores": [],
+    "runtimeCaching": [],
+    "globPatterns": []
+  },
+  "hosting": {
+    "rewrites": []
+  }
+}

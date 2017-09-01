@@ -6,7 +6,7 @@
     "Toni-Jan Keith Monserrat"
   ],
   "license": "MIT",
-  "homepage": "git@github.com:tjmonsi/uxia.git",
+  "homepage": "https://github.com.com/tjmonsi/uxia",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -18,11 +18,18 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.1",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.1",
-    "polymer-redux": "^1.0.1",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
+    "iron-icon": "PolymerElements/iron-icon#^2.0.1",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^2.0.1",
+    "paper-ripple": "PolymerElements/paper-ripple#1 - 2",
+    "paper-input": "PolymerElements/paper-input#1 - 2",
+    "paper-checkbox": "PolymerElements/paper-checkbox#^2.0.1",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.0",
+    "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
+    "paper-item": "PolymerElements/paper-item#^2.0.0",
     "paper-toast": "PolymerElements/paper-toast#^2.0.0"
   },
   "devDependencies": {
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.1",
     "web-component-tester": "^6.0.0"
   }
 }

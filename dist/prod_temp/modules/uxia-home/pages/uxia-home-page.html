@@ -1,0 +1,312 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../bower_components/shadycss/apply-shim.html">
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../bower_components/paper-listbox/paper-listbox.html">
+
+<link rel="import" href="../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../fonts/uxia-fonts.html"><link rel="import" href="../../default-theme/default-theme.html">
+
+<dom-module id="uxia-home-page">
+  <template>
+    <style include="default-theme">
+    </style>
+
+    <header class="header">
+      <div class="header-white-background">
+      </div>
+      <div class="header-image">
+        <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+      </div>
+      <div class="header-text">
+        <h1 class="header-text-title">The State of UX in Asia: 2017 Survey Report</h1>
+        <p class="header-paragraph header-paragraph-big ">
+          The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
+        </p>
+        <p class="header-paragraph header-paragraph-big ">
+          Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
+        </p>
+        <p class="header-paragraph header-paragraph-small ">
+          Featuring real stories from UX Practitioners all over the Asian region. Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
+        </p>
+        <div class="header-grid">
+          <a class="uxia-button" href="#">
+            <paper-ripple></paper-ripple>
+            Email me the free report
+          </a>
+        </div>
+      </div>
+
+    </header>
+
+    <!-- stories -->
+    <section class="stories">
+      <h1>Stories from UX Practitioners in these following countries:</h1>
+
+      <div class="stories-grid">
+        <template is="dom-repeat" items="[[stories]]">
+          <div class="story-country-container">
+            <img class="story-image" src="[[item.image]]">
+            <p class="story-country"> [[item.country]]</p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- something -->
+    <section class="main-testimony">
+      <div class="main-testimony-white-background">
+      </div>
+      <div class="testimony-container">
+        <p class="testimony-text">
+          “There's still a lot of work to help companies in my country to understand what a UX Designer does and the values we can offer to the company.”
+        </p>
+        <div class="testimony-small-rectangle">
+        </div>
+        <p class="testimony-name">
+          Patrick James Lim
+        </p>
+        <p class="testimony-work">
+          UX DESIGNER, PHILIPPINES
+        </p>
+      </div>
+      <div class="testimony-image-container">
+        <img class="testimony-image" src="/images/img_PatrickLim.png">
+      </div>
+    </section>
+
+    <!-- Learn about organizations in asia -->
+    <section class="organizations">
+      <h1>Learn about organizations in Asia investing into UX</h1>
+
+      <div class="organization-grid">
+        <template is="dom-repeat" items="[[organizations]]">
+          <div class="organization">
+            <img class="organization-image" src="[[item.image]]">
+            <p class="organization-location">[[item.location]]</p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- suzen and fu -->
+    <section class="secondary-testimony">
+      <div class="secondary-testimony-list">
+        <template is="dom-repeat" items="[[testimonies]]">
+          <div class$="secondary-testimony secondary-testimony-[[index]]">
+            <p class="secondary-testimony-text">[[item.testimony]]</p>
+            <img class="secondary-testimony-image" src="[[item.image]]">
+            <p class="secondary-testimony-name">[[item.name]]</p>
+            <p class="secondary-testimony-country">[[item.country]]</p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- include in the report -->
+    <section class="report-inclusion">
+      <h1>What’s included in the report?</h1>
+      <div class="report-grid">
+        <template is="dom-repeat" items="[[reports]]">
+          <div class="includes-container">
+            <img class="includes-image" src="[[item.image]]">
+            <p class="includes-text">[[item.text]]</p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- get the latest insights -->
+    <footer class="footer">
+      <h1>Get the latest insights. Download the full report.</h1>
+
+      <div class="insight-grid">
+        <div class="insight-image-container">
+          <img class="insight-image" src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+        </div>
+        <div class="insight-form-container">
+          <form class="insight-form" id="full-report-form">
+            <div class="insight-input-container">
+              <label class="insight-label">Full Name</label>
+              <paper-input class="insight-input" name="fullName" no-label-float="" label="Full Name"></paper-input>
+            </div>
+
+            <div class="insight-input-container">
+              <label class="insight-label">Email</label>
+              <paper-input class="insight-input" name="email" no-label-float="" label="Email"></paper-input>
+            </div>
+
+            <div class="insight-input-container">
+              <label class="insight-label">Company</label>
+              <paper-input class="insight-input" name="company" no-label-float="" label="Company"></paper-input>
+            </div>
+
+            <div class="insight-input-container">
+              <label class="insight-label">Role/Position</label>
+              <paper-dropdown-menu class="insight-input" label="Role/Position" no-label-float="">
+                <paper-listbox slot="dropdown-content" class="dropdown-content">
+                  <paper-item>allosaurus</paper-item>
+                  <paper-item>brontosaurus</paper-item>
+                  <paper-item>carcharodontosaurus</paper-item>
+                  <paper-item>diplodocus</paper-item>
+                </paper-listbox>
+              </paper-dropdown-menu>
+            </div>
+          </form>
+        </div>
+      </div>
+    </footer>
+
+
+  </template>
+  <script>
+    (() => {
+      class UxiaHomePage extends Polymer.Element {
+        static get is () { return 'uxia-home-page' }
+
+        static get properties () {
+          return {
+            stories: {
+              type: Array,
+              value: [
+                {
+                  country: 'Japan',
+                  image: ''
+                },
+                {
+                  country: 'Korea',
+                  image: ''
+                },
+                {
+                  country: 'India',
+                  image: ''
+                },
+                {
+                  country: 'Taiwan',
+                  image: ''
+                },
+                {
+                  country: 'Hongkong',
+                  image: ''
+                },
+                {
+                  country: 'China',
+                  image: ''
+                },
+                {
+                  country: 'Philippines',
+                  image: ''
+                },
+                {
+                  country: 'Thailand',
+                  image: ''
+                },
+                {
+                  country: 'Malaysia',
+                  image: ''
+                },
+                {
+                  country: 'Singapore',
+                  image: ''
+                },
+                {
+                  country: 'Vietnam',
+                  image: ''
+                },
+                {
+                  country: 'Indonesia',
+                  image: ''
+                }
+              ]
+            },
+
+            organizations: {
+              type: Array,
+              value: [
+                {
+                  location: 'Kuala Lumpur, Malaysia',
+                  image: '/images/img_logo-AirAsia.png'
+                },
+                {
+                  location: 'Bangkok, Thailand',
+                  image: '/images/img_logo-Agoda.png'
+                },
+                {
+                  location: 'Bangkok, Thailand',
+                  image: '/images/img_Taskworld.png'
+                },
+                {
+                  location: 'Singapore, Singapore',
+                  image: '/images/img_logo-Lazada.png'
+                },
+                {
+                  location: 'Manila, Philippines',
+                  image: '/images/img_logo-Globe.png'
+                },
+                {
+                  location: 'Ho Chi Minh, Vietnam',
+                  image: '/images/img_logo-VietnamWorks.png'
+                }
+              ]
+            },
+
+            testimonies: {
+              type: Array,
+              value: [
+                {
+                  testimony: '“I’m optimistic about the future of UX here in my company and Malaysia. Slowly but surely we are heading towards the flourishing of the UX industry”',
+                  name: 'Suzen Lim',
+                  country: 'MALAYSIA',
+                  image: '/images/img_SuzenLim.png'
+                },
+                {
+                  testimony: '“The way we approach UX Design in Japan is nothing compared to the US. The cultural differences are the main reason why there is such a discrepancy.”',
+                  name: 'Janet Fu',
+                  country: 'JAPAN',
+                  image: '/images/img_JanetFu.png'
+                }
+              ]
+            },
+
+            reports: {
+              type: Array,
+              value: [
+                {
+                  text: 'Salary Infromation',
+                  image: '/images/icons/icon_SalaryInfo.svg'
+                },
+                {
+                  text: 'Career Satisfaction',
+                  image: '/images/icons/icon_SalaryInfo.svg'
+                },
+                {
+                  text: 'UX Education',
+                  image: '/images/icons/icon_UXEducation.svg'
+                },
+                {
+                  text: 'UX events and Communities in Asia',
+                  image: '/images/icons/icon_UXEvents.svg'
+                },
+                {
+                  text: 'The Future of the Asian UX Industry',
+                  image: '/images/icons/icon_UXFuture.svg'
+                },
+                {
+                  text: 'Problems facing the UX field',
+                  image: '/images/icons/icon_UXProblems.svg'
+                }
+              ]
+            }
+
+          }
+        }
+      }
+
+      window.customElements.define(UxiaHomePage.is, UxiaHomePage)
+    })()
+  </script>
+</dom-module>

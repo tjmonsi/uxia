@@ -1,0 +1,74 @@
+.organizations {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  @media only screen and (max-width: 810px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  > h1 {
+    font-family: 'Playfair Display';
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.25;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #b32c50;
+    margin: 0px;
+    margin-bottom: 70px;
+  }
+
+  > .organization-grid {
+    @apply --layout-horizontal;
+    @apply --layout-wrap;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 150px 150px;
+    grid-gap: 10px 15px;
+    justify-content: center;
+    justify-items: center;
+
+    @media only screen and (max-width: 600px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 150px 150px 150px;
+    }
+
+    @media only screen and (max-width: 550px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 150px 150px 150px 150px 150px 150px;
+    }
+
+    > .organization {
+      position: relative;
+      width: 300px;
+
+      > .organization-image {
+        // height: 86px;
+        width: 200px;
+      }
+
+      > .organization-location {
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        font-family: 'Montserrat';
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #000000;
+      }
+    }
+  }
+}
