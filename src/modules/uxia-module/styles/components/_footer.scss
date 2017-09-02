@@ -1,5 +1,5 @@
 .footer {
-  background-image: linear-gradient(to bottom, #b32c50, #191437);
+  background-image: linear-gradient(to bottom, #b32c50, #191437, #191437);
 
   > .footer-container {
     padding-left: 150px;
@@ -37,7 +37,7 @@
       }
     }
 
-    > .insight-grid {
+    .insight-grid {
       @apply --layout-horizontal;
       @apply --layout-wrap;
       margin-left: 20px;
@@ -55,25 +55,42 @@
         margin-right: 0px;
       }
 
-      > .insight-image-container {
+      .insight-image-container {
+        margin-right: 20px;
 
         @media only screen and (max-width: 1000px) {
           display: none;
         }
 
         > .insight-image {
-          // width: 80%;
+          @media only screen and (max-width: 1260px) {
+            width: 300px;
+          }
+          width: 80%;
         }
       }
 
-      > .insight-form-container {
+      .insight-form-container {
+        width: 100%;
 
-        > .insight-form {
+        .insight-form {
 
-          > .insight-input-container {
+          .insight-checkbox-container {
             padding-bottom: 20px;
 
-            > .insight-label {
+            .insight-checkbox {
+              --paper-checkbox-label-color: #ffffff;
+              --paper-checkbox-unchecked-color: #ffffff;
+              --paper-checkbox-checked-color: #54a1d3;
+              --paper-checkbox-vertical-align: top;
+              --paper-checkbox-margin: 0px 16px 0px 0px;
+            }
+          }
+
+          .insight-input-container {
+            padding-bottom: 20px;
+
+            .insight-label {
               font-family: 'Merriweather';
               font-size: 16px;
               letter-spacing: 1px;
@@ -83,8 +100,7 @@
               display: block;
             }
 
-            > .insight-input {
-              width: 440px;
+            .insight-input {
               height: 50px;
               background-color: #ffffff;
               font-family: 'Open Sans';
@@ -94,23 +110,51 @@
               padding: 15px;
               padding-bottom: 5px;
 
-              --paper-input-container-underline: #{'{
-                display: none;
-              }'};
+              .dropdown-content {
+                width: 660px;
 
-              --paper-input-container-underline-focus: #{'{
-                display: none;
-              }'};
+                @media only screen and (max-width: 1630px) {
+                  width: 500px;
+                }
 
-              --paper-input-container-underline-disabled: #{'{
-                display: none;
-              }'};
+                @media only screen and (max-width: 1370px) {
+                  width: 400px;
+                }
 
-              > .dropdown-content {
-                width: 440px;
+                @media only screen and (max-width: 1200px) {
+                  width: 300px;
+                }
 
                 @media only screen and (max-width: 1000px) {
-                  width: auto;
+                  width: 500px;
+                }
+
+                @media only screen and (max-width: 650px) {
+                  width: 400px;
+                }
+
+                @media only screen and (max-width: 500px) {
+                  width: 350px;
+                }
+
+                @media only screen and (max-width: 435px) {
+                  width: 300px;
+                }
+
+                @media only screen and (max-width: 400px) {
+                  width: 250px;
+                }
+
+                @media only screen and (max-width: 340px) {
+                  width: 200px;
+                }
+
+                @media only screen and (max-width: 290px) {
+                  width: 150px;
+                }
+
+                @media only screen and (max-width: 240px) {
+                  width: auto
                 }
               }
 
@@ -123,10 +167,12 @@
               }
             }
 
+            .insight-input-invalid {
+              padding-bottom: 15px;
+            }
+
             > paper-dropdown-menu.insight-input {
-              @media only screen and (max-width: 1000px) {
-                width: calc(100% - 20px)
-              }
+              width: calc(100% - 30px);
             }
           }
         }
@@ -153,15 +199,26 @@
         color: #ffffff;
       }
 
+      .footer-logo {
+        width: 300px;
+        margin-bottom: 44px;
+        margin-top: 16px;
+      }
+
       .footer-text {
         font-family: 'Playfair Display';
         font-size: 26px;
         text-align: center;
         color: #ffffff;
 
+
         @media only screen and (max-width: 1000px) {
           font-size: 20px;
         }
+      }
+
+      .footer-text:last-of-type {
+        padding-bottom: 40px;
       }
 
 

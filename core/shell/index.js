@@ -253,11 +253,11 @@ class AppShell extends QueryParamsMixin(LocationMixin(Polymer.Element)) {
 
     if (this._routes[route] && this._routes[route].element) {
       this._routes[route].element.classList.add('page--on-view')
-      this._routes[route].element._setProperty('params', this.params)
-      this._routes[route].element._setProperty('queryParams', this.paramsObject)
     }
     if (this._routes[route]) {
       routes[route]().then(() => {
+        this._routes[route].element._setProperty('params', this.params)
+        this._routes[route].element._setProperty('queryParams', this.paramsObject)
         if (window.ga) {
           ga('set', 'page', this.path)
           ga('send', 'pageview')
