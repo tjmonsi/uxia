@@ -4,6 +4,8 @@
   padding-left: 150px;
   padding-right: 150px;
   padding-bottom: 120px;
+  margin: 0 auto;
+  max-width: 1440px;
 
   @media only screen and (max-width: 810px) {
     padding-left: 50px;
@@ -67,9 +69,9 @@
       }
 
       > .includes-text {
-        font-family: 'Montserrat';
+        font-family: 'Playfair Display', 'Times New Roman', serif;
         font-size: 16px;
-        font-weight: bold;
+        font-weight: 700;
         letter-spacing: 2px;
         text-align: center;
         color: #000000;

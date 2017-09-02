@@ -8,21 +8,52 @@
 <link rel="import" href="../../../../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../../../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../fonts/uxia-fonts.html">
 
 <dom-module id="uxia-home-page">
   <template>
     <link rel="stylesheet" href="./uxia-home-styles.scss">
+    <style>
+      .insight-input {
+        --paper-input-container-underline: {
+          display: none
+        };
+
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+      }
+
+
+    </style>
 
     <header class="header">
       <div class="header-white-background">
       </div>
+      <nav>
+        <div class="nav-container">
+          <img class="logo" src="/images/logo-white.png">
+
+          <div class="spacer"></div>
+
+          <a class="uxia-button uxia-button-bare" href="#">
+            <paper-ripple></paper-ripple>
+            UX Job Board
+          </a>
+        </div>
+
+      </nav>
       <div class="header-container">
         <div class="header-image">
-          <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+          <img src="/images/Cover/Book_Cover_LetterSize_Style1.png">
         </div>
         <div class="header-text">
-          <h1 class="header-text-title">The State of UX in Asia: 2017 Survey Report</h1>
+          <h1 class="header-text-title">The State of UX in Asia:<br/>2017 Survey Report</h1>
           <p class="header-paragraph header-paragraph-big ">
             The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
           </p>
@@ -40,8 +71,6 @@
           </div>
         </div>
       </div>
-
-
     </header>
 
     <!-- stories -->
@@ -101,6 +130,8 @@
     <!-- suzen and fu -->
     <section class="secondary-testimony">
       <div class="secondary-testimony-list">
+        <div class="secondary-testimony-color-1">
+        </div>
         <template is="dom-repeat" items="[[testimonies]]">
           <div class$="secondary-testimony secondary-testimony-[[index]]">
             <p class="secondary-testimony-text">[[item.testimony]]</p>
@@ -111,6 +142,8 @@
             </div>
           </div>
         </template>
+        <div class="secondary-testimony-color-2">
+        </div>
       </div>
     </section>
 
@@ -134,36 +167,61 @@
 
         <div class="insight-grid">
           <div class="insight-image-container">
-            <img class="insight-image" src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+            <img class="insight-image" src="/images/Cover/Book_Cover_LetterSize_Style1.png">
           </div>
           <div class="insight-form-container">
-            <form class="insight-form" id="full-report-form">
-              <div class="insight-input-container">
-                <label class="insight-label">Full Name</label>
-                <paper-input class="insight-input" name="fullName" no-label-float label="Full Name"></paper-input>
-              </div>
+            <iron-form allow-redirect class="insight-form">
+              <form  id="full-report-form" action="https://uxinasia.us15.list-manage.com/subscribe/post?u=0bbf810f896a9947498972e17&amp;id=beb489f0ae" method="POST">
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE1">Full Name</label>
+                  <paper-input class="insight-input" name="MMERGE1" id="MMERGE1" no-label-float label="Full Name" on-value-changed="checkName"></paper-input>
+                </div>
 
-              <div class="insight-input-container">
-                <label class="insight-label">Email</label>
-                <paper-input class="insight-input" name="email" no-label-float label="Email"></paper-input>
-              </div>
+                <div class="insight-input-container">
+                  <label class="insight-label" for="EMAIL">Email</label>
+                  <paper-input class="insight-input" name="EMAIL" id="EMAIL" no-label-float label="Email" on-value-changed="checkEmail"></paper-input>
+                </div>
 
-              <div class="insight-input-container">
-                <label class="insight-label">Company</label>
-                <paper-input class="insight-input" name="company" no-label-float label="Company"></paper-input>
-              </div>
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE2">Company</label>
+                  <paper-input class="insight-input" name="MMERGE2" id="MMERGE2" no-label-float label="Company" on-value-changed="checkCompany"></paper-input>
+                </div>
 
-              <div class="insight-input-container">
-                <label class="insight-label">Role/Position</label>
-                <paper-dropdown-menu class="insight-input" label="Role/Position" no-label-float>
-                  <paper-listbox slot="dropdown-content" class="dropdown-content">
-                    <template is="dom-repeat" items="[[positions]]">
-                      <paper-item>[[item.role]]</paper-item>
-                    </template>
-                  </paper-listbox>
-                </paper-dropdown-menu>
-              </div>
-            </form>
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE3">Role/Position</label>
+                  <paper-dropdown-menu class="insight-input" label="Role/Position" name="MMERGE3" id="MMERGE3" no-label-float on-selected-item-changed="checkRole">
+                    <paper-listbox slot="dropdown-content" class="dropdown-content">
+                      <template is="dom-repeat" items="[[positions]]">
+                        <paper-item>[[item.role]]</paper-item>
+                      </template>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+                </div>
+
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE3">Looking to hire a design agency?</label>
+                  <paper-dropdown-menu class="insight-input" label="Looking to hire a design agency?" name="MMERGE4" id="MMERGE4" no-label-float on-selected-item-changed="checkHire">
+                    <paper-listbox slot="dropdown-content" class="dropdown-content">
+                      <template is="dom-repeat" items="[[hire]]">
+                        <paper-item>[[item.role]]</paper-item>
+                      </template>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+                </div>
+
+                <div class="insight-checkbox-container">
+                  <input id="MMERGE5-hidden" name="MMERGE5" type="hidden">
+                  <paper-checkbox id="MMERGE5-checkbox" class="insight-checkbox">
+                    Yes! Subscribe me to 3-Tip Tuesday, a free newsletter with three UX and Product Design tips every week
+                  </paper-checkbox>
+                </div>
+
+                <button class="uxia-button" type="button" on-click="submit">
+                  <paper-ripple></paper-ripple>
+                  Email me the free report
+                </button>
+              </form>
+            </iron-form>
           </div>
         </div>
 
@@ -171,7 +229,7 @@
           <div class="footer-proper-container">
             <p class="footer-brought">The State of UX in Asia is brought to you by</p>
 
-            <img src="" class="footer-logo">
+            <img src="/images/logo-white.png" class="footer-logo">
 
             <p class="footer-text">
               We are a UX and Product Design Studio delivering user-focused, user-tested experiences.
@@ -348,10 +406,91 @@
               type: Array,
               value: [
                 {
-                  role: 'UX Position'
+                  role: 'Designer or Researcher'
+                },
+                {
+                  role: 'Design or Product Manager'
+                },
+                {
+                  role: 'Director or Head of Design/Product'
+                },
+                {
+                  role: 'C-Level Executive'
+                },
+                {
+                  role: 'Business Owner'
+                },
+                {
+                  role: 'Other'
+                }
+              ]
+            },
+
+            hire: {
+              type: Array,
+              value: [
+                {
+                  role: 'Yes'
+                },
+                {
+                  role: 'Possibly in the future'
+                },
+                {
+                  role: 'No'
                 }
               ]
             }
+          }
+        }
+
+        submit () {
+          var submit = true
+          submit = this.checkName()
+          submit = this.checkEmail()
+          submit = this.checkCompany()
+          submit = this.checkRole()
+          submit = this.checkHire()
+
+          if (submit) {
+            this.shadowRoot.querySelector('#MMERGE5-hidden').value = this.shadowRoot.querySelector('#MMERGE5-checkbox').checked ? "Yes" : "No"
+            this.shadowRoot.querySelector('iron-form').submit()
+          }
+        }
+
+        checkName () {
+          const el = this.shadowRoot.querySelector('#MMERGE1')
+          return this.checkValue(el, 'Please put your name here so that we can call you by your name.')
+        }
+
+        checkCompany () {
+          const el = this.shadowRoot.querySelector('#MMERGE2')
+          return this.checkValue(el, 'Please put your company here so that we can serve your company better.')
+        }
+
+        checkRole () {
+          const el = this.shadowRoot.querySelector('#MMERGE3')
+          return this.checkValue(el, 'Please put your role in your company so that we can serve you better.')
+        }
+
+        checkHire () {
+          const el = this.shadowRoot.querySelector('#MMERGE4')
+          return this.checkValue(el, 'We want to know more if you need some help in your designing your latest product.')
+        }
+
+        checkEmail () {
+          const el = this.shadowRoot.querySelector('#EMAIL')
+          return this.checkValue(el, 'Please put your name here so that we can call you by your name.', true)
+        }
+
+        checkValue (el, message, email) {
+          if (!el.value || (el.value.split('@').length !== 2 && email)) {
+            el.errorMessage = message
+            el.invalid = true
+            el.classList.add('insight-input-invalid')
+          } else {
+            el.invalid = false
+            el.classList.remove('insight-input-invalid')
+            return true
           }
         }
       }

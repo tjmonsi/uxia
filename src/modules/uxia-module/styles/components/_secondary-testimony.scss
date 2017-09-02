@@ -18,18 +18,41 @@
     @apply --layout-horizontal;
     @apply --layout-wrap;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 710px 710px auto 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
     justify-content: center;
     justify-items: center;
+
+    @media only screen and (max-width: 1440px) {
+      grid-template-columns: 1fr 1fr;
+    }
 
     @media only screen and (max-width: 900px) {
       grid-template-columns: 1fr;
     }
 
+    > .secondary-testimony-color-1 {
+      background-color: #ce345d;
+      width: 100%;
+      @media only screen and (max-width: 1440px) {
+        display: none;
+      }
+    }
+
+    > .secondary-testimony-color-2 {
+      background-color: #b32c50;
+      width: 100%;
+      @media only screen and (max-width: 1440px) {
+        display: none;
+      }
+    }
+
     > .secondary-testimony {
       color: #fff;
       position: relative;
-      padding-bottom: 300px;
+      padding-bottom: 270px;
+
 
       @media only screen and (max-width: 600px) {
         padding-bottom: 250px;
@@ -39,7 +62,7 @@
         font-family: 'Open Sans';
         font-size: 26px;
         line-height: 1.69;
-        padding: 110px;
+        padding: 70px;
         padding-bottom: 0px;
         text-align: center;
         color: #ffffff;
