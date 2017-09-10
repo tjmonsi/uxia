@@ -42,7 +42,7 @@
       @apply --layout-wrap;
       margin-left: 20px;
       margin-right: 20px;
-      margin-bottom: 226px;
+      margin-bottom: 135px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-gap: 10px 15px;
@@ -176,6 +176,13 @@
           }
         }
       }
+    }
+
+    .footer-diamond {
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 70px;
     }
 
     > .footer-proper {
