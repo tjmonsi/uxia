@@ -41,16 +41,20 @@
 
           <div class="spacer"></div>
 
-          <a class="uxia-button uxia-button-bare" href="#">
+          <!-- <a class="uxia-button uxia-button-bare" href="#">
             <paper-ripple></paper-ripple>
             UX Job Board
-          </a>
+          </a> -->
         </div>
 
       </nav>
       <div class="header-container">
         <div class="header-image">
-          <img src="/images/Cover/Book_Cover_LetterSize_Style1.png">
+          <picture>
+            <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Big.png" media="(min-width: 800)">
+            <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Small.png" media="(max-width: 799px)">
+            <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+          </picture>
         </div>
         <div class="header-text">
           <h1 class="header-text-title">The State of UX in Asia:<br/>2017 Survey Report</h1>
@@ -76,7 +80,7 @@
     <!-- stories -->
     <section class="stories">
       <div class="stories-container">
-        <h1>Stories from UX Practitioners in these following countries:</h1>
+        <h1>Stories from UX Practitioners in these following locations:</h1>
 
         <div class="stories-grid">
           <template is="dom-repeat" items="[[stories]]">
@@ -167,7 +171,11 @@
 
         <div class="insight-grid">
           <div class="insight-image-container">
-            <img class="insight-image" src="/images/Cover/Book_Cover_LetterSize_Style1.png">
+            <picture>
+              <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Big.png" media="(min-width: 800)">
+              <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Small.png" media="(max-width: 799px)">
+              <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+            </picture>
           </div>
           <div class="insight-form-container">
             <iron-form allow-redirect class="insight-form">
@@ -376,7 +384,7 @@
               type: Array,
               value: [
                 {
-                  text: 'Salary Infromation',
+                  text: 'Salary Information',
                   image: '/images/icons/icon_SalaryInfo.svg'
                 },
                 {
@@ -388,7 +396,7 @@
                   image: '/images/icons/icon_UXEducation.svg'
                 },
                 {
-                  text: 'UX events and Communities in Asia',
+                  text: 'UX Events and Communities in Asia',
                   image: '/images/icons/icon_UXEvents.svg'
                 },
                 {
@@ -396,7 +404,7 @@
                   image: '/images/icons/icon_UXFuture.svg'
                 },
                 {
-                  text: 'Problems facing the UX field',
+                  text: 'Problems Facing the UX field',
                   image: '/images/icons/icon_UXProblems.svg'
                 }
               ]

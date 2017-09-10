@@ -1,6 +1,6 @@
 .header {
   position: relative;
-  background-color: #181437;
+  background-color: #27224f ;
   color: #fff;
 
   > nav {
@@ -32,6 +32,30 @@
     }
 
     @media only screen and (max-width: 1280px) {
+      padding-left: 105px;
+      padding-right: 50px;
+      // height: 650px;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      padding-left: 100px;
+      padding-right: 50px;
+      // height: 650px;
+    }
+
+    @media only screen and (max-width: 1060px) {
+      padding-left: 95px;
+      padding-right: 50px;
+      // height: 650px;
+    }
+
+    @media only screen and (max-width: 900px) {
+      padding-left: 90px;
+      padding-right: 50px;
+      // height: 650px;
+    }
+
+    @media only screen and (max-width: 840px) {
       padding-left: 50px;
       padding-right: 50px;
       // height: 650px;
@@ -95,10 +119,11 @@
         flex: none;
       }
 
-      > img {
+      img {
         // margin-top: 100px;
         margin-bottom: 30px;
         width: 100%;
+        box-shadow: 5px 5px 2px rgba(0,0,0,0.5);
 
         @media only screen and (max-width: 1280px) {
           width: 80%;
