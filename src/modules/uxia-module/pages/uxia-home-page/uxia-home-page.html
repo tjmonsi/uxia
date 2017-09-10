@@ -181,22 +181,22 @@
             <iron-form allow-redirect class="insight-form">
               <form  id="full-report-form" action="https://uxinasia.us15.list-manage.com/subscribe/post?u=0bbf810f896a9947498972e17&amp;id=beb489f0ae" method="POST">
                 <div class="insight-input-container">
-                  <label class="insight-label" for="MMERGE1">Full Name</label>
+                  <label class="insight-label" for="MMERGE1">Full Name <span class="require">(required)</span></label>
                   <paper-input class="insight-input" name="MMERGE1" id="MMERGE1" no-label-float label="Full Name" on-value-changed="checkName"></paper-input>
                 </div>
 
                 <div class="insight-input-container">
-                  <label class="insight-label" for="EMAIL">Email</label>
-                  <paper-input class="insight-input" name="EMAIL" id="EMAIL" no-label-float label="Email" on-value-changed="checkEmail"></paper-input>
+                  <label class="insight-label" for="EMAIL">Email <span class="require">(required)</span></label>
+                  <paper-input class="insight-input" name="EMAIL" id="EMAIL" type="email" no-label-float label="Email" on-value-changed="checkEmail"></paper-input>
                 </div>
 
                 <div class="insight-input-container">
-                  <label class="insight-label" for="MMERGE2">Company</label>
+                  <label class="insight-label" for="MMERGE2">Company <span class="require">(required)</span></label>
                   <paper-input class="insight-input" name="MMERGE2" id="MMERGE2" no-label-float label="Company" on-value-changed="checkCompany"></paper-input>
                 </div>
 
                 <div class="insight-input-container">
-                  <label class="insight-label" for="MMERGE3">Role/Position</label>
+                  <label class="insight-label" for="MMERGE3">Role/Position <span class="require">(required)</span></label>
                   <paper-dropdown-menu class="insight-input" label="Role/Position" name="MMERGE3" id="MMERGE3" no-label-float on-selected-item-changed="checkRole">
                     <paper-listbox slot="dropdown-content" class="dropdown-content">
                       <template is="dom-repeat" items="[[positions]]">
@@ -207,7 +207,7 @@
                 </div>
 
                 <div class="insight-input-container">
-                  <label class="insight-label" for="MMERGE3">Looking to hire a design agency?</label>
+                  <label class="insight-label" for="MMERGE3">Looking to hire a design agency? <span class="require">(required)</span></label>
                   <paper-dropdown-menu class="insight-input" label="Looking to hire a design agency?" name="MMERGE4" id="MMERGE4" no-label-float on-selected-item-changed="checkHire">
                     <paper-listbox slot="dropdown-content" class="dropdown-content">
                       <template is="dom-repeat" items="[[hire]]">
@@ -252,7 +252,7 @@
         </div>
 
         <div class="footer-center-grid">
-          <a class="uxia-button uxia-button-bare" href="#">
+          <a class="uxia-button uxia-button-bare" href="https://www.apicaldesign.com">
             <paper-ripple></paper-ripple>
             Learn More
           </a>
@@ -474,12 +474,12 @@
 
         checkCompany () {
           const el = this.shadowRoot.querySelector('#MMERGE2')
-          return this.checkValue(el, 'Please put your company here so that we can serve your company better.')
+          return this.checkValue(el, 'Please put your company here so that we can better understand our audience.')
         }
 
         checkRole () {
           const el = this.shadowRoot.querySelector('#MMERGE3')
-          return this.checkValue(el, 'Please put your role in your company so that we can serve you better.')
+          return this.checkValue(el, 'Please put your role in your company so that we can better understand our audience.')
         }
 
         checkHire () {
