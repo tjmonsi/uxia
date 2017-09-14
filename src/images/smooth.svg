@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="700px" height="608px" viewBox="0 0 700 608" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
-    <title>No Text Logo White</title>
+<svg width="513px" height="444px" viewBox="0 0 513 444" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="No-Text-Logo-White" fill-rule="nonzero" fill="#FFFFFF">
-            <g id="Group">
-                <polygon id="Shape" points="476.856859 220.331532 476.856859 220.331532 174.269728 305.506306 0.230900202 607.589189"></polygon>
-                <polygon id="Shape" points="448.715573 171.445045 350.084463 0.273873874 213.476278 237.585586"></polygon>
-                <polygon id="Shape" points="349.674638 394.378378 699.664809 607.315315 504.588321 268.396396"></polygon>
+        <g id="Logo-Black" transform="translate(-256.000000, -290.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(255.750244, 290.000000)">
+                <polygon id="Shape" fill="#FFFFFF" points="349.458732 160.9 349.458732 160.9 128.174829 223.1 0.899121951 443.7"></polygon>
+                <polygon id="Shape" fill="#FFFFFF" points="328.878829 125.2 256.749268 0.2 156.846829 173.5"></polygon>
+                <polygon id="Shape" fill="#FFFFFF" points="256.449561 288 512.39961 443.5 369.738927 196"></polygon>
             </g>
         </g>
     </g>
