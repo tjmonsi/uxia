@@ -1,0 +1,521 @@
+<link rel="import" href="../../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../../../bower_components/shadycss/apply-shim.html">
+<link rel="import" href="../../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../fonts/uxia-fonts.html">
+
+<dom-module id="uxia-home-page">
+  <template>
+    <link rel="stylesheet" href="./uxia-home-styles.scss">
+    <style>
+      .insight-input {
+        --paper-input-container-underline: {
+          display: none
+        };
+
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+      }
+
+
+    </style>
+
+    <header class="header">
+      <div class="header-white-background">
+      </div>
+      <nav>
+        <div class="nav-container">
+          <a href="https://www.apicaldesign.com" target="_blank">
+            <picture>
+              <source srcset="/images/apical-logo-combo-black.svg" media="(min-width: 401px)">
+              <source srcset="/images/smooth.svg" media="(max-width: 400px)">
+              <img class="logo" src="/images/smooth.svg">
+            </picture>
+          </a>
+
+          <div class="spacer"></div>
+
+          <!-- <a class="uxia-button uxia-button-bare" href="#">
+            <paper-ripple></paper-ripple>
+            UX Job Board
+          </a> -->
+        </div>
+
+      </nav>
+      <div class="header-container">
+        <div class="header-image">
+          <picture>
+            <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Big.png" media="(min-width: 800)">
+            <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Small.png" media="(max-width: 799px)">
+            <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+          </picture>
+        </div>
+        <div class="header-text">
+          <h1 class="header-text-title">The State of UX in Asia:<br/>2017 Survey Report</h1>
+          <p class="header-paragraph header-paragraph-big ">
+            The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
+          </p>
+          <p class="header-paragraph header-paragraph-big ">
+              Brought to you by Apical Design, a UX and Product Design Agency.
+          </p>
+          <p class="header-paragraph header-paragraph-small ">
+            Featuring real stories from UX Practitioners all over the Asian region. Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
+          </p>
+          <div class="header-grid">
+            <a class="uxia-button" href="#form-area" on-tap="scrollToForm">
+              <paper-ripple></paper-ripple>
+              Email me the free report
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- stories -->
+    <section class="stories">
+      <div class="stories-container">
+        <h1>Stories from UX Practitioners in these following locations:</h1>
+
+        <div class="stories-grid">
+          <template is="dom-repeat" items="[[stories]]">
+            <div class="story-country-container">
+              <img class="story-image" src="[[item.image]]" />
+              <p class="story-country"> [[item.country]]</p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- something -->
+    <section class="main-testimony">
+      <div class="main-testimony-white-background">
+      </div>
+      <div class="main-testimony-container">
+        <div class="testimony-container">
+          <p class="testimony-text">
+            “There's still a lot of work to help companies in my country to understand what a UX Designer does and the values we can offer to the company.”
+          </p>
+          <div class="testimony-small-rectangle">
+          </div>
+          <p class="testimony-name">
+            Patrick James Lim
+          </p>
+          <p class="testimony-work">
+            UX DESIGNER, PHILIPPINES
+          </p>
+        </div>
+        <div class="testimony-image-container">
+          <img class="testimony-image" src="/images/img_PatrickLim.png">
+        </div>
+      </div>
+    </section>
+
+    <!-- Learn about organizations in asia -->
+    <section class="organizations">
+      <h1>Learn about organizations in Asia investing into UX</h1>
+
+      <div class="organization-grid">
+        <template is="dom-repeat" items="[[organizations]]">
+          <div class="organization">
+            <img class="organization-image" src="[[item.image]]" />
+            <p class="organization-location">[[item.location]]</p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- suzen and fu -->
+    <section class="secondary-testimony">
+      <div class="secondary-testimony-list">
+        <div class="secondary-testimony-color-1">
+        </div>
+        <template is="dom-repeat" items="[[testimonies]]">
+          <div class$="secondary-testimony secondary-testimony-[[index]]">
+            <p class="secondary-testimony-text">[[item.testimony]]</p>
+            <div class="secondary-testimony-person">
+              <img class="secondary-testimony-image" src="[[item.image]]" />
+              <p class="secondary-testimony-name">[[item.name]]</p>
+              <p class="secondary-testimony-country">[[item.country]]</p>
+            </div>
+          </div>
+        </template>
+        <div class="secondary-testimony-color-2">
+        </div>
+      </div>
+    </section>
+
+    <!-- include in the report -->
+    <section class="report-inclusion">
+      <h1>What’s included in the report?</h1>
+      <div class="report-grid">
+        <template is="dom-repeat" items="[[reports]]">
+          <div class="includes-container">
+            <img class="includes-image" src="[[item.image]]" />
+            <p class="includes-text">[[item.text]]</p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- get the latest insights -->
+    <footer class="footer">
+      <div class="footer-container">
+        <h1 id="form-area">Get the latest insights. Download the full report.</h1>
+
+        <div class="insight-grid">
+          <div class="insight-image-container">
+            <picture>
+              <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Big.png" media="(min-width: 800)">
+              <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Small.png" media="(max-width: 799px)">
+              <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+            </picture>
+          </div>
+          <div class="insight-form-container" >
+            <iron-form allow-redirect class="insight-form">
+              <form  id="full-report-form" action="https://uxinasia.us15.list-manage.com/subscribe/post?u=0bbf810f896a9947498972e17&amp;id=beb489f0ae" method="POST">
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE1">Full Name <span class="require">(required)</span></label>
+                  <paper-input class="insight-input" name="MMERGE1" id="MMERGE1" no-label-float label="Full Name" on-value-changed="checkName"></paper-input>
+                </div>
+
+                <div class="insight-input-container">
+                  <label class="insight-label" for="EMAIL">Email <span class="require">(required)</span></label>
+                  <paper-input class="insight-input" name="EMAIL" id="EMAIL" type="email" no-label-float label="Email" on-value-changed="checkEmail"></paper-input>
+                </div>
+
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE2">Company <span class="require">(required)</span></label>
+                  <paper-input class="insight-input" name="MMERGE2" id="MMERGE2" no-label-float label="Company" on-value-changed="checkCompany"></paper-input>
+                </div>
+
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE3">Role/Position <span class="require">(required)</span></label>
+                  <paper-dropdown-menu class="insight-input" label="Role/Position" name="MMERGE3" id="MMERGE3" no-label-float on-selected-item-changed="checkRole">
+                    <paper-listbox slot="dropdown-content" class="dropdown-content">
+                      <template is="dom-repeat" items="[[positions]]">
+                        <paper-item>[[item.role]]</paper-item>
+                      </template>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+                </div>
+
+                <div class="insight-input-container">
+                  <label class="insight-label" for="MMERGE3">Looking to hire a design agency? <span class="require">(required)</span></label>
+                  <paper-dropdown-menu class="insight-input" label="Looking to hire a design agency?" name="MMERGE4" id="MMERGE4" no-label-float on-selected-item-changed="checkHire">
+                    <paper-listbox slot="dropdown-content" class="dropdown-content">
+                      <template is="dom-repeat" items="[[hire]]">
+                        <paper-item>[[item.role]]</paper-item>
+                      </template>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+                </div>
+
+                <div class="insight-checkbox-container">
+                  <input id="MMERGE5-hidden" name="MMERGE5" type="hidden">
+                  <paper-checkbox id="MMERGE5-checkbox" class="insight-checkbox">
+                    Yes! Subscribe me to 3-Tip Tuesday, a free newsletter with three UX and Product Design tips every week
+                  </paper-checkbox>
+                </div>
+
+                <button class="uxia-button" type="button" on-click="submit">
+                  <paper-ripple></paper-ripple>
+                  Email me the free report
+                </button>
+              </form>
+            </iron-form>
+          </div>
+        </div>
+
+        <img class="footer-diamond" src="/images/diamond_footer@svg.svg">
+
+        <div class="footer-proper">
+          <div class="footer-proper-container">
+            <p class="footer-brought">The State of UX in Asia is brought to you by</p>
+
+            <img src="/images/logo-white.png" class="footer-logo">
+
+            <p class="footer-text">
+              We are a UX and Product Design Studio delivering user-focused, user-tested experiences.
+            </p>
+
+            <p class="footer-text">
+              Looking for design help on your next project?
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-center-grid">
+          <a class="uxia-button uxia-button-bare" href="https://www.apicaldesign.com">
+            <paper-ripple></paper-ripple>
+            Learn More
+          </a>
+        </div>
+      </div>
+    </footer>
+
+
+  </template>
+  <script>
+    (() => {
+      class UxiaHomePage extends Polymer.GestureEventListeners(Polymer.Element) {
+        static get is () { return 'uxia-home-page' }
+
+        static get properties () {
+          return {
+            stories: {
+              type: Array,
+              value: () => {
+                var arr = [
+                  {
+                    country: 'Japan',
+                    image: '/images/city/ic_japan.png'
+                  },
+                  {
+                    country: 'Korea',
+                    image: '/images/city/ic_korea.png'
+                  },
+                  {
+                    country: 'India',
+                    image: '/images/city/ic_india.png'
+                  },
+                  {
+                    country: 'Taiwan',
+                    image: '/images/city/ic_taiwan.png'
+                  },
+                  {
+                    country: 'Hong Kong',
+                    image: '/images/city/ic_hongkong.png'
+                  },
+                  {
+                    country: 'China',
+                    image: '/images/city/ic_china.png'
+                  },
+                  {
+                    country: 'Philippines',
+                    image: '/images/city/ic_philippines.png'
+                  },
+                  {
+                    country: 'Thailand',
+                    image: '/images/city/ic_thailand.png'
+                  },
+                  {
+                    country: 'Malaysia',
+                    image: '/images/city/ic_malaysia.png'
+                  },
+                  {
+                    country: 'Singapore',
+                    image: '/images/city/ic_singapore.png'
+                  },
+                  {
+                    country: 'Vietnam',
+                    image: '/images/city/ic_vietnam.png'
+                  },
+                  {
+                    country: 'Indonesia',
+                    image: '/images/city/ic_indonesia.png'
+                  }
+                ]
+                arr.sort((i, j) => {
+                  if (i.country < j.country) {
+                    return -1
+                  } else if (i.country > j.country) {
+                    return 1
+                  }
+                  return 0
+                })
+                return arr
+              }
+            },
+
+            organizations: {
+              type: Array,
+              value: [
+                {
+                  location: 'Kuala Lumpur, Malaysia',
+                  image: '/images/img_logo-AirAsia.png'
+                },
+                {
+                  location: 'Bangkok, Thailand',
+                  image: '/images/img_logo-Agoda.png'
+                },
+                {
+                  location: 'Bangkok, Thailand',
+                  image: '/images/img_Taskworld.png'
+                },
+                {
+                  location: 'Singapore, Singapore',
+                  image: '/images/img_logo-Lazada.png'
+                },
+                {
+                  location: 'Manila, Philippines',
+                  image: '/images/img_logo-Globe.png'
+                },
+                {
+                  location: 'Ho Chi Minh, Vietnam',
+                  image: '/images/img_logo-VietnamWorks.png'
+                }
+              ]
+            },
+
+            testimonies: {
+              type: Array,
+              value: [
+                {
+                  testimony: '“I’m optimistic about the future of UX here in my company and Malaysia. Slowly but surely we are heading towards the flourishing of the UX industry”',
+                  name: 'Suzen Lim',
+                  country: 'MALAYSIA',
+                  image: '/images/img_SuzenLim.png'
+                },
+                {
+                  testimony: '“The way we approach UX Design in Japan is nothing compared to the US. The cultural differences are the main reason why there is such a discrepancy.”',
+                  name: 'Janet Fu',
+                  country: 'JAPAN',
+                  image: '/images/img_JanetFu.png'
+                }
+              ]
+            },
+
+            reports: {
+              type: Array,
+              value: [
+                {
+                  text: 'Salary Information',
+                  image: '/images/icons/icon_SalaryInfo.svg'
+                },
+                {
+                  text: 'Career Satisfaction',
+                  image: '/images/icons/icon_CareerSatisfaction.svg'
+                },
+                {
+                  text: 'UX Education',
+                  image: '/images/icons/icon_UXEducation.svg'
+                },
+                {
+                  text: 'UX Events and Communities in Asia',
+                  image: '/images/icons/icon_UXEvents.svg'
+                },
+                {
+                  text: 'The Future of the Asian UX Industry',
+                  image: '/images/icons/icon_UXFuture.svg'
+                },
+                {
+                  text: 'Problems Facing the UX field',
+                  image: '/images/icons/icon_UXProblems.svg'
+                }
+              ]
+            },
+
+            positions: {
+              type: Array,
+              value: [
+                {
+                  role: 'Designer or Researcher'
+                },
+                {
+                  role: 'Design or Product Manager'
+                },
+                {
+                  role: 'Director or Head of Design/Product'
+                },
+                {
+                  role: 'C-Level Executive'
+                },
+                {
+                  role: 'Business Owner'
+                },
+                {
+                  role: 'Other'
+                }
+              ]
+            },
+
+            hire: {
+              type: Array,
+              value: [
+                {
+                  role: 'Yes'
+                },
+                {
+                  role: 'Possibly in the future'
+                },
+                {
+                  role: 'No'
+                }
+              ]
+            }
+          }
+        }
+
+        submit () {
+          var submit = true
+          submit = this.checkName()
+          submit = this.checkEmail()
+          submit = this.checkCompany()
+          submit = this.checkRole()
+          submit = this.checkHire()
+
+          if (submit) {
+            this.shadowRoot.querySelector('#MMERGE5-hidden').value = this.shadowRoot.querySelector('#MMERGE5-checkbox').checked ? "Yes" : "No"
+            this.shadowRoot.querySelector('iron-form').submit()
+          }
+        }
+
+        checkName () {
+          const el = this.shadowRoot.querySelector('#MMERGE1')
+          return this.checkValue(el, 'Please put your name here so that we can call you by your name.')
+        }
+
+        checkCompany () {
+          const el = this.shadowRoot.querySelector('#MMERGE2')
+          return this.checkValue(el, 'Please put your company here so that we can better understand our audience.')
+        }
+
+        checkRole () {
+          const el = this.shadowRoot.querySelector('#MMERGE3')
+          return this.checkValue(el, 'Please put your role in your company so that we can better understand our audience.')
+        }
+
+        checkHire () {
+          const el = this.shadowRoot.querySelector('#MMERGE4')
+          return this.checkValue(el, 'We want to know more if you need some help in your designing your latest product.')
+        }
+
+        checkEmail () {
+          const el = this.shadowRoot.querySelector('#EMAIL')
+          return this.checkValue(el, 'Please put your name here so that we can call you by your name.', true)
+        }
+
+        checkValue (el, message, email) {
+          if (!el.value || (el.value.split('@').length !== 2 && email)) {
+            el.errorMessage = message
+            el.invalid = true
+            el.classList.add('insight-input-invalid')
+          } else {
+            el.invalid = false
+            el.classList.remove('insight-input-invalid')
+            return true
+          }
+        }
+
+        scrollToForm () {
+          this.shadowRoot.querySelector('#form-area').scrollIntoView({behavior: "smooth"})
+        }
+      }
+
+      window.customElements.define(UxiaHomePage.is, UxiaHomePage)
+    })()
+  </script>
+</dom-module>
