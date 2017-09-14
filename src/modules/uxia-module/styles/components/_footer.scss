@@ -1,7 +1,7 @@
 .footer {
   background-image: linear-gradient(to bottom, #b32c50, #191437, #191437);
 
-  > .footer-container {
+  .footer-container {
     padding-left: 150px;
     padding-right: 150px;
     padding-top: 120px;
@@ -21,7 +21,7 @@
       padding-right: 30px;
     }
 
-    > h1 {
+    h1 {
       font-family: 'Playfair Display';
       font-size: 32px;
       font-weight: bold;
@@ -62,7 +62,7 @@
           display: none;
         }
 
-        > .insight-image {
+        .insight-image {
           @media only screen and (max-width: 1260px) {
             width: 300px;
           }
@@ -175,7 +175,7 @@
               padding-bottom: 15px;
             }
 
-            > paper-dropdown-menu.insight-input {
+            paper-dropdown-menu.insight-input {
               width: calc(100% - 30px);
             }
           }
@@ -190,7 +190,7 @@
       margin-bottom: 70px;
     }
 
-    > .footer-proper {
+    .footer-proper {
       text-align: center;
       display: grid;
       grid-template-columns: 600px;
@@ -235,7 +235,7 @@
 
     }
 
-    > .footer-center-grid {
+    .footer-center-grid {
       display: grid;
       grid-template-columns: 1fr;
       justify-content: center;

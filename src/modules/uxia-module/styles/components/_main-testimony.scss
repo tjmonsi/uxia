@@ -2,7 +2,7 @@
   background-color: #191437;
   position: relative;
 
-  > .main-testimony-white-background {
+  .main-testimony-white-background {
     height: 100px;
     background-color: #fff;
     position: absolute;
@@ -34,7 +34,7 @@
   }
 
 
-  > .main-testimony-container {
+  .main-testimony-container {
     padding-left: 150px;
     padding-right: 150px;
     padding-bottom: 80px;
@@ -62,7 +62,7 @@
     }
 
 
-    > .testimony-container {
+    .testimony-container {
       @apply --layout-flex;
       margin-right: 90px;
       padding-top: 150px;
@@ -91,7 +91,7 @@
       //   display: none
       // }
 
-      > .testimony-text {
+      .testimony-text {
         font-family: 'Open Sans';
         font-size: 26px;
         line-height: 1.69;
@@ -122,7 +122,7 @@
         }
       }
 
-      > .testimony-small-rectangle {
+      .testimony-small-rectangle {
         margin-top: 25px;
         margin-bottom: 25px;
         width: 30px;
@@ -131,7 +131,7 @@
 
       }
 
-      > .testimony-name {
+      .testimony-name {
         margin: 0px;
         font-family: 'Playfair Display';
         font-size: 40px;
@@ -151,7 +151,7 @@
         }
       }
 
-      > .testimony-work {
+      .testimony-work {
         margin: 0px;
         font-family: 'Montserrat';
         font-size: 16px;
@@ -166,11 +166,11 @@
       }
     }
 
-    > .testimony-image-container {
+    .testimony-image-container {
       @apply --layout-flex;
       z-index: 1;
 
-      > .testimony-image {
+      .testimony-image {
         width: 100%;
 
         @media only screen and (max-width: 840px) {

@@ -1,5 +1,5 @@
 .stories {
-  > .stories-container {
+  .stories-container {
     text-align: center;
     padding-left: 150px;
     padding-right: 150px;
@@ -19,7 +19,7 @@
       padding-right: 20px;
     }
 
-    > h1 {
+    h1 {
       font-family: 'Playfair Display', 'Times New Roman', serif;
       font-size: 32px;
       font-weight: 400;
@@ -37,7 +37,7 @@
       }
     }
 
-    > .stories-grid {
+    .stories-grid {
       @apply --layout-horizontal;
       @apply --layout-wrap;
       margin-left: 20px;
@@ -68,12 +68,12 @@
         grid-template-rows: 130px 130px 130px 130px 130px 130px;
       }
 
-      > .story-country-container {
+      .story-country-container {
         @apply --layout-flex;
         max-width: 150px;
         align-self: center;
 
-        > .story-image {
+        .story-image {
           height: 150px;
           // width: 150px;
 
@@ -82,7 +82,7 @@
           }
         }
 
-        > .story-country {
+        .story-country {
           margin-top: 16px;
           font-family: 'Open Sans', serif;
           font-size: 16px;

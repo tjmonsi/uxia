@@ -19,7 +19,7 @@
     padding-right: 30px;
   }
 
-  > h1 {
+  h1 {
     font-family: 'Playfair Display';
     font-size: 32px;
     font-weight: bold;
@@ -36,7 +36,7 @@
     }
   }
 
-  > .report-grid {
+  .report-grid {
     @apply --layout-horizontal;
     @apply --layout-wrap;
     margin-left: 20px;
@@ -56,9 +56,9 @@
     //   grid-template-rows: 250px 250px 250px
     // }
 
-    > .includes-container {
+    .includes-container {
 
-      > .includes-image {
+      .includes-image {
         // height: 180px;
         width: 180px;
 
@@ -68,7 +68,7 @@
         }
       }
 
-      > .includes-text {
+      .includes-text {
         font-family: 'Open Sans', serif;
         font-size: 16px;
         font-weight: 700;

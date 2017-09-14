@@ -3,28 +3,28 @@
   background-color: #27224f ;
   color: #fff;
 
-  > nav {
+  nav {
     margin: 0 auto;
     padding-left: 150px;
     padding-right: 150px;
     max-width: 1440px;
 
 
-    > .nav-container {
+    .nav-container {
       padding-top: 50px;
       padding-bottom: 50px;
       @apply --layout-horizontal;
       @apply --layout-center;
 
-      > .logo {
+      .logo {
         width: 322px;
       }
 
-      > .spacer {
+      .spacer {
         @apply --layout-flex;
       }
 
-      > .uxia-button {
+      .uxia-button {
         @media only screen and (max-width: 800px) {
           display: none;
         }
@@ -68,7 +68,7 @@
 
   }
 
-  > .header-white-background {
+  .header-white-background {
     height: 150px;
     background-color: #fff;
     position: absolute;
@@ -88,7 +88,7 @@
     }
   }
 
-  > .header-container {
+  .header-container {
     @apply --layout-horizontal;
     @apply --layout-wrap;
     margin: 0 auto;
@@ -109,7 +109,7 @@
       padding-right: 20px;
     }
 
-    > .header-image {
+    .header-image {
       @apply --layout-flex-5;
       text-align: center;
       z-index: 1;
@@ -144,7 +144,7 @@
       }
     }
 
-    > .header-text {
+    .header-text {
       @apply --layout-flex-6;
       margin-left: 100px;
       // margin-top: 50px;
@@ -160,7 +160,7 @@
         flex: none;
       }
 
-      > .header-text-title {
+      .header-text-title {
         font-family: 'Playfair Display', 'Times New Roman', serif;
         font-size: 50px;
         font-weight: 400;
@@ -185,7 +185,7 @@
         }
       }
 
-      > .header-paragraph {
+      .header-paragraph {
         font-family: 'Open Sans';
         font-size: 18px;
         font-weight: 400;
@@ -203,7 +203,7 @@
         }
       }
 
-      > .header-paragraph-big {
+      .header-paragraph-big {
         @media only screen and (max-width: 840px) {
           text-align: center;
         }
@@ -213,7 +213,7 @@
         }
       }
 
-      > .header-paragraph-small {
+      .header-paragraph-small {
         display: none;
 
         @media only screen and (max-width: 550px) {
@@ -222,7 +222,7 @@
         }
       }
 
-      > .header-grid {
+      .header-grid {
         display: block;
         @media only screen and (max-width: 840px) {
           display: grid;

@@ -14,7 +14,7 @@
   //   padding-right: 20px;
   // }
 
-  > .secondary-testimony-list {
+  .secondary-testimony-list {
     @apply --layout-horizontal;
     @apply --layout-wrap;
     display: grid;
@@ -32,7 +32,7 @@
       grid-template-columns: 1fr;
     }
 
-    > .secondary-testimony-color-1 {
+    .secondary-testimony-color-1 {
       background-color: #ce345d;
       width: 100%;
       @media only screen and (max-width: 1440px) {
@@ -40,7 +40,7 @@
       }
     }
 
-    > .secondary-testimony-color-2 {
+    .secondary-testimony-color-2 {
       background-color: #b32c50;
       width: 100%;
       @media only screen and (max-width: 1440px) {
@@ -48,7 +48,7 @@
       }
     }
 
-    > .secondary-testimony {
+    .secondary-testimony {
       color: #fff;
       position: relative;
       padding-bottom: 210px;
@@ -58,7 +58,7 @@
         padding-bottom: 160px;
       }
 
-      > .secondary-testimony-text {
+      .secondary-testimony-text {
         font-family: 'Open Sans';
         font-size: 18px;
         line-height: 1.69;
@@ -73,19 +73,19 @@
         }
       }
 
-      > .secondary-testimony-person {
+      .secondary-testimony-person {
         position: absolute;
         width: 100%;
         bottom: 0px;
         margin-bottom: 60px;
 
-        > .secondary-testimony-image {
+        .secondary-testimony-image {
           height: 80px;
           width: 80px;
           border-radius: 50%;
         }
 
-        > .secondary-testimony-name {
+        .secondary-testimony-name {
           font-family: 'Playfair Display';
           font-size: 30px;
           margin: 0px;
@@ -96,7 +96,7 @@
           }
         }
 
-        > .secondary-testimony-country {
+        .secondary-testimony-country {
           font-family: 'Montserrat';
           font-size: 14px;
           font-weight: bold;
@@ -108,11 +108,11 @@
 
     }
 
-    > .secondary-testimony-0 {
+    .secondary-testimony-0 {
       background-color: #ce345d;
     }
 
-    > .secondary-testimony-1 {
+    .secondary-testimony-1 {
       background-color: #b32c50;
     }
   }
