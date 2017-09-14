@@ -1,0 +1,94 @@
+.organizations {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  margin: 0 auto;
+  max-width: 1440px;
+
+  @media only screen and (max-width: 810px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding-left: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right: 30px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display';
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.25;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #b32c50;
+    margin: 0px;
+    margin-bottom: 70px;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .organization-grid {
+    @apply --layout-horizontal;
+    @apply --layout-wrap;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 125px 125px;
+    grid-gap: 100px 25px;
+    justify-content: center;
+    justify-items: center;
+
+    @media only screen and (max-width: 960px) {
+      grid-template-columns: 1fr 1fr;
+      // grid-template-rows: 150px 150px 150px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      grid-template-rows: 125px 125px 125px;
+    }
+
+    .organization {
+      position: relative;
+      width: 300px;
+
+      @media only screen and (max-width: 600px) {
+        width: 120px;
+      }
+
+      .organization-image {
+        // height: 86px;
+        width: 200px;
+
+        @media only screen and (max-width: 600px) {
+          width: 85px;
+        }
+      }
+
+      .organization-location {
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        font-family: 'Open Sans', serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+        color: #000000;
+
+        @media only screen and (max-width: 600px) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

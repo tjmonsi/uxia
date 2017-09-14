@@ -1,56 +1,122 @@
 {
   "app": {
-    "title": "UXIA",
-    "shortTitle": "Uxia",
+    "title": "State of UX in Asia",
+    "shortTitle": "UXIA",
     "description": "This is the site of the State of UX in Asia",
+    "twitter": "",
+    "image": ""
+  },
+  "build": {
+    "name": "dev",
     "baseHref": "/",
-    "analytics": "UA-93879988-2",
+    "analytics": "",
     "firebaseVersion": "4.2.0",
     "database": "dev",
-    "waitBeforeFetchingSameURLInRest": 60,
-    "sentryUrl": "https://707acc0ecd9a40208a78f5bf88b45a6c@sentry.io/201451",
-    "appVersion": "0.0.1",
+    "sentryUrl": "",
     "firebaseConfig": []
   },
   "theme": {
-    "src": "modules/default-theme",
-    "ignoreComponents": []
+    "src": "modules/uxia-module"
   },
   "fragments": {
-    "example-home-page": "modules/example-module/pages/example-home-page.html",
-    "example-not-found-page": "modules/example-module/pages/example-not-found-page.html",
-    "example-not-authorized-page": "modules/example-module/pages/example-not-authorized-page.html",
-    "example-app-header": "modules/example-module/components/example-app-header.html",
-    "example-app-drawer": "modules/example-module/components/example-app-drawer.html",
-    "uxia-home-page": "modules/uxia-home/pages/uxia-home-page.html"
+    "uxia-home-page": "modules/uxia-module/pages/uxia-home-page/uxia-home-page.html",
+    "example-not-found-page": "modules/example-module/pages/example-not-found-page/example-not-found-page.js",
+    "example-not-authorized-page": "modules/example-module/pages/example-not-authorized-page/example-not-authorized-page.js",
+    "example-authorized-page": "modules/example-module/pages/example-authorized-page/example-authorized-page.js",
+    "example-style-guide-page": "modules/example-module/pages/example-style-guide-page/example-style-guide-page.js",
+    "example-header": "modules/example-module/components/example-header/example-header.js",
+    "example-drawer": "modules/example-module/components/example-drawer/example-drawer.js"
   },
   "routing": {
-    "/": "uxia-home-page"
+    "/": "uxia-home-page",
+    "style-guide": "example-style-guide-page"
   },
   "httpCodes": {
     "not-found": "example-not-found-page",
     "not-authorized": "example-not-authorized-page"
   },
-  "shellComponents": [
-    {
-      "node": "example-app-header",
-      "header": true,
-      "activate": true,
-      "attrs": []
-    },
-    {
-      "node": "example-app-drawer",
-      "drawer": true,
-      "activate": true,
-      "attrs": []
-    }
-  ],
+  "partials": {
+
+  },
   "serviceWorker": {
     "globIgnores": [],
     "runtimeCaching": [],
     "globPatterns": []
   },
   "hosting": {
-    "rewrites": []
+    "headers": [
+      {
+        "source" : "**/*.@(jpg|jpeg|gif|png)",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "max-age=7200"
+          }
+        ]
+      },
+      {
+        "source" : "404.html",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "max-age=300"
+          }
+        ]
+      },
+      {
+        "source": "service-worker.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "service-worker-core/*.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "service-worker-src/*js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "sw.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "workbox-routing.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "workbox-sw.*.js",
+        "headers" : [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ]
   }
 }
