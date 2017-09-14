@@ -1,0 +1,103 @@
+.stories {
+  .stories-container {
+    text-align: center;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 100px;
+    padding-bottom: 110px;
+    margin: 0 auto;
+    max-width: 1440px;
+
+    @media only screen and (max-width: 810px) {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      padding-left: 20px;
+      padding-top: 40px;
+      padding-right: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: 1px;
+      font-weight: bold;
+      text-align: center;
+      color: #b32c50;
+      margin-top: 0px;
+      margin-bottom: 80px;
+
+      @media only screen and (max-width: 600px) {
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+    }
+
+    .stories-grid {
+      @include layout-horizontal;
+      @include layout-wrap;
+      margin-left: 20px;
+      margin-right: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      grid-gap: 10px 15px;
+      justify-content: center;
+      justify-items: center;
+
+      @media only screen and (max-width: 1280px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+
+      @media only screen and (max-width: 980px) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 200px 200px 200px 200px;
+      }
+
+      @media only screen and (max-width: 600px) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px 200px 200px 200px;
+      }
+
+      @media only screen and (max-width: 450px) {
+        grid-template-rows: 130px 130px 130px 130px 130px 130px;
+      }
+
+      .story-country-container {
+        @include layout-flex;
+        max-width: 150px;
+        align-self: center;
+
+        .story-image {
+          height: 150px;
+          // width: 150px;
+
+          @media only screen and (max-width: 450px) {
+            height: 90px;
+          }
+        }
+
+        .story-country {
+          margin-top: 16px;
+          font-family: 'Open Sans', serif;
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-align: center;
+          color: #000000;
+
+          @media only screen and (max-width: 600px) {
+            margin-top: 6px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+}

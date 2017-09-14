@@ -1,0 +1,203 @@
+@import '../partials/checkbox';
+
+.footer {
+  background-image: linear-gradient(to bottom, #b32c50, #191437, #191437);
+
+  .footer-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    margin: 0 auto;
+    max-width: 1440px;
+
+    @media only screen and (max-width: 810px) {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      padding-left: 30px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      padding-right: 30px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display';
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 1.25;
+      letter-spacing: 1px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 60px;
+
+      @media only screen and (max-width: 600px) {
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+    }
+
+    .insight-grid {
+      @include layout-horizontal;
+      @include layout-wrap;
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-bottom: 135px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px 15px;
+      justify-content: center;
+      justify-items: center;
+
+      @media only screen and (max-width: 1000px) {
+        display: block;
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+
+      .insight-image-container {
+        margin-right: 20px;
+
+        @media only screen and (max-width: 1000px) {
+          display: none;
+        }
+
+        .insight-image {
+          @media only screen and (max-width: 1260px) {
+            width: 300px;
+          }
+          width: 80%;
+        }
+      }
+
+      .insight-form-container {
+        width: 100%;
+
+
+        .insight-checkbox-container {
+          @include layout-horizontal;
+          // @include layout-center;
+          padding-bottom: 20px;
+
+          .insight-label {
+            margin-left: 10px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-align: left;
+            color: #ffffff;
+            padding-bottom: 10px;
+            display: block;
+          }
+        }
+
+        .insight-input-container {
+          padding-bottom: 20px;
+
+          .insight-label {
+            font-family: 'Merriweather';
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-align: left;
+            color: #ffffff;
+            padding-bottom: 10px;
+            display: block;
+
+            .require {
+              font-size: 11px;
+              opacity: 0.7;
+            }
+          }
+
+          .insight-input {
+            height: 42px;
+            background-color: #ffffff;
+            font-family: 'Open Sans';
+            font-size: 16px;
+            text-align: left;
+            color: #181437;
+            padding: 5px 10px 5px;
+            width: calc(100% - 24px);
+
+
+          }
+
+          select.insight-input {
+            width: 100%;
+            height: 55px;
+          }
+
+          .insight-input-invalid {
+            padding-bottom: 15px;
+          }
+
+          paper-dropdown-menu.insight-input {
+            width: calc(100% - 30px);
+          }
+        }
+
+      }
+    }
+
+    .footer-diamond {
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 70px;
+    }
+
+    .footer-proper {
+      text-align: center;
+      display: grid;
+      grid-template-columns: 600px;
+      justify-content: center;
+      justify-items: center;
+
+      @media only screen and (max-width: 1000px) {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-brought {
+        font-family: 'Montserrat';
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #ffffff;
+      }
+
+      .footer-logo {
+        width: 300px;
+        margin-bottom: 44px;
+        margin-top: 16px;
+      }
+
+      .footer-text {
+        font-family: 'Playfair Display';
+        font-size: 26px;
+        text-align: center;
+        color: #ffffff;
+
+
+        @media only screen and (max-width: 1000px) {
+          font-size: 20px;
+        }
+      }
+
+      .footer-text:last-of-type {
+        padding-bottom: 40px;
+      }
+
+
+    }
+
+    .footer-center-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      justify-items: center;
+    }
+  }
+
+}

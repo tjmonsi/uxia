@@ -20,48 +20,265 @@
     <meta name="twitter:description" content="This is the site of the State of UX in Asia" />
     <meta name="twitter:image" content="" />
 
-    <!-- Add any global styles for body, document, etc. -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400|Montserrat:400,700|Open+Sans:400,700|Playfair+Display:400,700" rel="stylesheet">
+
     <style>
       body {
         margin: 0;
       }
-
-      .drawer {
-        z-index: 10;
-      }
-
-      .header {
-        z-index: 9;
-      }
     </style>
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
   </head>
   <body>
-    <% if (htmlWebpackPlugin.options.config.build.analytics) {%>
+
+    <header class="header">
+      <div class="header-white-background">
+      </div>
+      <nav>
+        <div class="nav-container">
+          <a href="https://www.apicaldesign.com" target="_blank">
+            <picture>
+              <source srcset="/images/apical-logo-combo-black.svg" media="(min-width: 401px)">
+              <source srcset="/images/smooth.svg" media="(max-width: 400px)">
+              <img class="logo" src="/images/smooth.svg">
+            </picture>
+          </a>
+
+          <div class="spacer"></div>
+
+          <!-- <a class="uxia-button uxia-button-bare" href="#">
+            <ripple></ripple>
+            UX Job Board
+          </a> -->
+        </div>
+
+      </nav>
+      <div class="header-container">
+        <div class="header-image">
+          <picture>
+            <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Big.png" media="(min-width: 800)">
+            <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Small.png" media="(max-width: 799px)">
+            <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+          </picture>
+        </div>
+        <div class="header-text">
+          <h1 class="header-text-title">The State of UX in Asia:<br/>2017 Survey Report</h1>
+          <p class="header-paragraph header-paragraph-big ">
+            The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
+          </p>
+          <p class="header-paragraph header-paragraph-big ">
+              Brought to you by Apical Design, a UX and Product Design Agency.
+          </p>
+          <p class="header-paragraph header-paragraph-small ">
+            Featuring real stories from UX Practitioners all over the Asian region. Brought to you by Apical Design, a UX Agency in Manila and Los Angeles.
+          </p>
+          <div class="header-grid">
+            <a class="uxia-button" href="#form-area" on-tap="scrollToForm">
+              <ripple></ripple>
+              Email me the free report
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- stories -->
+    <section class="stories">
+      <div class="stories-container">
+        <h1>Stories from UX Practitioners in these following locations:</h1>
+
+        <div class="stories-grid">
+          <% htmlWebpackPlugin.options.data.stories.forEach(function(item) { %>
+            <div class="story-country-container">
+              <img class="story-image" src="<%= item.image %>" />
+              <p class="story-country"> <%= item.country %></p>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-testimony">
+        <div class="main-testimony-white-background">
+        </div>
+        <div class="main-testimony-container">
+          <div class="testimony-container">
+            <p class="testimony-text">
+              “There's still a lot of work to help companies in my country to understand what a UX Designer does and the values we can offer to the company.”
+            </p>
+            <div class="testimony-small-rectangle">
+            </div>
+            <p class="testimony-name">
+              Patrick James Lim
+            </p>
+            <p class="testimony-work">
+              UX DESIGNER, PHILIPPINES
+            </p>
+          </div>
+          <div class="testimony-image-container">
+            <img class="testimony-image" src="/images/img_PatrickLim.png">
+          </div>
+        </div>
+      </section>
+
+      <!-- Learn about organizations in asia -->
+      <section class="organizations">
+        <h1>Learn about organizations in Asia investing into UX</h1>
+
+        <div class="organization-grid">
+          <% htmlWebpackPlugin.options.data.organizations.forEach(function(item) { %>
+            <div class="organization">
+              <img class="organization-image" src="<%= item.image %>" />
+              <p class="organization-location"><%= item.location %></p>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- suzen and fu -->
+    <section class="secondary-testimony">
+      <div class="secondary-testimony-list">
+        <div class="secondary-testimony-color-1">
+        </div>
+        <% htmlWebpackPlugin.options.data.testimonies.forEach(function(item, index) { %>
+
+        <div class="secondary-testimony secondary-testimony-<%= index %>">
+          <p class="secondary-testimony-text"><%= item.testimony %></p>
+          <div class="secondary-testimony-person">
+            <img class="secondary-testimony-image" src="<%= item.image %>" />
+            <p class="secondary-testimony-name"><%= item.name %></p>
+            <p class="secondary-testimony-country"><%= item.country %></p>
+          </div>
+        </div>
+        <% }) %>
+        <div class="secondary-testimony-color-2">
+        </div>
+      </div>
+    </section>
+
+    <!-- include in the report -->
+    <section class="report-inclusion">
+      <h1>What’s included in the report?</h1>
+      <div class="report-grid">
+          <% htmlWebpackPlugin.options.data.reports.forEach(function(item) { %>
+          <div class="includes-container">
+            <img class="includes-image" src="<%= item.image %>" />
+            <p class="includes-text"><%= item.text %></p>
+          </div>
+          <% }) %>
+      </div>
+    </section>
+
+    <!-- get the latest insights -->
+    <footer class="footer">
+      <div class="footer-container">
+        <h1 id="form-area">Get the latest insights. Download the full report.</h1>
+
+        <div class="insight-grid">
+          <div class="insight-image-container">
+            <picture>
+              <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Big.png" media="(min-width: 800)">
+              <source srcset="/images/Cover/Book_Cover_LetterSize_Style2_Small.png" media="(max-width: 799px)">
+              <img src="/images/Cover/Book_Cover_LetterSize_Style2_Small.png">
+            </picture>
+          </div>
+          <div class="insight-form-container" >
+            <form  id="full-report-form" action="https://uxinasia.us15.list-manage.com/subscribe/post?u=0bbf810f896a9947498972e17&amp;id=beb489f0ae" method="POST">
+              <div class="insight-input-container">
+                <label class="insight-label" for="MMERGE1">Full Name <span class="require">(required)</span></label>
+                <input class="insight-input" name="MMERGE1" id="MMERGE1" placeholder="Full Name">
+              </div>
+
+              <div class="insight-input-container">
+                <label class="insight-label" for="EMAIL">Email <span class="require">(required)</span></label>
+                <input class="insight-input" name="EMAIL" id="EMAIL" type="email" placeholder="Email">
+              </div>
+
+              <div class="insight-input-container">
+                <label class="insight-label" for="MMERGE2">Company <span class="require">(required)</span></label>
+                <input class="insight-input" name="MMERGE2" id="MMERGE2" placeholder="Company">
+              </div>
+
+              <div class="insight-input-container">
+                <label class="insight-label" for="MMERGE3">Role/Position <span class="require">(required)</span></label>
+                <select class="insight-input" placeholder="Role/Position" name="MMERGE3" id="MMERGE3">
+                  <option disabled selected>Role/Position</option>
+                  <% htmlWebpackPlugin.options.data.positions.forEach(function(item) { %>
+                    <option><%= item.role %></option>
+                  <% }) %>>
+                </select>
+              </div>
+
+              <div class="insight-input-container">
+                <label class="insight-label" for="MMERGE4">Looking to hire a design agency? <span class="require">(required)</span></label>
+                <select class="insight-input" placeholder="Looking to hire a design agency?" name="MMERGE4" id="MMERGE4">
+                    <option disabled selected>Looking to hire a design agency?</option>
+                  <% htmlWebpackPlugin.options.data.hire.forEach(function(item) { %>
+                    <option><%= item.role %></option>
+                  <% }) %>
+                </select>
+              </div>
+
+              <div class="insight-checkbox-container md-checkbox">
+                <input type="hidden" name="MMERGE5" value="No">
+                <input type="checkbox" name="MMERGE5" id="MMERGE5" class="insight-checkbox" value="Yes">
+                <label class="insight-label" for="MMERGE5">
+                  Yes! Subscribe me to 3-Tip Tuesday, a free newsletter with three UX and Product Design tips every week
+                </label>
+              </div>
+
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0bbf810f896a9947498972e17_beb489f0ae" tabindex="-1" value=""></div>
+
+              <button class="uxia-button" type="submit" on-click="submit">
+                <ripple></ripple>
+                Email me the free report
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <img class="footer-diamond" src="/images/diamond_footer@svg.svg">
+
+        <div class="footer-proper">
+          <div class="footer-proper-container">
+            <p class="footer-brought">The State of UX in Asia is brought to you by</p>
+
+            <img src="/images/logo-white.png" class="footer-logo">
+
+            <p class="footer-text">
+              We are a UX and Product Design Studio delivering user-focused, user-tested experiences.
+            </p>
+
+            <p class="footer-text">
+              Looking for design help on your next project?
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-center-grid">
+          <a class="uxia-button uxia-button-bare" href="https://www.apicaldesign.com">
+            <ripple></ripple>
+            Learn More
+          </a>
+        </div>
+      </div>
+    </footer>
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       if (window.ga) {
-        ga('create', UA-106485786-1, 'auto');
+        ga('create', 'UA-106485786-1', 'auto');
         ga('send', 'pageview');
 
         setTimeout(function() {
           ga('send', 'event', 'App', 'read', 'User at app at least 15 seconds', 15)
-          // ga('event')
         }, 15000)
       }
-      // setTimeout(() => {
-      //   App.utils.checkStorage().then((res) => {
-      //     if (res.usage && window.ga) {
-      //       ga('send', 'event', 'appLoad', 'load', null, res.usage)
-      //     } else if (res.type) {
-      //       Raven.captureMessage(res.type)
-      //     }
-      //   }).catch((err) => {
-      //     Raven.captureException(err)
-      //   })
-      // }, 10000)
     </script>
 
 
