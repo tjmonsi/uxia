@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/http-server & ./node_modules/.bin/webpack --env=dev --watch && fg"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
+    "http-server": "^0.10.0",
     "image-webpack-loader": "^3.4.2",
     "node-sass": "^4.5.3",
     "polymer-webpack-loader": "^2.0.0",

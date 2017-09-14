@@ -60,117 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(25);
-
-__webpack_require__(47);
-
-__webpack_require__(49);
-
-__webpack_require__(50);
-
-__webpack_require__(51);
-
-__webpack_require__(52);
-
-__webpack_require__(53);
-
-__webpack_require__(54);
-
-__webpack_require__(57);
-
-// bc
-Polymer.Base = Polymer.LegacyElementMixin(HTMLElement).prototype;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/* eslint-env browser */
-
-var RegisterHtmlTemplate = function () {
-  function RegisterHtmlTemplate() {
-    _classCallCheck(this, RegisterHtmlTemplate);
-  }
-
-  _createClass(RegisterHtmlTemplate, null, [{
-    key: 'register',
-
-    /**
-     * Create a `<template>` element to hold `<dom-module>` content.
-     * This bit of code will execute in the context of the main document,
-     * calling `importNode` on the `<template>`, which in turn triggers
-     * the lifecycle of the `<dom-module>` and allows it to insert its
-     * content into Polymer's global module map. When a Polymer element
-     * boots up it will fetch its template from this module map.
-     * https://github.com/Polymer/polymer/blob/master/lib/mixins/element-mixin.html#L501-L538
-     * @param {string} val A `<dom-module>` as an HTML string
-     */
-    value: function register(val) {
-      var content = void 0;
-      var template = document.createElement('template');
-      template.innerHTML = val;
-      if (template.content) {
-        content = template.content; // eslint-disable-line prefer-destructuring
-      } else {
-        content = document.createDocumentFragment();
-        while (template.firstChild) {
-          content.appendChild(template.firstChild);
-        }
-      }
-      document.importNode(content, true);
-    }
-    /**
-     * Content that will be injected into the main document. This is primarily
-     * for things like `<iron-iconset>` and `<custom-style>` which do not have
-     * templates but rely on HTML Imports ability to apply content to the main
-     * document.
-     * @param {string} val An HTML string
-     */
-
-  }, {
-    key: 'toBody',
-    value: function toBody(val) {
-      var trimmedVal = val.trim();
-      if (trimmedVal) {
-        var div = document.createElement('div');
-        div.innerHTML = trimmedVal;
-        if (div.firstChild) {
-          if (document.body) {
-            document.body.insertBefore(div.firstChild, document.body.firstChild);
-          } else {
-            document.addEventListener('DOMContentLoaded', function () {
-              document.body.insertBefore(div.firstChild, document.body.firstChild);
-            });
-          }
-        }
-      }
-    }
-  }]);
-
-  return RegisterHtmlTemplate;
-}();
-
-module.exports = RegisterHtmlTemplate;
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -232,13 +126,13 @@ module.exports = RegisterHtmlTemplate;
 })();
 
 /***/ }),
-/* 3 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
 (function () {
 
@@ -303,498 +197,13 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 __webpack_require__(0);
-
-(function () {
-  'use strict';
-
-  /**
-   * Chrome uses an older version of DOM Level 3 Keyboard Events
-   *
-   * Most keys are labeled as text, but some are Unicode codepoints.
-   * Values taken from: http://www.w3.org/TR/2007/WD-DOM-Level-3-Events-20071221/keyset.html#KeySet-Set
-   */
-
-  var KEY_IDENTIFIER = {
-    'U+0008': 'backspace',
-    'U+0009': 'tab',
-    'U+001B': 'esc',
-    'U+0020': 'space',
-    'U+007F': 'del'
-  };
-
-  /**
-   * Special table for KeyboardEvent.keyCode.
-   * KeyboardEvent.keyIdentifier is better, and KeyBoardEvent.key is even better
-   * than that.
-   *
-   * Values from: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.keyCode#Value_of_keyCode
-   */
-  var KEY_CODE = {
-    8: 'backspace',
-    9: 'tab',
-    13: 'enter',
-    27: 'esc',
-    33: 'pageup',
-    34: 'pagedown',
-    35: 'end',
-    36: 'home',
-    32: 'space',
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    40: 'down',
-    46: 'del',
-    106: '*'
-  };
-
-  /**
-   * MODIFIER_KEYS maps the short name for modifier keys used in a key
-   * combo string to the property name that references those same keys
-   * in a KeyboardEvent instance.
-   */
-  var MODIFIER_KEYS = {
-    'shift': 'shiftKey',
-    'ctrl': 'ctrlKey',
-    'alt': 'altKey',
-    'meta': 'metaKey'
-  };
-
-  /**
-   * KeyboardEvent.key is mostly represented by printable character made by
-   * the keyboard, with unprintable keys labeled nicely.
-   *
-   * However, on OS X, Alt+char can make a Unicode character that follows an
-   * Apple-specific mapping. In this case, we fall back to .keyCode.
-   */
-  var KEY_CHAR = /[a-z0-9*]/;
-
-  /**
-   * Matches a keyIdentifier string.
-   */
-  var IDENT_CHAR = /U\+/;
-
-  /**
-   * Matches arrow keys in Gecko 27.0+
-   */
-  var ARROW_KEY = /^arrow/;
-
-  /**
-   * Matches space keys everywhere (notably including IE10's exceptional name
-   * `spacebar`).
-   */
-  var SPACE_KEY = /^space(bar)?/;
-
-  /**
-   * Matches ESC key.
-   *
-   * Value from: http://w3c.github.io/uievents-key/#key-Escape
-   */
-  var ESC_KEY = /^escape$/;
-
-  /**
-   * Transforms the key.
-   * @param {string} key The KeyBoardEvent.key
-   * @param {Boolean} [noSpecialChars] Limits the transformation to
-   * alpha-numeric characters.
-   */
-  function transformKey(key, noSpecialChars) {
-    var validKey = '';
-    if (key) {
-      var lKey = key.toLowerCase();
-      if (lKey === ' ' || SPACE_KEY.test(lKey)) {
-        validKey = 'space';
-      } else if (ESC_KEY.test(lKey)) {
-        validKey = 'esc';
-      } else if (lKey.length == 1) {
-        if (!noSpecialChars || KEY_CHAR.test(lKey)) {
-          validKey = lKey;
-        }
-      } else if (ARROW_KEY.test(lKey)) {
-        validKey = lKey.replace('arrow', '');
-      } else if (lKey == 'multiply') {
-        // numpad '*' can map to Multiply on IE/Windows
-        validKey = '*';
-      } else {
-        validKey = lKey;
-      }
-    }
-    return validKey;
-  }
-
-  function transformKeyIdentifier(keyIdent) {
-    var validKey = '';
-    if (keyIdent) {
-      if (keyIdent in KEY_IDENTIFIER) {
-        validKey = KEY_IDENTIFIER[keyIdent];
-      } else if (IDENT_CHAR.test(keyIdent)) {
-        keyIdent = parseInt(keyIdent.replace('U+', '0x'), 16);
-        validKey = String.fromCharCode(keyIdent).toLowerCase();
-      } else {
-        validKey = keyIdent.toLowerCase();
-      }
-    }
-    return validKey;
-  }
-
-  function transformKeyCode(keyCode) {
-    var validKey = '';
-    if (Number(keyCode)) {
-      if (keyCode >= 65 && keyCode <= 90) {
-        // ascii a-z
-        // lowercase is 32 offset from uppercase
-        validKey = String.fromCharCode(32 + keyCode);
-      } else if (keyCode >= 112 && keyCode <= 123) {
-        // function keys f1-f12
-        validKey = 'f' + (keyCode - 112 + 1);
-      } else if (keyCode >= 48 && keyCode <= 57) {
-        // top 0-9 keys
-        validKey = String(keyCode - 48);
-      } else if (keyCode >= 96 && keyCode <= 105) {
-        // num pad 0-9
-        validKey = String(keyCode - 96);
-      } else {
-        validKey = KEY_CODE[keyCode];
-      }
-    }
-    return validKey;
-  }
-
-  /**
-    * Calculates the normalized key for a KeyboardEvent.
-    * @param {KeyboardEvent} keyEvent
-    * @param {Boolean} [noSpecialChars] Set to true to limit keyEvent.key
-    * transformation to alpha-numeric chars. This is useful with key
-    * combinations like shift + 2, which on FF for MacOS produces
-    * keyEvent.key = @
-    * To get 2 returned, set noSpecialChars = true
-    * To get @ returned, set noSpecialChars = false
-   */
-  function normalizedKeyForEvent(keyEvent, noSpecialChars) {
-    // Fall back from .key, to .detail.key for artifical keyboard events,
-    // and then to deprecated .keyIdentifier and .keyCode.
-    if (keyEvent.key) {
-      return transformKey(keyEvent.key, noSpecialChars);
-    }
-    if (keyEvent.detail && keyEvent.detail.key) {
-      return transformKey(keyEvent.detail.key, noSpecialChars);
-    }
-    return transformKeyIdentifier(keyEvent.keyIdentifier) || transformKeyCode(keyEvent.keyCode) || '';
-  }
-
-  function keyComboMatchesEvent(keyCombo, event) {
-    // For combos with modifiers we support only alpha-numeric keys
-    var keyEvent = normalizedKeyForEvent(event, keyCombo.hasModifiers);
-    return keyEvent === keyCombo.key && (!keyCombo.hasModifiers || !!event.shiftKey === !!keyCombo.shiftKey && !!event.ctrlKey === !!keyCombo.ctrlKey && !!event.altKey === !!keyCombo.altKey && !!event.metaKey === !!keyCombo.metaKey);
-  }
-
-  function parseKeyComboString(keyComboString) {
-    if (keyComboString.length === 1) {
-      return {
-        combo: keyComboString,
-        key: keyComboString,
-        event: 'keydown'
-      };
-    }
-    return keyComboString.split('+').reduce(function (parsedKeyCombo, keyComboPart) {
-      var eventParts = keyComboPart.split(':');
-      var keyName = eventParts[0];
-      var event = eventParts[1];
-
-      if (keyName in MODIFIER_KEYS) {
-        parsedKeyCombo[MODIFIER_KEYS[keyName]] = true;
-        parsedKeyCombo.hasModifiers = true;
-      } else {
-        parsedKeyCombo.key = keyName;
-        parsedKeyCombo.event = event || 'keydown';
-      }
-
-      return parsedKeyCombo;
-    }, {
-      combo: keyComboString.split(':').shift()
-    });
-  }
-
-  function parseEventString(eventString) {
-    return eventString.trim().split(' ').map(function (keyComboString) {
-      return parseKeyComboString(keyComboString);
-    });
-  }
-
-  /**
-   * `Polymer.IronA11yKeysBehavior` provides a normalized interface for processing
-   * keyboard commands that pertain to [WAI-ARIA best practices](http://www.w3.org/TR/wai-aria-practices/#kbd_general_binding).
-   * The element takes care of browser differences with respect to Keyboard events
-   * and uses an expressive syntax to filter key presses.
-   *
-   * Use the `keyBindings` prototype property to express what combination of keys
-   * will trigger the callback. A key binding has the format
-   * `"KEY+MODIFIER:EVENT": "callback"` (`"KEY": "callback"` or
-   * `"KEY:EVENT": "callback"` are valid as well). Some examples:
-   *
-   *      keyBindings: {
-   *        'space': '_onKeydown', // same as 'space:keydown'
-   *        'shift+tab': '_onKeydown',
-   *        'enter:keypress': '_onKeypress',
-   *        'esc:keyup': '_onKeyup'
-   *      }
-   *
-   * The callback will receive with an event containing the following information in `event.detail`:
-   *
-   *      _onKeydown: function(event) {
-   *        console.log(event.detail.combo); // KEY+MODIFIER, e.g. "shift+tab"
-   *        console.log(event.detail.key); // KEY only, e.g. "tab"
-   *        console.log(event.detail.event); // EVENT, e.g. "keydown"
-   *        console.log(event.detail.keyboardEvent); // the original KeyboardEvent
-   *      }
-   *
-   * Use the `keyEventTarget` attribute to set up event handlers on a specific
-   * node.
-   *
-   * See the [demo source code](https://github.com/PolymerElements/iron-a11y-keys-behavior/blob/master/demo/x-key-aware.html)
-   * for an example.
-   *
-   * @demo demo/index.html
-   * @polymerBehavior
-   */
-  Polymer.IronA11yKeysBehavior = {
-    properties: {
-      /**
-       * The EventTarget that will be firing relevant KeyboardEvents. Set it to
-       * `null` to disable the listeners.
-       * @type {?EventTarget}
-       */
-      keyEventTarget: {
-        type: Object,
-        value: function value() {
-          return this;
-        }
-      },
-
-      /**
-       * If true, this property will cause the implementing element to
-       * automatically stop propagation on any handled KeyboardEvents.
-       */
-      stopKeyboardEventPropagation: {
-        type: Boolean,
-        value: false
-      },
-
-      _boundKeyHandlers: {
-        type: Array,
-        value: function value() {
-          return [];
-        }
-      },
-
-      // We use this due to a limitation in IE10 where instances will have
-      // own properties of everything on the "prototype".
-      _imperativeKeyBindings: {
-        type: Object,
-        value: function value() {
-          return {};
-        }
-      }
-    },
-
-    observers: ['_resetKeyEventListeners(keyEventTarget, _boundKeyHandlers)'],
-
-    /**
-     * To be used to express what combination of keys  will trigger the relative
-     * callback. e.g. `keyBindings: { 'esc': '_onEscPressed'}`
-     * @type {!Object}
-     */
-    keyBindings: {},
-
-    registered: function registered() {
-      this._prepKeyBindings();
-    },
-
-    attached: function attached() {
-      this._listenKeyEventListeners();
-    },
-
-    detached: function detached() {
-      this._unlistenKeyEventListeners();
-    },
-
-    /**
-     * Can be used to imperatively add a key binding to the implementing
-     * element. This is the imperative equivalent of declaring a keybinding
-     * in the `keyBindings` prototype property.
-     *
-     * @param {string} eventString
-     * @param {string} handlerName
-     */
-    addOwnKeyBinding: function addOwnKeyBinding(eventString, handlerName) {
-      this._imperativeKeyBindings[eventString] = handlerName;
-      this._prepKeyBindings();
-      this._resetKeyEventListeners();
-    },
-
-    /**
-     * When called, will remove all imperatively-added key bindings.
-     */
-    removeOwnKeyBindings: function removeOwnKeyBindings() {
-      this._imperativeKeyBindings = {};
-      this._prepKeyBindings();
-      this._resetKeyEventListeners();
-    },
-
-    /**
-     * Returns true if a keyboard event matches `eventString`.
-     *
-     * @param {KeyboardEvent} event
-     * @param {string} eventString
-     * @return {boolean}
-     */
-    keyboardEventMatchesKeys: function keyboardEventMatchesKeys(event, eventString) {
-      var keyCombos = parseEventString(eventString);
-      for (var i = 0; i < keyCombos.length; ++i) {
-        if (keyComboMatchesEvent(keyCombos[i], event)) {
-          return true;
-        }
-      }
-      return false;
-    },
-
-    _collectKeyBindings: function _collectKeyBindings() {
-      var keyBindings = this.behaviors.map(function (behavior) {
-        return behavior.keyBindings;
-      });
-
-      if (keyBindings.indexOf(this.keyBindings) === -1) {
-        keyBindings.push(this.keyBindings);
-      }
-
-      return keyBindings;
-    },
-
-    _prepKeyBindings: function _prepKeyBindings() {
-      this._keyBindings = {};
-
-      this._collectKeyBindings().forEach(function (keyBindings) {
-        for (var eventString in keyBindings) {
-          this._addKeyBinding(eventString, keyBindings[eventString]);
-        }
-      }, this);
-
-      for (var eventString in this._imperativeKeyBindings) {
-        this._addKeyBinding(eventString, this._imperativeKeyBindings[eventString]);
-      }
-
-      // Give precedence to combos with modifiers to be checked first.
-      for (var eventName in this._keyBindings) {
-        this._keyBindings[eventName].sort(function (kb1, kb2) {
-          var b1 = kb1[0].hasModifiers;
-          var b2 = kb2[0].hasModifiers;
-          return b1 === b2 ? 0 : b1 ? -1 : 1;
-        });
-      }
-    },
-
-    _addKeyBinding: function _addKeyBinding(eventString, handlerName) {
-      parseEventString(eventString).forEach(function (keyCombo) {
-        this._keyBindings[keyCombo.event] = this._keyBindings[keyCombo.event] || [];
-
-        this._keyBindings[keyCombo.event].push([keyCombo, handlerName]);
-      }, this);
-    },
-
-    _resetKeyEventListeners: function _resetKeyEventListeners() {
-      this._unlistenKeyEventListeners();
-
-      if (this.isAttached) {
-        this._listenKeyEventListeners();
-      }
-    },
-
-    _listenKeyEventListeners: function _listenKeyEventListeners() {
-      if (!this.keyEventTarget) {
-        return;
-      }
-      Object.keys(this._keyBindings).forEach(function (eventName) {
-        var keyBindings = this._keyBindings[eventName];
-        var boundKeyHandler = this._onKeyBindingEvent.bind(this, keyBindings);
-
-        this._boundKeyHandlers.push([this.keyEventTarget, eventName, boundKeyHandler]);
-
-        this.keyEventTarget.addEventListener(eventName, boundKeyHandler);
-      }, this);
-    },
-
-    _unlistenKeyEventListeners: function _unlistenKeyEventListeners() {
-      var keyHandlerTuple;
-      var keyEventTarget;
-      var eventName;
-      var boundKeyHandler;
-
-      while (this._boundKeyHandlers.length) {
-        // My kingdom for block-scope binding and destructuring assignment..
-        keyHandlerTuple = this._boundKeyHandlers.pop();
-        keyEventTarget = keyHandlerTuple[0];
-        eventName = keyHandlerTuple[1];
-        boundKeyHandler = keyHandlerTuple[2];
-
-        keyEventTarget.removeEventListener(eventName, boundKeyHandler);
-      }
-    },
-
-    _onKeyBindingEvent: function _onKeyBindingEvent(keyBindings, event) {
-      if (this.stopKeyboardEventPropagation) {
-        event.stopPropagation();
-      }
-
-      // if event has been already prevented, don't do anything
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      for (var i = 0; i < keyBindings.length; i++) {
-        var keyCombo = keyBindings[i][0];
-        var handlerName = keyBindings[i][1];
-        if (keyComboMatchesEvent(keyCombo, event)) {
-          this._triggerKeyHandler(keyCombo, handlerName, event);
-          // exit the loop if eventDefault was prevented
-          if (event.defaultPrevented) {
-            return;
-          }
-        }
-      }
-    },
-
-    _triggerKeyHandler: function _triggerKeyHandler(keyCombo, handlerName, keyboardEvent) {
-      var detail = Object.create(keyCombo);
-      detail.keyboardEvent = keyboardEvent;
-      var event = new CustomEvent(keyCombo.event, {
-        detail: detail,
-        cancelable: true
-      });
-      this[handlerName].call(this, event);
-      if (event.defaultPrevented) {
-        keyboardEvent.preventDefault();
-      }
-    }
-  };
-})();
-
-/***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(2);
 
 (function () {
   'use strict';
@@ -887,13 +296,13 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 9 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
 (function () {
 
@@ -1091,7 +500,7 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 10 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1107,7 +516,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(3);
+__webpack_require__(1);
 
 (function () {
   'use strict';
@@ -1325,609 +734,13 @@ __webpack_require__(3);
 })();
 
 /***/ }),
-/* 11 */,
-/* 12 */,
-/* 13 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 __webpack_require__(0);
-
-__webpack_require__(4);
-
-var RegisterHtmlTemplate = __webpack_require__(1);
-
-RegisterHtmlTemplate.register("<dom-module id=paper-ripple> <template> <style>:host{display:block;position:absolute;border-radius:inherit;overflow:hidden;top:0;left:0;right:0;bottom:0;pointer-events:none}:host([animating]){-webkit-transform:translate(0,0);transform:translate3d(0,0,0)}#background,#waves,.wave,.wave-container{pointer-events:none;position:absolute;top:0;left:0;width:100%;height:100%}#background,.wave{opacity:0}#waves,.wave{overflow:hidden}.wave,.wave-container{border-radius:50%}:host(.circle) #background,:host(.circle) #waves{border-radius:50%}:host(.circle) .wave-container{overflow:hidden}</style> <div id=background></div> <div id=waves></div> </template> </dom-module>");
-
-(function () {
-  'use strict';
-
-  var Utility = {
-    distance: function distance(x1, y1, x2, y2) {
-      var xDelta = x1 - x2;
-      var yDelta = y1 - y2;
-
-      return Math.sqrt(xDelta * xDelta + yDelta * yDelta);
-    },
-
-    now: window.performance && window.performance.now ? window.performance.now.bind(window.performance) : Date.now
-  };
-
-  /**
-   * @param {HTMLElement} element
-   * @constructor
-   */
-  function ElementMetrics(element) {
-    this.element = element;
-    this.width = this.boundingRect.width;
-    this.height = this.boundingRect.height;
-
-    this.size = Math.max(this.width, this.height);
-  }
-
-  ElementMetrics.prototype = {
-    get boundingRect() {
-      return this.element.getBoundingClientRect();
-    },
-
-    furthestCornerDistanceFrom: function furthestCornerDistanceFrom(x, y) {
-      var topLeft = Utility.distance(x, y, 0, 0);
-      var topRight = Utility.distance(x, y, this.width, 0);
-      var bottomLeft = Utility.distance(x, y, 0, this.height);
-      var bottomRight = Utility.distance(x, y, this.width, this.height);
-
-      return Math.max(topLeft, topRight, bottomLeft, bottomRight);
-    }
-  };
-
-  /**
-   * @param {HTMLElement} element
-   * @constructor
-   */
-  function Ripple(element) {
-    this.element = element;
-    this.color = window.getComputedStyle(element).color;
-
-    this.wave = document.createElement('div');
-    this.waveContainer = document.createElement('div');
-    this.wave.style.backgroundColor = this.color;
-    this.wave.classList.add('wave');
-    this.waveContainer.classList.add('wave-container');
-    Polymer.dom(this.waveContainer).appendChild(this.wave);
-
-    this.resetInteractionState();
-  }
-
-  Ripple.MAX_RADIUS = 300;
-
-  Ripple.prototype = {
-    get recenters() {
-      return this.element.recenters;
-    },
-
-    get center() {
-      return this.element.center;
-    },
-
-    get mouseDownElapsed() {
-      var elapsed;
-
-      if (!this.mouseDownStart) {
-        return 0;
-      }
-
-      elapsed = Utility.now() - this.mouseDownStart;
-
-      if (this.mouseUpStart) {
-        elapsed -= this.mouseUpElapsed;
-      }
-
-      return elapsed;
-    },
-
-    get mouseUpElapsed() {
-      return this.mouseUpStart ? Utility.now() - this.mouseUpStart : 0;
-    },
-
-    get mouseDownElapsedSeconds() {
-      return this.mouseDownElapsed / 1000;
-    },
-
-    get mouseUpElapsedSeconds() {
-      return this.mouseUpElapsed / 1000;
-    },
-
-    get mouseInteractionSeconds() {
-      return this.mouseDownElapsedSeconds + this.mouseUpElapsedSeconds;
-    },
-
-    get initialOpacity() {
-      return this.element.initialOpacity;
-    },
-
-    get opacityDecayVelocity() {
-      return this.element.opacityDecayVelocity;
-    },
-
-    get radius() {
-      var width2 = this.containerMetrics.width * this.containerMetrics.width;
-      var height2 = this.containerMetrics.height * this.containerMetrics.height;
-      var waveRadius = Math.min(Math.sqrt(width2 + height2), Ripple.MAX_RADIUS) * 1.1 + 5;
-
-      var duration = 1.1 - 0.2 * (waveRadius / Ripple.MAX_RADIUS);
-      var timeNow = this.mouseInteractionSeconds / duration;
-      var size = waveRadius * (1 - Math.pow(80, -timeNow));
-
-      return Math.abs(size);
-    },
-
-    get opacity() {
-      if (!this.mouseUpStart) {
-        return this.initialOpacity;
-      }
-
-      return Math.max(0, this.initialOpacity - this.mouseUpElapsedSeconds * this.opacityDecayVelocity);
-    },
-
-    get outerOpacity() {
-      // Linear increase in background opacity, capped at the opacity
-      // of the wavefront (waveOpacity).
-      var outerOpacity = this.mouseUpElapsedSeconds * 0.3;
-      var waveOpacity = this.opacity;
-
-      return Math.max(0, Math.min(outerOpacity, waveOpacity));
-    },
-
-    get isOpacityFullyDecayed() {
-      return this.opacity < 0.01 && this.radius >= Math.min(this.maxRadius, Ripple.MAX_RADIUS);
-    },
-
-    get isRestingAtMaxRadius() {
-      return this.opacity >= this.initialOpacity && this.radius >= Math.min(this.maxRadius, Ripple.MAX_RADIUS);
-    },
-
-    get isAnimationComplete() {
-      return this.mouseUpStart ? this.isOpacityFullyDecayed : this.isRestingAtMaxRadius;
-    },
-
-    get translationFraction() {
-      return Math.min(1, this.radius / this.containerMetrics.size * 2 / Math.sqrt(2));
-    },
-
-    get xNow() {
-      if (this.xEnd) {
-        return this.xStart + this.translationFraction * (this.xEnd - this.xStart);
-      }
-
-      return this.xStart;
-    },
-
-    get yNow() {
-      if (this.yEnd) {
-        return this.yStart + this.translationFraction * (this.yEnd - this.yStart);
-      }
-
-      return this.yStart;
-    },
-
-    get isMouseDown() {
-      return this.mouseDownStart && !this.mouseUpStart;
-    },
-
-    resetInteractionState: function resetInteractionState() {
-      this.maxRadius = 0;
-      this.mouseDownStart = 0;
-      this.mouseUpStart = 0;
-
-      this.xStart = 0;
-      this.yStart = 0;
-      this.xEnd = 0;
-      this.yEnd = 0;
-      this.slideDistance = 0;
-
-      this.containerMetrics = new ElementMetrics(this.element);
-    },
-
-    draw: function draw() {
-      var scale;
-      var translateString;
-      var dx;
-      var dy;
-
-      this.wave.style.opacity = this.opacity;
-
-      scale = this.radius / (this.containerMetrics.size / 2);
-      dx = this.xNow - this.containerMetrics.width / 2;
-      dy = this.yNow - this.containerMetrics.height / 2;
-
-      // 2d transform for safari because of border-radius and overflow:hidden clipping bug.
-      // https://bugs.webkit.org/show_bug.cgi?id=98538
-      this.waveContainer.style.webkitTransform = 'translate(' + dx + 'px, ' + dy + 'px)';
-      this.waveContainer.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0)';
-      this.wave.style.webkitTransform = 'scale(' + scale + ',' + scale + ')';
-      this.wave.style.transform = 'scale3d(' + scale + ',' + scale + ',1)';
-    },
-
-    /** @param {Event=} event */
-    downAction: function downAction(event) {
-      var xCenter = this.containerMetrics.width / 2;
-      var yCenter = this.containerMetrics.height / 2;
-
-      this.resetInteractionState();
-      this.mouseDownStart = Utility.now();
-
-      if (this.center) {
-        this.xStart = xCenter;
-        this.yStart = yCenter;
-        this.slideDistance = Utility.distance(this.xStart, this.yStart, this.xEnd, this.yEnd);
-      } else {
-        this.xStart = event ? event.detail.x - this.containerMetrics.boundingRect.left : this.containerMetrics.width / 2;
-        this.yStart = event ? event.detail.y - this.containerMetrics.boundingRect.top : this.containerMetrics.height / 2;
-      }
-
-      if (this.recenters) {
-        this.xEnd = xCenter;
-        this.yEnd = yCenter;
-        this.slideDistance = Utility.distance(this.xStart, this.yStart, this.xEnd, this.yEnd);
-      }
-
-      this.maxRadius = this.containerMetrics.furthestCornerDistanceFrom(this.xStart, this.yStart);
-
-      this.waveContainer.style.top = (this.containerMetrics.height - this.containerMetrics.size) / 2 + 'px';
-      this.waveContainer.style.left = (this.containerMetrics.width - this.containerMetrics.size) / 2 + 'px';
-
-      this.waveContainer.style.width = this.containerMetrics.size + 'px';
-      this.waveContainer.style.height = this.containerMetrics.size + 'px';
-    },
-
-    /** @param {Event=} event */
-    upAction: function upAction(event) {
-      if (!this.isMouseDown) {
-        return;
-      }
-
-      this.mouseUpStart = Utility.now();
-    },
-
-    remove: function remove() {
-      Polymer.dom(this.waveContainer.parentNode).removeChild(this.waveContainer);
-    }
-  };
-
-  Polymer({
-    is: 'paper-ripple',
-
-    behaviors: [Polymer.IronA11yKeysBehavior],
-
-    properties: {
-      /**
-       * The initial opacity set on the wave.
-       *
-       * @attribute initialOpacity
-       * @type number
-       * @default 0.25
-       */
-      initialOpacity: {
-        type: Number,
-        value: 0.25
-      },
-
-      /**
-       * How fast (opacity per second) the wave fades out.
-       *
-       * @attribute opacityDecayVelocity
-       * @type number
-       * @default 0.8
-       */
-      opacityDecayVelocity: {
-        type: Number,
-        value: 0.8
-      },
-
-      /**
-       * If true, ripples will exhibit a gravitational pull towards
-       * the center of their container as they fade away.
-       *
-       * @attribute recenters
-       * @type boolean
-       * @default false
-       */
-      recenters: {
-        type: Boolean,
-        value: false
-      },
-
-      /**
-       * If true, ripples will center inside its container
-       *
-       * @attribute recenters
-       * @type boolean
-       * @default false
-       */
-      center: {
-        type: Boolean,
-        value: false
-      },
-
-      /**
-       * A list of the visual ripples.
-       *
-       * @attribute ripples
-       * @type Array
-       * @default []
-       */
-      ripples: {
-        type: Array,
-        value: function value() {
-          return [];
-        }
-      },
-
-      /**
-       * True when there are visible ripples animating within the
-       * element.
-       */
-      animating: {
-        type: Boolean,
-        readOnly: true,
-        reflectToAttribute: true,
-        value: false
-      },
-
-      /**
-       * If true, the ripple will remain in the "down" state until `holdDown`
-       * is set to false again.
-       */
-      holdDown: {
-        type: Boolean,
-        value: false,
-        observer: '_holdDownChanged'
-      },
-
-      /**
-       * If true, the ripple will not generate a ripple effect
-       * via pointer interaction.
-       * Calling ripple's imperative api like `simulatedRipple` will
-       * still generate the ripple effect.
-       */
-      noink: {
-        type: Boolean,
-        value: false
-      },
-
-      _animating: {
-        type: Boolean
-      },
-
-      _boundAnimate: {
-        type: Function,
-        value: function value() {
-          return this.animate.bind(this);
-        }
-      }
-    },
-
-    get target() {
-      return this.keyEventTarget;
-    },
-
-    keyBindings: {
-      'enter:keydown': '_onEnterKeydown',
-      'space:keydown': '_onSpaceKeydown',
-      'space:keyup': '_onSpaceKeyup'
-    },
-
-    attached: function attached() {
-      // Set up a11yKeysBehavior to listen to key events on the target,
-      // so that space and enter activate the ripple even if the target doesn't
-      // handle key events. The key handlers deal with `noink` themselves.
-      if (this.parentNode.nodeType == 11) {
-        // DOCUMENT_FRAGMENT_NODE
-        this.keyEventTarget = Polymer.dom(this).getOwnerRoot().host;
-      } else {
-        this.keyEventTarget = this.parentNode;
-      }
-      var keyEventTarget = /** @type {!EventTarget} */this.keyEventTarget;
-      this.listen(keyEventTarget, 'up', 'uiUpAction');
-      this.listen(keyEventTarget, 'down', 'uiDownAction');
-    },
-
-    detached: function detached() {
-      this.unlisten(this.keyEventTarget, 'up', 'uiUpAction');
-      this.unlisten(this.keyEventTarget, 'down', 'uiDownAction');
-      this.keyEventTarget = null;
-    },
-
-    get shouldKeepAnimating() {
-      for (var index = 0; index < this.ripples.length; ++index) {
-        if (!this.ripples[index].isAnimationComplete) {
-          return true;
-        }
-      }
-
-      return false;
-    },
-
-    simulatedRipple: function simulatedRipple() {
-      this.downAction(null);
-
-      // Please see polymer/polymer#1305
-      this.async(function () {
-        this.upAction();
-      }, 1);
-    },
-
-    /**
-     * Provokes a ripple down effect via a UI event,
-     * respecting the `noink` property.
-     * @param {Event=} event
-     */
-    uiDownAction: function uiDownAction(event) {
-      if (!this.noink) {
-        this.downAction(event);
-      }
-    },
-
-    /**
-     * Provokes a ripple down effect via a UI event,
-     * *not* respecting the `noink` property.
-     * @param {Event=} event
-     */
-    downAction: function downAction(event) {
-      if (this.holdDown && this.ripples.length > 0) {
-        return;
-      }
-
-      var ripple = this.addRipple();
-
-      ripple.downAction(event);
-
-      if (!this._animating) {
-        this._animating = true;
-        this.animate();
-      }
-    },
-
-    /**
-     * Provokes a ripple up effect via a UI event,
-     * respecting the `noink` property.
-     * @param {Event=} event
-     */
-    uiUpAction: function uiUpAction(event) {
-      if (!this.noink) {
-        this.upAction(event);
-      }
-    },
-
-    /**
-     * Provokes a ripple up effect via a UI event,
-     * *not* respecting the `noink` property.
-     * @param {Event=} event
-     */
-    upAction: function upAction(event) {
-      if (this.holdDown) {
-        return;
-      }
-
-      this.ripples.forEach(function (ripple) {
-        ripple.upAction(event);
-      });
-
-      this._animating = true;
-      this.animate();
-    },
-
-    onAnimationComplete: function onAnimationComplete() {
-      this._animating = false;
-      this.$.background.style.backgroundColor = null;
-      this.fire('transitionend');
-    },
-
-    addRipple: function addRipple() {
-      var ripple = new Ripple(this);
-
-      Polymer.dom(this.$.waves).appendChild(ripple.waveContainer);
-      this.$.background.style.backgroundColor = ripple.color;
-      this.ripples.push(ripple);
-
-      this._setAnimating(true);
-
-      return ripple;
-    },
-
-    removeRipple: function removeRipple(ripple) {
-      var rippleIndex = this.ripples.indexOf(ripple);
-
-      if (rippleIndex < 0) {
-        return;
-      }
-
-      this.ripples.splice(rippleIndex, 1);
-
-      ripple.remove();
-
-      if (!this.ripples.length) {
-        this._setAnimating(false);
-      }
-    },
-
-    /**
-     * This conflicts with Element#antimate().
-     * https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-     * @suppress {checkTypes}
-     */
-    animate: function animate() {
-      if (!this._animating) {
-        return;
-      }
-      var index;
-      var ripple;
-
-      for (index = 0; index < this.ripples.length; ++index) {
-        ripple = this.ripples[index];
-
-        ripple.draw();
-
-        this.$.background.style.opacity = ripple.outerOpacity;
-
-        if (ripple.isOpacityFullyDecayed && !ripple.isRestingAtMaxRadius) {
-          this.removeRipple(ripple);
-        }
-      }
-
-      if (!this.shouldKeepAnimating && this.ripples.length === 0) {
-        this.onAnimationComplete();
-      } else {
-        window.requestAnimationFrame(this._boundAnimate);
-      }
-    },
-
-    _onEnterKeydown: function _onEnterKeydown() {
-      this.uiDownAction();
-      this.async(this.uiUpAction, 1);
-    },
-
-    _onSpaceKeydown: function _onSpaceKeydown() {
-      this.uiDownAction();
-    },
-
-    _onSpaceKeyup: function _onSpaceKeyup() {
-      this.uiUpAction();
-    },
-
-    // note: holdDown does not respect noink since it can be a focus based
-    // effect.
-    _holdDownChanged: function _holdDownChanged(newVal, oldVal) {
-      if (oldVal === undefined) {
-        return;
-      }
-      if (newVal) {
-        this.downAction();
-      } else {
-        this.upAction();
-      }
-    }
-
-    /**
-    Fired when the animation finishes.
-    This is useful if you want to wait until
-    the ripple animation finishes to perform some action.
-     @event transitionend
-    @param {{node: Object}} detail Contains the animated node.
-    */
-  });
-})();
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(2);
 
 (function () {
   'use strict';
@@ -1979,7 +792,7 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 15 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1997,17 +810,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(3);
+__webpack_require__(1);
 
-__webpack_require__(38);
+__webpack_require__(24);
 
-__webpack_require__(14);
+__webpack_require__(5);
 
-__webpack_require__(39);
+__webpack_require__(25);
 
-__webpack_require__(40);
+__webpack_require__(26);
 
 (function () {
 
@@ -4863,7 +3676,7 @@ __webpack_require__(40);
 })();
 
 /***/ }),
-/* 16 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4873,11 +3686,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(2);
+__webpack_require__(0);
+
+__webpack_require__(1);
 
 __webpack_require__(3);
-
-__webpack_require__(9);
 
 (function () {
   'use strict';
@@ -5007,13 +3820,13 @@ __webpack_require__(9);
 })();
 
 /***/ }),
-/* 17 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
 (function () {
   'use strict';
@@ -5065,7 +3878,7 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 18 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5081,11 +3894,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(15);
+__webpack_require__(6);
 
-__webpack_require__(10);
+__webpack_require__(4);
 
 (function () {
   'use strict';
@@ -5656,13 +4469,13 @@ __webpack_require__(10);
 })();
 
 /***/ }),
-/* 19 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(26);
+__webpack_require__(13);
 
 (function () {
   'use strict';
@@ -5694,20 +4507,35 @@ __webpack_require__(26);
 })();
 
 /***/ }),
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+__webpack_require__(12);
+
+__webpack_require__(33);
+
+__webpack_require__(35);
+
 __webpack_require__(36);
 
+__webpack_require__(37);
+
+__webpack_require__(38);
+
+__webpack_require__(39);
+
+__webpack_require__(40);
+
+__webpack_require__(43);
+
+// bc
+Polymer.Base = Polymer.LegacyElementMixin(HTMLElement).prototype;
+
 /***/ }),
-/* 25 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5725,21 +4553,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(24);
+__webpack_require__(21);
 
-__webpack_require__(26);
+__webpack_require__(13);
+
+__webpack_require__(16);
+
+__webpack_require__(1);
+
+__webpack_require__(28);
 
 __webpack_require__(29);
 
-__webpack_require__(3);
+__webpack_require__(30);
 
-__webpack_require__(42);
-
-__webpack_require__(43);
-
-__webpack_require__(44);
-
-__webpack_require__(45);
+__webpack_require__(31);
 
 (function () {
 
@@ -6862,7 +5690,7 @@ __webpack_require__(45);
 })();
 
 /***/ }),
-/* 26 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6878,21 +5706,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(2);
-
-__webpack_require__(27);
-
-__webpack_require__(3);
+__webpack_require__(0);
 
 __webpack_require__(14);
 
-__webpack_require__(28);
+__webpack_require__(1);
 
-__webpack_require__(8);
-
-__webpack_require__(37);
+__webpack_require__(5);
 
 __webpack_require__(15);
+
+__webpack_require__(2);
+
+__webpack_require__(23);
+
+__webpack_require__(6);
 
 (function () {
   'use strict';
@@ -7750,15 +6578,15 @@ __webpack_require__(15);
 })();
 
 /***/ }),
-/* 27 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(8);
+__webpack_require__(2);
 
 /** @suppress {deprecated} */
 (function () {
@@ -7810,13 +6638,13 @@ __webpack_require__(8);
 })();
 
 /***/ }),
-/* 28 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(8);
+__webpack_require__(2);
 
 (function () {
   'use strict';
@@ -7961,7 +6789,7 @@ __webpack_require__(8);
 })();
 
 /***/ }),
-/* 29 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7977,11 +6805,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(3);
+__webpack_require__(1);
 
-__webpack_require__(41);
+__webpack_require__(27);
 
 (function () {
 
@@ -8048,13 +6876,13 @@ __webpack_require__(41);
 })();
 
 /***/ }),
-/* 30 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
 (function () {
 
@@ -8339,27 +7167,627 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(35);
+__webpack_require__(19);
 
-__webpack_require__(13);
+__webpack_require__(20);
 
 /***/ }),
-/* 35 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 36 */
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(11);
+
+__webpack_require__(44);
+
+var RegisterHtmlTemplate = __webpack_require__(45);
+
+RegisterHtmlTemplate.register("<dom-module id=paper-ripple> <template> <style>:host{display:block;position:absolute;border-radius:inherit;overflow:hidden;top:0;left:0;right:0;bottom:0;pointer-events:none}:host([animating]){-webkit-transform:translate(0,0);transform:translate3d(0,0,0)}#background,#waves,.wave,.wave-container{pointer-events:none;position:absolute;top:0;left:0;width:100%;height:100%}#background,.wave{opacity:0}#waves,.wave{overflow:hidden}.wave,.wave-container{border-radius:50%}:host(.circle) #background,:host(.circle) #waves{border-radius:50%}:host(.circle) .wave-container{overflow:hidden}</style> <div id=background></div> <div id=waves></div> </template> </dom-module>");
+
+(function () {
+  'use strict';
+
+  var Utility = {
+    distance: function distance(x1, y1, x2, y2) {
+      var xDelta = x1 - x2;
+      var yDelta = y1 - y2;
+
+      return Math.sqrt(xDelta * xDelta + yDelta * yDelta);
+    },
+
+    now: window.performance && window.performance.now ? window.performance.now.bind(window.performance) : Date.now
+  };
+
+  /**
+   * @param {HTMLElement} element
+   * @constructor
+   */
+  function ElementMetrics(element) {
+    this.element = element;
+    this.width = this.boundingRect.width;
+    this.height = this.boundingRect.height;
+
+    this.size = Math.max(this.width, this.height);
+  }
+
+  ElementMetrics.prototype = {
+    get boundingRect() {
+      return this.element.getBoundingClientRect();
+    },
+
+    furthestCornerDistanceFrom: function furthestCornerDistanceFrom(x, y) {
+      var topLeft = Utility.distance(x, y, 0, 0);
+      var topRight = Utility.distance(x, y, this.width, 0);
+      var bottomLeft = Utility.distance(x, y, 0, this.height);
+      var bottomRight = Utility.distance(x, y, this.width, this.height);
+
+      return Math.max(topLeft, topRight, bottomLeft, bottomRight);
+    }
+  };
+
+  /**
+   * @param {HTMLElement} element
+   * @constructor
+   */
+  function Ripple(element) {
+    this.element = element;
+    this.color = window.getComputedStyle(element).color;
+
+    this.wave = document.createElement('div');
+    this.waveContainer = document.createElement('div');
+    this.wave.style.backgroundColor = this.color;
+    this.wave.classList.add('wave');
+    this.waveContainer.classList.add('wave-container');
+    Polymer.dom(this.waveContainer).appendChild(this.wave);
+
+    this.resetInteractionState();
+  }
+
+  Ripple.MAX_RADIUS = 300;
+
+  Ripple.prototype = {
+    get recenters() {
+      return this.element.recenters;
+    },
+
+    get center() {
+      return this.element.center;
+    },
+
+    get mouseDownElapsed() {
+      var elapsed;
+
+      if (!this.mouseDownStart) {
+        return 0;
+      }
+
+      elapsed = Utility.now() - this.mouseDownStart;
+
+      if (this.mouseUpStart) {
+        elapsed -= this.mouseUpElapsed;
+      }
+
+      return elapsed;
+    },
+
+    get mouseUpElapsed() {
+      return this.mouseUpStart ? Utility.now() - this.mouseUpStart : 0;
+    },
+
+    get mouseDownElapsedSeconds() {
+      return this.mouseDownElapsed / 1000;
+    },
+
+    get mouseUpElapsedSeconds() {
+      return this.mouseUpElapsed / 1000;
+    },
+
+    get mouseInteractionSeconds() {
+      return this.mouseDownElapsedSeconds + this.mouseUpElapsedSeconds;
+    },
+
+    get initialOpacity() {
+      return this.element.initialOpacity;
+    },
+
+    get opacityDecayVelocity() {
+      return this.element.opacityDecayVelocity;
+    },
+
+    get radius() {
+      var width2 = this.containerMetrics.width * this.containerMetrics.width;
+      var height2 = this.containerMetrics.height * this.containerMetrics.height;
+      var waveRadius = Math.min(Math.sqrt(width2 + height2), Ripple.MAX_RADIUS) * 1.1 + 5;
+
+      var duration = 1.1 - 0.2 * (waveRadius / Ripple.MAX_RADIUS);
+      var timeNow = this.mouseInteractionSeconds / duration;
+      var size = waveRadius * (1 - Math.pow(80, -timeNow));
+
+      return Math.abs(size);
+    },
+
+    get opacity() {
+      if (!this.mouseUpStart) {
+        return this.initialOpacity;
+      }
+
+      return Math.max(0, this.initialOpacity - this.mouseUpElapsedSeconds * this.opacityDecayVelocity);
+    },
+
+    get outerOpacity() {
+      // Linear increase in background opacity, capped at the opacity
+      // of the wavefront (waveOpacity).
+      var outerOpacity = this.mouseUpElapsedSeconds * 0.3;
+      var waveOpacity = this.opacity;
+
+      return Math.max(0, Math.min(outerOpacity, waveOpacity));
+    },
+
+    get isOpacityFullyDecayed() {
+      return this.opacity < 0.01 && this.radius >= Math.min(this.maxRadius, Ripple.MAX_RADIUS);
+    },
+
+    get isRestingAtMaxRadius() {
+      return this.opacity >= this.initialOpacity && this.radius >= Math.min(this.maxRadius, Ripple.MAX_RADIUS);
+    },
+
+    get isAnimationComplete() {
+      return this.mouseUpStart ? this.isOpacityFullyDecayed : this.isRestingAtMaxRadius;
+    },
+
+    get translationFraction() {
+      return Math.min(1, this.radius / this.containerMetrics.size * 2 / Math.sqrt(2));
+    },
+
+    get xNow() {
+      if (this.xEnd) {
+        return this.xStart + this.translationFraction * (this.xEnd - this.xStart);
+      }
+
+      return this.xStart;
+    },
+
+    get yNow() {
+      if (this.yEnd) {
+        return this.yStart + this.translationFraction * (this.yEnd - this.yStart);
+      }
+
+      return this.yStart;
+    },
+
+    get isMouseDown() {
+      return this.mouseDownStart && !this.mouseUpStart;
+    },
+
+    resetInteractionState: function resetInteractionState() {
+      this.maxRadius = 0;
+      this.mouseDownStart = 0;
+      this.mouseUpStart = 0;
+
+      this.xStart = 0;
+      this.yStart = 0;
+      this.xEnd = 0;
+      this.yEnd = 0;
+      this.slideDistance = 0;
+
+      this.containerMetrics = new ElementMetrics(this.element);
+    },
+
+    draw: function draw() {
+      var scale;
+      var translateString;
+      var dx;
+      var dy;
+
+      this.wave.style.opacity = this.opacity;
+
+      scale = this.radius / (this.containerMetrics.size / 2);
+      dx = this.xNow - this.containerMetrics.width / 2;
+      dy = this.yNow - this.containerMetrics.height / 2;
+
+      // 2d transform for safari because of border-radius and overflow:hidden clipping bug.
+      // https://bugs.webkit.org/show_bug.cgi?id=98538
+      this.waveContainer.style.webkitTransform = 'translate(' + dx + 'px, ' + dy + 'px)';
+      this.waveContainer.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0)';
+      this.wave.style.webkitTransform = 'scale(' + scale + ',' + scale + ')';
+      this.wave.style.transform = 'scale3d(' + scale + ',' + scale + ',1)';
+    },
+
+    /** @param {Event=} event */
+    downAction: function downAction(event) {
+      var xCenter = this.containerMetrics.width / 2;
+      var yCenter = this.containerMetrics.height / 2;
+
+      this.resetInteractionState();
+      this.mouseDownStart = Utility.now();
+
+      if (this.center) {
+        this.xStart = xCenter;
+        this.yStart = yCenter;
+        this.slideDistance = Utility.distance(this.xStart, this.yStart, this.xEnd, this.yEnd);
+      } else {
+        this.xStart = event ? event.detail.x - this.containerMetrics.boundingRect.left : this.containerMetrics.width / 2;
+        this.yStart = event ? event.detail.y - this.containerMetrics.boundingRect.top : this.containerMetrics.height / 2;
+      }
+
+      if (this.recenters) {
+        this.xEnd = xCenter;
+        this.yEnd = yCenter;
+        this.slideDistance = Utility.distance(this.xStart, this.yStart, this.xEnd, this.yEnd);
+      }
+
+      this.maxRadius = this.containerMetrics.furthestCornerDistanceFrom(this.xStart, this.yStart);
+
+      this.waveContainer.style.top = (this.containerMetrics.height - this.containerMetrics.size) / 2 + 'px';
+      this.waveContainer.style.left = (this.containerMetrics.width - this.containerMetrics.size) / 2 + 'px';
+
+      this.waveContainer.style.width = this.containerMetrics.size + 'px';
+      this.waveContainer.style.height = this.containerMetrics.size + 'px';
+    },
+
+    /** @param {Event=} event */
+    upAction: function upAction(event) {
+      if (!this.isMouseDown) {
+        return;
+      }
+
+      this.mouseUpStart = Utility.now();
+    },
+
+    remove: function remove() {
+      Polymer.dom(this.waveContainer.parentNode).removeChild(this.waveContainer);
+    }
+  };
+
+  Polymer({
+    is: 'paper-ripple',
+
+    behaviors: [Polymer.IronA11yKeysBehavior],
+
+    properties: {
+      /**
+       * The initial opacity set on the wave.
+       *
+       * @attribute initialOpacity
+       * @type number
+       * @default 0.25
+       */
+      initialOpacity: {
+        type: Number,
+        value: 0.25
+      },
+
+      /**
+       * How fast (opacity per second) the wave fades out.
+       *
+       * @attribute opacityDecayVelocity
+       * @type number
+       * @default 0.8
+       */
+      opacityDecayVelocity: {
+        type: Number,
+        value: 0.8
+      },
+
+      /**
+       * If true, ripples will exhibit a gravitational pull towards
+       * the center of their container as they fade away.
+       *
+       * @attribute recenters
+       * @type boolean
+       * @default false
+       */
+      recenters: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * If true, ripples will center inside its container
+       *
+       * @attribute recenters
+       * @type boolean
+       * @default false
+       */
+      center: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * A list of the visual ripples.
+       *
+       * @attribute ripples
+       * @type Array
+       * @default []
+       */
+      ripples: {
+        type: Array,
+        value: function value() {
+          return [];
+        }
+      },
+
+      /**
+       * True when there are visible ripples animating within the
+       * element.
+       */
+      animating: {
+        type: Boolean,
+        readOnly: true,
+        reflectToAttribute: true,
+        value: false
+      },
+
+      /**
+       * If true, the ripple will remain in the "down" state until `holdDown`
+       * is set to false again.
+       */
+      holdDown: {
+        type: Boolean,
+        value: false,
+        observer: '_holdDownChanged'
+      },
+
+      /**
+       * If true, the ripple will not generate a ripple effect
+       * via pointer interaction.
+       * Calling ripple's imperative api like `simulatedRipple` will
+       * still generate the ripple effect.
+       */
+      noink: {
+        type: Boolean,
+        value: false
+      },
+
+      _animating: {
+        type: Boolean
+      },
+
+      _boundAnimate: {
+        type: Function,
+        value: function value() {
+          return this.animate.bind(this);
+        }
+      }
+    },
+
+    get target() {
+      return this.keyEventTarget;
+    },
+
+    keyBindings: {
+      'enter:keydown': '_onEnterKeydown',
+      'space:keydown': '_onSpaceKeydown',
+      'space:keyup': '_onSpaceKeyup'
+    },
+
+    attached: function attached() {
+      // Set up a11yKeysBehavior to listen to key events on the target,
+      // so that space and enter activate the ripple even if the target doesn't
+      // handle key events. The key handlers deal with `noink` themselves.
+      if (this.parentNode.nodeType == 11) {
+        // DOCUMENT_FRAGMENT_NODE
+        this.keyEventTarget = Polymer.dom(this).getOwnerRoot().host;
+      } else {
+        this.keyEventTarget = this.parentNode;
+      }
+      var keyEventTarget = /** @type {!EventTarget} */this.keyEventTarget;
+      this.listen(keyEventTarget, 'up', 'uiUpAction');
+      this.listen(keyEventTarget, 'down', 'uiDownAction');
+    },
+
+    detached: function detached() {
+      this.unlisten(this.keyEventTarget, 'up', 'uiUpAction');
+      this.unlisten(this.keyEventTarget, 'down', 'uiDownAction');
+      this.keyEventTarget = null;
+    },
+
+    get shouldKeepAnimating() {
+      for (var index = 0; index < this.ripples.length; ++index) {
+        if (!this.ripples[index].isAnimationComplete) {
+          return true;
+        }
+      }
+
+      return false;
+    },
+
+    simulatedRipple: function simulatedRipple() {
+      this.downAction(null);
+
+      // Please see polymer/polymer#1305
+      this.async(function () {
+        this.upAction();
+      }, 1);
+    },
+
+    /**
+     * Provokes a ripple down effect via a UI event,
+     * respecting the `noink` property.
+     * @param {Event=} event
+     */
+    uiDownAction: function uiDownAction(event) {
+      if (!this.noink) {
+        this.downAction(event);
+      }
+    },
+
+    /**
+     * Provokes a ripple down effect via a UI event,
+     * *not* respecting the `noink` property.
+     * @param {Event=} event
+     */
+    downAction: function downAction(event) {
+      if (this.holdDown && this.ripples.length > 0) {
+        return;
+      }
+
+      var ripple = this.addRipple();
+
+      ripple.downAction(event);
+
+      if (!this._animating) {
+        this._animating = true;
+        this.animate();
+      }
+    },
+
+    /**
+     * Provokes a ripple up effect via a UI event,
+     * respecting the `noink` property.
+     * @param {Event=} event
+     */
+    uiUpAction: function uiUpAction(event) {
+      if (!this.noink) {
+        this.upAction(event);
+      }
+    },
+
+    /**
+     * Provokes a ripple up effect via a UI event,
+     * *not* respecting the `noink` property.
+     * @param {Event=} event
+     */
+    upAction: function upAction(event) {
+      if (this.holdDown) {
+        return;
+      }
+
+      this.ripples.forEach(function (ripple) {
+        ripple.upAction(event);
+      });
+
+      this._animating = true;
+      this.animate();
+    },
+
+    onAnimationComplete: function onAnimationComplete() {
+      this._animating = false;
+      this.$.background.style.backgroundColor = null;
+      this.fire('transitionend');
+    },
+
+    addRipple: function addRipple() {
+      var ripple = new Ripple(this);
+
+      Polymer.dom(this.$.waves).appendChild(ripple.waveContainer);
+      this.$.background.style.backgroundColor = ripple.color;
+      this.ripples.push(ripple);
+
+      this._setAnimating(true);
+
+      return ripple;
+    },
+
+    removeRipple: function removeRipple(ripple) {
+      var rippleIndex = this.ripples.indexOf(ripple);
+
+      if (rippleIndex < 0) {
+        return;
+      }
+
+      this.ripples.splice(rippleIndex, 1);
+
+      ripple.remove();
+
+      if (!this.ripples.length) {
+        this._setAnimating(false);
+      }
+    },
+
+    /**
+     * This conflicts with Element#antimate().
+     * https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
+     * @suppress {checkTypes}
+     */
+    animate: function animate() {
+      if (!this._animating) {
+        return;
+      }
+      var index;
+      var ripple;
+
+      for (index = 0; index < this.ripples.length; ++index) {
+        ripple = this.ripples[index];
+
+        ripple.draw();
+
+        this.$.background.style.opacity = ripple.outerOpacity;
+
+        if (ripple.isOpacityFullyDecayed && !ripple.isRestingAtMaxRadius) {
+          this.removeRipple(ripple);
+        }
+      }
+
+      if (!this.shouldKeepAnimating && this.ripples.length === 0) {
+        this.onAnimationComplete();
+      } else {
+        window.requestAnimationFrame(this._boundAnimate);
+      }
+    },
+
+    _onEnterKeydown: function _onEnterKeydown() {
+      this.uiDownAction();
+      this.async(this.uiUpAction, 1);
+    },
+
+    _onSpaceKeydown: function _onSpaceKeydown() {
+      this.uiDownAction();
+    },
+
+    _onSpaceKeyup: function _onSpaceKeyup() {
+      this.uiUpAction();
+    },
+
+    // note: holdDown does not respect noink since it can be a focus based
+    // effect.
+    _holdDownChanged: function _holdDownChanged(newVal, oldVal) {
+      if (oldVal === undefined) {
+        return;
+      }
+      if (newVal) {
+        this.downAction();
+      } else {
+        this.upAction();
+      }
+    }
+
+    /**
+    Fired when the animation finishes.
+    This is useful if you want to wait until
+    the ripple animation finishes to perform some action.
+     @event transitionend
+    @param {{node: Object}} detail Contains the animated node.
+    */
+  });
+})();
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(22);
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8595,7 +8023,7 @@ __webpack_require__(13);
 //# sourceMappingURL=apply-shim.min.js.map
 
 /***/ }),
-/* 37 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8609,9 +8037,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(8);
+__webpack_require__(2);
 
 (function () {
   'use strict';
@@ -8760,13 +8188,13 @@ __webpack_require__(8);
 })();
 
 /***/ }),
-/* 38 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
 (function () {
   'use strict';
@@ -9038,7 +8466,7 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 39 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9054,13 +8482,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(2);
+__webpack_require__(0);
+
+__webpack_require__(1);
+
+__webpack_require__(5);
 
 __webpack_require__(3);
-
-__webpack_require__(14);
-
-__webpack_require__(9);
 
 (function () {
 
@@ -9745,7 +9173,7 @@ __webpack_require__(9);
 })();
 
 /***/ }),
-/* 40 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9759,9 +9187,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(3);
+__webpack_require__(1);
 
 (function () {
 
@@ -10274,17 +9702,17 @@ __webpack_require__(3);
 })();
 
 /***/ }),
-/* 41 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(9);
+__webpack_require__(3);
 
-__webpack_require__(16);
+__webpack_require__(7);
 
 (function () {
 
@@ -11229,13 +10657,13 @@ __webpack_require__(16);
 })();
 
 /***/ }),
-/* 42 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
 (function () {
 
@@ -11331,13 +10759,13 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 43 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(0);
 
 (function () {
 
@@ -11457,7 +10885,7 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 44 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11484,7 +10912,7 @@ __webpack_require__(2);
 })();
 
 /***/ }),
-/* 45 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11494,13 +10922,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(27);
+__webpack_require__(14);
 
-__webpack_require__(46);
+__webpack_require__(32);
 
-__webpack_require__(17);
+__webpack_require__(8);
 
 (function () {
   'use strict';
@@ -11879,7 +11307,7 @@ __webpack_require__(17);
 })();
 
 /***/ }),
-/* 46 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11889,11 +11317,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(30);
+__webpack_require__(17);
 
-__webpack_require__(9);
+__webpack_require__(3);
 
 (function () {
   'use strict';
@@ -12169,13 +11597,13 @@ __webpack_require__(9);
 })();
 
 /***/ }),
-/* 47 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(48);
+__webpack_require__(34);
 
 (function () {
   'use strict';
@@ -12212,7 +11640,7 @@ __webpack_require__(48);
 })();
 
 /***/ }),
-/* 48 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12228,7 +11656,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(25);
+__webpack_require__(12);
 
 (function () {
 
@@ -12583,13 +12011,13 @@ __webpack_require__(25);
 })();
 
 /***/ }),
-/* 49 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(18);
+__webpack_require__(9);
 
 (function () {
   'use strict';
@@ -12733,7 +12161,7 @@ __webpack_require__(18);
 })();
 
 /***/ }),
-/* 50 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12747,13 +12175,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(2);
+__webpack_require__(0);
 
-__webpack_require__(15);
+__webpack_require__(6);
 
-__webpack_require__(10);
+__webpack_require__(4);
 
-__webpack_require__(29);
+__webpack_require__(16);
 
 (function () {
   'use strict';
@@ -12893,7 +12321,7 @@ __webpack_require__(29);
 })();
 
 /***/ }),
-/* 51 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12909,15 +12337,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(19);
-
-__webpack_require__(18);
-
-__webpack_require__(16);
-
-__webpack_require__(17);
-
 __webpack_require__(10);
+
+__webpack_require__(9);
+
+__webpack_require__(7);
+
+__webpack_require__(8);
+
+__webpack_require__(4);
 
 (function () {
   'use strict';
@@ -13675,7 +13103,7 @@ __webpack_require__(10);
 })();
 
 /***/ }),
-/* 52 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13691,13 +13119,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(19);
+__webpack_require__(10);
 
-__webpack_require__(18);
+__webpack_require__(9);
 
-__webpack_require__(16);
+__webpack_require__(7);
 
-__webpack_require__(17);
+__webpack_require__(8);
 
 (function () {
   'use strict';
@@ -13986,7 +13414,7 @@ __webpack_require__(17);
 })();
 
 /***/ }),
-/* 53 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14000,11 +13428,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(19);
+__webpack_require__(10);
 
-__webpack_require__(3);
+__webpack_require__(1);
 
-__webpack_require__(30);
+__webpack_require__(17);
 
 (function () {
   'use strict';
@@ -14484,7 +13912,7 @@ __webpack_require__(30);
 })();
 
 /***/ }),
-/* 54 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14498,9 +13926,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(55);
+__webpack_require__(41);
 
-__webpack_require__(28);
+__webpack_require__(15);
 
 (function () {
   'use strict';
@@ -14579,16 +14007,16 @@ __webpack_require__(28);
 })();
 
 /***/ }),
-/* 55 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(56);
+__webpack_require__(42);
 
 /***/ }),
-/* 56 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14662,13 +14090,13 @@ __webpack_require__(56);
 //# sourceMappingURL=custom-style-interface.min.js.map
 
 /***/ }),
-/* 57 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(10);
+__webpack_require__(4);
 
 (function () {
   'use strict';
@@ -14810,6 +14238,566 @@ __webpack_require__(10);
     }
   };
 })();
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(11);
+
+(function () {
+  'use strict';
+
+  /**
+   * Chrome uses an older version of DOM Level 3 Keyboard Events
+   *
+   * Most keys are labeled as text, but some are Unicode codepoints.
+   * Values taken from: http://www.w3.org/TR/2007/WD-DOM-Level-3-Events-20071221/keyset.html#KeySet-Set
+   */
+
+  var KEY_IDENTIFIER = {
+    'U+0008': 'backspace',
+    'U+0009': 'tab',
+    'U+001B': 'esc',
+    'U+0020': 'space',
+    'U+007F': 'del'
+  };
+
+  /**
+   * Special table for KeyboardEvent.keyCode.
+   * KeyboardEvent.keyIdentifier is better, and KeyBoardEvent.key is even better
+   * than that.
+   *
+   * Values from: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.keyCode#Value_of_keyCode
+   */
+  var KEY_CODE = {
+    8: 'backspace',
+    9: 'tab',
+    13: 'enter',
+    27: 'esc',
+    33: 'pageup',
+    34: 'pagedown',
+    35: 'end',
+    36: 'home',
+    32: 'space',
+    37: 'left',
+    38: 'up',
+    39: 'right',
+    40: 'down',
+    46: 'del',
+    106: '*'
+  };
+
+  /**
+   * MODIFIER_KEYS maps the short name for modifier keys used in a key
+   * combo string to the property name that references those same keys
+   * in a KeyboardEvent instance.
+   */
+  var MODIFIER_KEYS = {
+    'shift': 'shiftKey',
+    'ctrl': 'ctrlKey',
+    'alt': 'altKey',
+    'meta': 'metaKey'
+  };
+
+  /**
+   * KeyboardEvent.key is mostly represented by printable character made by
+   * the keyboard, with unprintable keys labeled nicely.
+   *
+   * However, on OS X, Alt+char can make a Unicode character that follows an
+   * Apple-specific mapping. In this case, we fall back to .keyCode.
+   */
+  var KEY_CHAR = /[a-z0-9*]/;
+
+  /**
+   * Matches a keyIdentifier string.
+   */
+  var IDENT_CHAR = /U\+/;
+
+  /**
+   * Matches arrow keys in Gecko 27.0+
+   */
+  var ARROW_KEY = /^arrow/;
+
+  /**
+   * Matches space keys everywhere (notably including IE10's exceptional name
+   * `spacebar`).
+   */
+  var SPACE_KEY = /^space(bar)?/;
+
+  /**
+   * Matches ESC key.
+   *
+   * Value from: http://w3c.github.io/uievents-key/#key-Escape
+   */
+  var ESC_KEY = /^escape$/;
+
+  /**
+   * Transforms the key.
+   * @param {string} key The KeyBoardEvent.key
+   * @param {Boolean} [noSpecialChars] Limits the transformation to
+   * alpha-numeric characters.
+   */
+  function transformKey(key, noSpecialChars) {
+    var validKey = '';
+    if (key) {
+      var lKey = key.toLowerCase();
+      if (lKey === ' ' || SPACE_KEY.test(lKey)) {
+        validKey = 'space';
+      } else if (ESC_KEY.test(lKey)) {
+        validKey = 'esc';
+      } else if (lKey.length == 1) {
+        if (!noSpecialChars || KEY_CHAR.test(lKey)) {
+          validKey = lKey;
+        }
+      } else if (ARROW_KEY.test(lKey)) {
+        validKey = lKey.replace('arrow', '');
+      } else if (lKey == 'multiply') {
+        // numpad '*' can map to Multiply on IE/Windows
+        validKey = '*';
+      } else {
+        validKey = lKey;
+      }
+    }
+    return validKey;
+  }
+
+  function transformKeyIdentifier(keyIdent) {
+    var validKey = '';
+    if (keyIdent) {
+      if (keyIdent in KEY_IDENTIFIER) {
+        validKey = KEY_IDENTIFIER[keyIdent];
+      } else if (IDENT_CHAR.test(keyIdent)) {
+        keyIdent = parseInt(keyIdent.replace('U+', '0x'), 16);
+        validKey = String.fromCharCode(keyIdent).toLowerCase();
+      } else {
+        validKey = keyIdent.toLowerCase();
+      }
+    }
+    return validKey;
+  }
+
+  function transformKeyCode(keyCode) {
+    var validKey = '';
+    if (Number(keyCode)) {
+      if (keyCode >= 65 && keyCode <= 90) {
+        // ascii a-z
+        // lowercase is 32 offset from uppercase
+        validKey = String.fromCharCode(32 + keyCode);
+      } else if (keyCode >= 112 && keyCode <= 123) {
+        // function keys f1-f12
+        validKey = 'f' + (keyCode - 112 + 1);
+      } else if (keyCode >= 48 && keyCode <= 57) {
+        // top 0-9 keys
+        validKey = String(keyCode - 48);
+      } else if (keyCode >= 96 && keyCode <= 105) {
+        // num pad 0-9
+        validKey = String(keyCode - 96);
+      } else {
+        validKey = KEY_CODE[keyCode];
+      }
+    }
+    return validKey;
+  }
+
+  /**
+    * Calculates the normalized key for a KeyboardEvent.
+    * @param {KeyboardEvent} keyEvent
+    * @param {Boolean} [noSpecialChars] Set to true to limit keyEvent.key
+    * transformation to alpha-numeric chars. This is useful with key
+    * combinations like shift + 2, which on FF for MacOS produces
+    * keyEvent.key = @
+    * To get 2 returned, set noSpecialChars = true
+    * To get @ returned, set noSpecialChars = false
+   */
+  function normalizedKeyForEvent(keyEvent, noSpecialChars) {
+    // Fall back from .key, to .detail.key for artifical keyboard events,
+    // and then to deprecated .keyIdentifier and .keyCode.
+    if (keyEvent.key) {
+      return transformKey(keyEvent.key, noSpecialChars);
+    }
+    if (keyEvent.detail && keyEvent.detail.key) {
+      return transformKey(keyEvent.detail.key, noSpecialChars);
+    }
+    return transformKeyIdentifier(keyEvent.keyIdentifier) || transformKeyCode(keyEvent.keyCode) || '';
+  }
+
+  function keyComboMatchesEvent(keyCombo, event) {
+    // For combos with modifiers we support only alpha-numeric keys
+    var keyEvent = normalizedKeyForEvent(event, keyCombo.hasModifiers);
+    return keyEvent === keyCombo.key && (!keyCombo.hasModifiers || !!event.shiftKey === !!keyCombo.shiftKey && !!event.ctrlKey === !!keyCombo.ctrlKey && !!event.altKey === !!keyCombo.altKey && !!event.metaKey === !!keyCombo.metaKey);
+  }
+
+  function parseKeyComboString(keyComboString) {
+    if (keyComboString.length === 1) {
+      return {
+        combo: keyComboString,
+        key: keyComboString,
+        event: 'keydown'
+      };
+    }
+    return keyComboString.split('+').reduce(function (parsedKeyCombo, keyComboPart) {
+      var eventParts = keyComboPart.split(':');
+      var keyName = eventParts[0];
+      var event = eventParts[1];
+
+      if (keyName in MODIFIER_KEYS) {
+        parsedKeyCombo[MODIFIER_KEYS[keyName]] = true;
+        parsedKeyCombo.hasModifiers = true;
+      } else {
+        parsedKeyCombo.key = keyName;
+        parsedKeyCombo.event = event || 'keydown';
+      }
+
+      return parsedKeyCombo;
+    }, {
+      combo: keyComboString.split(':').shift()
+    });
+  }
+
+  function parseEventString(eventString) {
+    return eventString.trim().split(' ').map(function (keyComboString) {
+      return parseKeyComboString(keyComboString);
+    });
+  }
+
+  /**
+   * `Polymer.IronA11yKeysBehavior` provides a normalized interface for processing
+   * keyboard commands that pertain to [WAI-ARIA best practices](http://www.w3.org/TR/wai-aria-practices/#kbd_general_binding).
+   * The element takes care of browser differences with respect to Keyboard events
+   * and uses an expressive syntax to filter key presses.
+   *
+   * Use the `keyBindings` prototype property to express what combination of keys
+   * will trigger the callback. A key binding has the format
+   * `"KEY+MODIFIER:EVENT": "callback"` (`"KEY": "callback"` or
+   * `"KEY:EVENT": "callback"` are valid as well). Some examples:
+   *
+   *      keyBindings: {
+   *        'space': '_onKeydown', // same as 'space:keydown'
+   *        'shift+tab': '_onKeydown',
+   *        'enter:keypress': '_onKeypress',
+   *        'esc:keyup': '_onKeyup'
+   *      }
+   *
+   * The callback will receive with an event containing the following information in `event.detail`:
+   *
+   *      _onKeydown: function(event) {
+   *        console.log(event.detail.combo); // KEY+MODIFIER, e.g. "shift+tab"
+   *        console.log(event.detail.key); // KEY only, e.g. "tab"
+   *        console.log(event.detail.event); // EVENT, e.g. "keydown"
+   *        console.log(event.detail.keyboardEvent); // the original KeyboardEvent
+   *      }
+   *
+   * Use the `keyEventTarget` attribute to set up event handlers on a specific
+   * node.
+   *
+   * See the [demo source code](https://github.com/PolymerElements/iron-a11y-keys-behavior/blob/master/demo/x-key-aware.html)
+   * for an example.
+   *
+   * @demo demo/index.html
+   * @polymerBehavior
+   */
+  Polymer.IronA11yKeysBehavior = {
+    properties: {
+      /**
+       * The EventTarget that will be firing relevant KeyboardEvents. Set it to
+       * `null` to disable the listeners.
+       * @type {?EventTarget}
+       */
+      keyEventTarget: {
+        type: Object,
+        value: function value() {
+          return this;
+        }
+      },
+
+      /**
+       * If true, this property will cause the implementing element to
+       * automatically stop propagation on any handled KeyboardEvents.
+       */
+      stopKeyboardEventPropagation: {
+        type: Boolean,
+        value: false
+      },
+
+      _boundKeyHandlers: {
+        type: Array,
+        value: function value() {
+          return [];
+        }
+      },
+
+      // We use this due to a limitation in IE10 where instances will have
+      // own properties of everything on the "prototype".
+      _imperativeKeyBindings: {
+        type: Object,
+        value: function value() {
+          return {};
+        }
+      }
+    },
+
+    observers: ['_resetKeyEventListeners(keyEventTarget, _boundKeyHandlers)'],
+
+    /**
+     * To be used to express what combination of keys  will trigger the relative
+     * callback. e.g. `keyBindings: { 'esc': '_onEscPressed'}`
+     * @type {!Object}
+     */
+    keyBindings: {},
+
+    registered: function registered() {
+      this._prepKeyBindings();
+    },
+
+    attached: function attached() {
+      this._listenKeyEventListeners();
+    },
+
+    detached: function detached() {
+      this._unlistenKeyEventListeners();
+    },
+
+    /**
+     * Can be used to imperatively add a key binding to the implementing
+     * element. This is the imperative equivalent of declaring a keybinding
+     * in the `keyBindings` prototype property.
+     *
+     * @param {string} eventString
+     * @param {string} handlerName
+     */
+    addOwnKeyBinding: function addOwnKeyBinding(eventString, handlerName) {
+      this._imperativeKeyBindings[eventString] = handlerName;
+      this._prepKeyBindings();
+      this._resetKeyEventListeners();
+    },
+
+    /**
+     * When called, will remove all imperatively-added key bindings.
+     */
+    removeOwnKeyBindings: function removeOwnKeyBindings() {
+      this._imperativeKeyBindings = {};
+      this._prepKeyBindings();
+      this._resetKeyEventListeners();
+    },
+
+    /**
+     * Returns true if a keyboard event matches `eventString`.
+     *
+     * @param {KeyboardEvent} event
+     * @param {string} eventString
+     * @return {boolean}
+     */
+    keyboardEventMatchesKeys: function keyboardEventMatchesKeys(event, eventString) {
+      var keyCombos = parseEventString(eventString);
+      for (var i = 0; i < keyCombos.length; ++i) {
+        if (keyComboMatchesEvent(keyCombos[i], event)) {
+          return true;
+        }
+      }
+      return false;
+    },
+
+    _collectKeyBindings: function _collectKeyBindings() {
+      var keyBindings = this.behaviors.map(function (behavior) {
+        return behavior.keyBindings;
+      });
+
+      if (keyBindings.indexOf(this.keyBindings) === -1) {
+        keyBindings.push(this.keyBindings);
+      }
+
+      return keyBindings;
+    },
+
+    _prepKeyBindings: function _prepKeyBindings() {
+      this._keyBindings = {};
+
+      this._collectKeyBindings().forEach(function (keyBindings) {
+        for (var eventString in keyBindings) {
+          this._addKeyBinding(eventString, keyBindings[eventString]);
+        }
+      }, this);
+
+      for (var eventString in this._imperativeKeyBindings) {
+        this._addKeyBinding(eventString, this._imperativeKeyBindings[eventString]);
+      }
+
+      // Give precedence to combos with modifiers to be checked first.
+      for (var eventName in this._keyBindings) {
+        this._keyBindings[eventName].sort(function (kb1, kb2) {
+          var b1 = kb1[0].hasModifiers;
+          var b2 = kb2[0].hasModifiers;
+          return b1 === b2 ? 0 : b1 ? -1 : 1;
+        });
+      }
+    },
+
+    _addKeyBinding: function _addKeyBinding(eventString, handlerName) {
+      parseEventString(eventString).forEach(function (keyCombo) {
+        this._keyBindings[keyCombo.event] = this._keyBindings[keyCombo.event] || [];
+
+        this._keyBindings[keyCombo.event].push([keyCombo, handlerName]);
+      }, this);
+    },
+
+    _resetKeyEventListeners: function _resetKeyEventListeners() {
+      this._unlistenKeyEventListeners();
+
+      if (this.isAttached) {
+        this._listenKeyEventListeners();
+      }
+    },
+
+    _listenKeyEventListeners: function _listenKeyEventListeners() {
+      if (!this.keyEventTarget) {
+        return;
+      }
+      Object.keys(this._keyBindings).forEach(function (eventName) {
+        var keyBindings = this._keyBindings[eventName];
+        var boundKeyHandler = this._onKeyBindingEvent.bind(this, keyBindings);
+
+        this._boundKeyHandlers.push([this.keyEventTarget, eventName, boundKeyHandler]);
+
+        this.keyEventTarget.addEventListener(eventName, boundKeyHandler);
+      }, this);
+    },
+
+    _unlistenKeyEventListeners: function _unlistenKeyEventListeners() {
+      var keyHandlerTuple;
+      var keyEventTarget;
+      var eventName;
+      var boundKeyHandler;
+
+      while (this._boundKeyHandlers.length) {
+        // My kingdom for block-scope binding and destructuring assignment..
+        keyHandlerTuple = this._boundKeyHandlers.pop();
+        keyEventTarget = keyHandlerTuple[0];
+        eventName = keyHandlerTuple[1];
+        boundKeyHandler = keyHandlerTuple[2];
+
+        keyEventTarget.removeEventListener(eventName, boundKeyHandler);
+      }
+    },
+
+    _onKeyBindingEvent: function _onKeyBindingEvent(keyBindings, event) {
+      if (this.stopKeyboardEventPropagation) {
+        event.stopPropagation();
+      }
+
+      // if event has been already prevented, don't do anything
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      for (var i = 0; i < keyBindings.length; i++) {
+        var keyCombo = keyBindings[i][0];
+        var handlerName = keyBindings[i][1];
+        if (keyComboMatchesEvent(keyCombo, event)) {
+          this._triggerKeyHandler(keyCombo, handlerName, event);
+          // exit the loop if eventDefault was prevented
+          if (event.defaultPrevented) {
+            return;
+          }
+        }
+      }
+    },
+
+    _triggerKeyHandler: function _triggerKeyHandler(keyCombo, handlerName, keyboardEvent) {
+      var detail = Object.create(keyCombo);
+      detail.keyboardEvent = keyboardEvent;
+      var event = new CustomEvent(keyCombo.event, {
+        detail: detail,
+        cancelable: true
+      });
+      this[handlerName].call(this, event);
+      if (event.defaultPrevented) {
+        keyboardEvent.preventDefault();
+      }
+    }
+  };
+})();
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/* eslint-env browser */
+
+var RegisterHtmlTemplate = function () {
+  function RegisterHtmlTemplate() {
+    _classCallCheck(this, RegisterHtmlTemplate);
+  }
+
+  _createClass(RegisterHtmlTemplate, null, [{
+    key: 'register',
+
+    /**
+     * Create a `<template>` element to hold `<dom-module>` content.
+     * This bit of code will execute in the context of the main document,
+     * calling `importNode` on the `<template>`, which in turn triggers
+     * the lifecycle of the `<dom-module>` and allows it to insert its
+     * content into Polymer's global module map. When a Polymer element
+     * boots up it will fetch its template from this module map.
+     * https://github.com/Polymer/polymer/blob/master/lib/mixins/element-mixin.html#L501-L538
+     * @param {string} val A `<dom-module>` as an HTML string
+     */
+    value: function register(val) {
+      var content = void 0;
+      var template = document.createElement('template');
+      template.innerHTML = val;
+      if (template.content) {
+        content = template.content; // eslint-disable-line prefer-destructuring
+      } else {
+        content = document.createDocumentFragment();
+        while (template.firstChild) {
+          content.appendChild(template.firstChild);
+        }
+      }
+      document.importNode(content, true);
+    }
+    /**
+     * Content that will be injected into the main document. This is primarily
+     * for things like `<iron-iconset>` and `<custom-style>` which do not have
+     * templates but rely on HTML Imports ability to apply content to the main
+     * document.
+     * @param {string} val An HTML string
+     */
+
+  }, {
+    key: 'toBody',
+    value: function toBody(val) {
+      var trimmedVal = val.trim();
+      if (trimmedVal) {
+        var div = document.createElement('div');
+        div.innerHTML = trimmedVal;
+        if (div.firstChild) {
+          if (document.body) {
+            document.body.insertBefore(div.firstChild, document.body.firstChild);
+          } else {
+            document.addEventListener('DOMContentLoaded', function () {
+              document.body.insertBefore(div.firstChild, document.body.firstChild);
+            });
+          }
+        }
+      }
+    }
+  }]);
+
+  return RegisterHtmlTemplate;
+}();
+
+module.exports = RegisterHtmlTemplate;
 
 /***/ })
 /******/ ]);
