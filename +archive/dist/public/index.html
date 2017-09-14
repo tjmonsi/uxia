@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    
+    <meta charset="utf-8">
+    <meta name="generator" content="State of UX in Asia">
+    <meta name="viewport" content="width=device-width, minimum-scale = 1.0, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=no">
+
+    <title>State of UX in Asia</title>
+    <meta name="description" content="This is the site of the State of UX in Asia">
+
+    <meta property="og:title" content="State of UX in Asia" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="This is the site of the State of UX in Asia" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:creator" content="" />
+    <meta name="twitter:title" content="State of UX in Asia" />
+    <meta name="twitter:description" content="This is the site of the State of UX in Asia" />
+    <meta name="twitter:image" content="" />
+
+    <!--
+      If deploying to a non-root path, replace href="/" with the full path to the project root.
+      For example: href="/polymer-starter-kit/relative-path-example/"
+    -->
+    <base href="/">
+
+    <link rel="icon" href="images/favicon.ico">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#3f51b5">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="State of UX in Asia">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="State of UX in Asia">
+
+    <!-- Homescreen icons -->
+    
+    <link rel="apple-touch-icon"  href="images/manifest/">
+    
+    <link rel="apple-touch-icon"  sizes="72x72" href="images/manifest/">
+    
+    <link rel="apple-touch-icon"  sizes="96x96" href="images/manifest/">
+    
+    <link rel="apple-touch-icon"  sizes="144x144" href="images/manifest/">
+    
+    <link rel="apple-touch-icon"  sizes="192x192" href="images/manifest/">
+    
+    <link rel="apple-touch-icon"  sizes="512x512" href="images/manifest/">
+    
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+        
+    <meta name="msapplication-TileImage" content="images/manifest/">  
+    <meta name="msapplication-TileColor" content="">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,fetch,Promise,Array.prototype.findIndex,Object.defineProperty,Map,Set,CustomEvent,performance.now,Object.entries,WeakMap,WeakSet&flags=gated"></script>
+    <script>
+      Object.defineProperty(window, 'App', { value: window.App || {} })
+      Object.defineProperty(App, '_build', { value: App._build || 'dev' })
+      Object.defineProperty(App, '_version', { value: App._version || '0.0.1' })
+      Object.defineProperty(App, '_database', { value: App._database || 'dev' })
+      Object.defineProperty(App, '_analytics', { value: App._analytics || '' })
+
+      if (window.performance) {
+        window.globalStart = window.globalStart || performance.now()
+      }
+
+      window.onerror = function (err, url, line) {
+        try {
+          if (window.ga) {
+            ga('send', 'exception', {
+              exDescription: err.message,
+              exFatal: true
+            })
+          }
+          if (window.Raven) {
+            Raven.captureException(err)
+          }
+        } catch (e) {
+          console.error(err)
+          console.error(e)
+        }
+      }
+
+      // Register the base URL
+      window.App.baseUrl = window.App.baseUrl || document.querySelector('base').href
+    </script>
+
+    
+
+    <!-- Load your application shell -->
+
+    <!-- Add any global styles for body, document, etc. -->
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .drawer {
+        z-index: 10;
+      }
+
+      .header {
+        z-index: 9;
+      }
+    </style>
+
+    <style>
+
+    </style>
+  </head>
+  <body>
+    
+
+    
+    
+
+    <app-shell>
+      
+        <uxia-home-page route="/"></uxia-home-page>
+      
+        <example-style-guide-page route="style-guide"></example-style-guide-page>
+      
+      
+        <example-not-found-page route="not-found"></example-not-found-page>
+      
+        <example-not-authorized-page route="not-authorized"></example-not-authorized-page>
+      
+    </app-shell>
+    <script>
+      // Load and register pre-caching Service Worker
+      // App.Shell = document.querySelector('app-shell')
+      // if (navigator.serviceWorker) {
+      //   navigator.serviceWorker.register(window.App.baseUrl + 'service-worker.js', {
+      //     scope: window.App.baseUrl
+      //   }).then(function (registration) {
+      //     registration.onupdatefound = function () {
+      //       var installingWorker = registration.installing
+
+
+      //       installingWorker.onstatechange = function () {
+      //         switch (installingWorker.state) {
+      //           case 'installed':
+      //             if (!navigator.serviceWorker.controller) {
+      //               console.log('Caching Complete! Future visits will work offline.')
+      //               if (App.Shell && App.Shell.showMessage && typeof App.Shell.showMessage === 'function') {
+      //                 App.Shell.showMessage('Caching complete! Future visits will work offline.', function() { App.Shell.closeToast() }, 'Close', null, 10000)
+      //               } else {
+      //                 setTimeout(function () {
+      //                   App.Shell.showMessage('Caching complete! Future visits will work offline.', function() { App.Shell.closeToast() }, 'Close', null, 10000)
+      //                 }, 30000)
+      //               }
+
+      //             }
+      //             break
+
+      //           case 'redundant':
+      //             console.error(new Error('The installing service worker became redundant.'));
+      //             // Raven.captureMessage('The installing service worker became redundant.');
+      //         }
+      //       }
+      //     }
+
+      //     if (navigator.serviceWorker.controller) {
+      //       console.log('The service worker is currently handling network operations.')
+      //     } else {
+      //       console.log('Please reload this page to allow the service worker to handle network operations.')
+      //     }
+      //   })
+
+      //   // Check to see if the service worker controlling the page at initial load
+      //   // has become redundant, since this implies there's a new service worker with fresh content.
+      //   if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      //     navigator.serviceWorker.controller.onstatechange = function (event) {
+      //       if (event.target.state === 'redundant') {
+      //         // Define a handler that will be used for the next io-toast tap, at which point it
+      //         // be automatically removed.
+      //         function tapHandler () {
+      //           window.location.reload()
+      //         }
+
+      //         if (App.Shell.showMessage) {
+      //           App.Shell.showMessage('A new version of this app is available.', tapHandler, 'Refresh', null, 0); // duration 0 indications shows the toast indefinitely.
+      //         } else {
+      //           setTimeout(function () {
+      //             if (App.Shell.showMessage) {
+      //               App.Shell.showMessage('A new version of this app is available.', tapHandler, 'Refresh', null, 0); // duration 0 indications shows the toast indefinitely.
+      //             } else {
+      //               tapHandler() // Force reload if user never was shown the toast.
+      //             }
+      //           }, 5000)
+      //         }
+      //       }
+      //     };
+      //   }
+      // }
+    </script>
+
+    <!--
+      Feature detect Custom Elements support. If the browser DOES support Custom
+      Elements then we need to load the custom-elements-es5-adapter because
+      our project code has been transpiled from ES2015 to ES5 and native Custom
+      Elements expect elements will be registered as classes.
+    -->
+    <div id="ce-es5-shim">
+      <script type="text/javascript">
+        if (!window.customElements) {
+          var ceShimContainer = document.querySelector('#ce-es5-shim');
+          ceShimContainer.parentElement.removeChild(ceShimContainer);
+        }
+      </script>
+      <script type="text/javascript" src="bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    </div>
+
+    <!--
+      Use the webcomponents-loader script which will feature detect which Web
+      Components features are missing and lazy load the appropriate polyfills.
+      When we hear the 'WebComponentsReady' event from the polyfill bundle we can
+      insert our 'bundle.js'.
+    -->
+    <script>
+      (function () {
+        document.addEventListener('WebComponentsReady', function componentsReady() {
+          document.removeEventListener('WebComponentsReady', componentsReady, false)
+          var modernizr = document.createElement('script')
+          modernizr.src = 'modernizr-bundle.js'
+          var script = document.createElement('script')
+          script.src = 'main.bundle.js'
+          var refScript = document.getElementsByTagName('script')[0]
+          refScript.parentNode.insertBefore(modernizr, refScript)
+          refScript.parentNode.insertBefore(script, refScript)
+
+        }, false)
+      })()
+    </script>
+    <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <!--
+      IMPORTANT: Make sure you set the inject: false option in HTMLWebpackPlugin
+      so it doesn't try to insert bundle.js. We're handling loading it ourselves
+      up above.
+    -->
+  </body>
+</html>
