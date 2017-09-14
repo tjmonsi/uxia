@@ -2,17 +2,17 @@
 
 The first free annual report highlighting the State of User Experience Design and Research in the Asian continent. Featuring real stories from UX Practitioners all over the region.
 
-To install:
+## To install:
 ```bash
 $ npm install
 ```
 
-To run:
+## To run:
 ```bash
 $ npm start
 ```
 
-Where are the files?
+## Where are the files?
 
 It is inside `src` folder. Styles are inside the `styles` folder with each part separated in the `components` folder.
 
