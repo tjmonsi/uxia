@@ -177,71 +177,71 @@
     </app-shell>
     <script>
       // Load and register pre-caching Service Worker
-      App.Shell = document.querySelector('app-shell')
-      if (navigator.serviceWorker) {
-        navigator.serviceWorker.register(window.App.baseUrl + 'service-worker.js', {
-          scope: window.App.baseUrl
-        }).then(function (registration) {
-          registration.onupdatefound = function () {
-            var installingWorker = registration.installing
+      // App.Shell = document.querySelector('app-shell')
+      // if (navigator.serviceWorker) {
+      //   navigator.serviceWorker.register(window.App.baseUrl + 'service-worker.js', {
+      //     scope: window.App.baseUrl
+      //   }).then(function (registration) {
+      //     registration.onupdatefound = function () {
+      //       var installingWorker = registration.installing
 
 
-            installingWorker.onstatechange = function () {
-              switch (installingWorker.state) {
-                case 'installed':
-                  if (!navigator.serviceWorker.controller) {
-                    console.log('Caching Complete! Future visits will work offline.')
-                    if (App.Shell && App.Shell.showMessage && typeof App.Shell.showMessage === 'function') {
-                      App.Shell.showMessage('Caching complete! Future visits will work offline.', function() { App.Shell.closeToast() }, 'Close', null, 10000)
-                    } else {
-                      setTimeout(function () {
-                        App.Shell.showMessage('Caching complete! Future visits will work offline.', function() { App.Shell.closeToast() }, 'Close', null, 10000)
-                      }, 30000)
-                    }
+      //       installingWorker.onstatechange = function () {
+      //         switch (installingWorker.state) {
+      //           case 'installed':
+      //             if (!navigator.serviceWorker.controller) {
+      //               console.log('Caching Complete! Future visits will work offline.')
+      //               if (App.Shell && App.Shell.showMessage && typeof App.Shell.showMessage === 'function') {
+      //                 App.Shell.showMessage('Caching complete! Future visits will work offline.', function() { App.Shell.closeToast() }, 'Close', null, 10000)
+      //               } else {
+      //                 setTimeout(function () {
+      //                   App.Shell.showMessage('Caching complete! Future visits will work offline.', function() { App.Shell.closeToast() }, 'Close', null, 10000)
+      //                 }, 30000)
+      //               }
 
-                  }
-                  break
+      //             }
+      //             break
 
-                case 'redundant':
-                  console.error(new Error('The installing service worker became redundant.'));
-                  // Raven.captureMessage('The installing service worker became redundant.');
-              }
-            }
-          }
+      //           case 'redundant':
+      //             console.error(new Error('The installing service worker became redundant.'));
+      //             // Raven.captureMessage('The installing service worker became redundant.');
+      //         }
+      //       }
+      //     }
 
-          if (navigator.serviceWorker.controller) {
-            console.log('The service worker is currently handling network operations.')
-          } else {
-            console.log('Please reload this page to allow the service worker to handle network operations.')
-          }
-        })
+      //     if (navigator.serviceWorker.controller) {
+      //       console.log('The service worker is currently handling network operations.')
+      //     } else {
+      //       console.log('Please reload this page to allow the service worker to handle network operations.')
+      //     }
+      //   })
 
-        // Check to see if the service worker controlling the page at initial load
-        // has become redundant, since this implies there's a new service worker with fresh content.
-        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-          navigator.serviceWorker.controller.onstatechange = function (event) {
-            if (event.target.state === 'redundant') {
-              // Define a handler that will be used for the next io-toast tap, at which point it
-              // be automatically removed.
-              function tapHandler () {
-                window.location.reload()
-              }
+      //   // Check to see if the service worker controlling the page at initial load
+      //   // has become redundant, since this implies there's a new service worker with fresh content.
+      //   if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      //     navigator.serviceWorker.controller.onstatechange = function (event) {
+      //       if (event.target.state === 'redundant') {
+      //         // Define a handler that will be used for the next io-toast tap, at which point it
+      //         // be automatically removed.
+      //         function tapHandler () {
+      //           window.location.reload()
+      //         }
 
-              if (App.Shell.showMessage) {
-                App.Shell.showMessage('A new version of this app is available.', tapHandler, 'Refresh', null, 0); // duration 0 indications shows the toast indefinitely.
-              } else {
-                setTimeout(function () {
-                  if (App.Shell.showMessage) {
-                    App.Shell.showMessage('A new version of this app is available.', tapHandler, 'Refresh', null, 0); // duration 0 indications shows the toast indefinitely.
-                  } else {
-                    tapHandler() // Force reload if user never was shown the toast.
-                  }
-                }, 5000)
-              }
-            }
-          };
-        }
-      }
+      //         if (App.Shell.showMessage) {
+      //           App.Shell.showMessage('A new version of this app is available.', tapHandler, 'Refresh', null, 0); // duration 0 indications shows the toast indefinitely.
+      //         } else {
+      //           setTimeout(function () {
+      //             if (App.Shell.showMessage) {
+      //               App.Shell.showMessage('A new version of this app is available.', tapHandler, 'Refresh', null, 0); // duration 0 indications shows the toast indefinitely.
+      //             } else {
+      //               tapHandler() // Force reload if user never was shown the toast.
+      //             }
+      //           }, 5000)
+      //         }
+      //       }
+      //     };
+      //   }
+      // }
     </script>
 
     <!--
