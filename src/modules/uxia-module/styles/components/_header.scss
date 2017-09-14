@@ -18,7 +18,13 @@
 
       .logo {
         width: 322px;
+
+        @media only screen and (max-width: 400px) {
+          width: 50px;
+          margin-left: 20px;
+        }
       }
+
 
       .spacer {
         @apply --layout-flex;
