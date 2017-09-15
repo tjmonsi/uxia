@@ -402,7 +402,7 @@
             text-align: center; } }
       .main-testimony .main-testimony-container .testimony-container .testimony-work {
         margin: 0px;
-        font-family: 'Montserrat';
+        font-family: 'Open San';
         font-size: 16px;
         font-weight: 400;
         letter-spacing: 5px;
@@ -569,7 +569,7 @@
             .secondary-testimony .secondary-testimony-list .secondary-testimony .secondary-testimony-person .secondary-testimony-name {
               font-size: 20px; } }
         .secondary-testimony .secondary-testimony-list .secondary-testimony .secondary-testimony-person .secondary-testimony-country {
-          font-family: 'Montserrat';
+          font-family: 'Open Sans';
           font-size: 14px;
           font-weight: bold;
           letter-spacing: 5px;
@@ -817,7 +817,7 @@
         .footer .footer-container .footer-proper {
           grid-template-columns: 1fr; } }
       .footer .footer-container .footer-proper .footer-brought {
-        font-family: 'Montserrat';
+        font-family: 'Open San';
         font-size: 16px;
         font-weight: 400;
         letter-spacing: 2px;
