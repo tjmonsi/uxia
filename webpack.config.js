@@ -27,7 +27,15 @@ module.exports = (env) => {
         template: path.resolve(__dirname, './src/index.ejs'),
         inject: false,
         filename: 'index.html',
-        data
+        data,
+        minify: {
+          caseSensitive: true,
+          collapseWhitespace: true,
+          conservativeCollapse: true,
+          minifyCSS: true,
+          minifyJS: true,
+          preserveLineBreaks: true
+        }
       }),
       new ExtractTextPlugin('style.css'),
       new StyleExtHtmlWebpackPlugin({
