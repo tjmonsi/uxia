@@ -149,7 +149,7 @@ module.exports = {
 
   hire: [
     {
-      role: 'Yes'
+      role: 'Yes, please contact me'
     },
     {
       role: 'Possibly in the future'
